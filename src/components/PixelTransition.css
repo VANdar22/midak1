@@ -1,0 +1,46 @@
+.pixel-transition {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.pixel-transition-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-size), 1fr);
+  grid-template-rows: repeat(var(--grid-size), 1fr);
+  transform: scale(1.1);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+}
+
+.pixel-transition-inner.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.pixel {
+  background-color: var(--pixel-color, #6f35c8);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: scale(0);
+  opacity: 0;
+}
+
+.pixel-transition-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.3s;
+}
+
+.pixel-transition-content.visible {
+  opacity: 1;
+}
