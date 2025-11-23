@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
+import { accentColors } from '../../constants/colors';
 
 const projects = [
   {
@@ -36,7 +38,7 @@ import { Link } from 'react-router-dom';
 const ProjectCard = ({ project }) => (
   <Link to={`/projects/${project.slug}`} className="block">
     <motion.div 
-      className="bg-[#f4eff4] border-2 border-gray-300 hover:border-gray-400 overflow-hidden transition-all duration-300 flex flex-col h-[380px] max-w-xs mx-auto w-full group"
+      className="bg-[#f5f5f5] border-2 border-gray-300 hover:border-gray-400 overflow-hidden transition-all duration-300 flex flex-col h-[380px] max-w-xs mx-auto w-full group"
       whileHover={{ y: -5 }}
     >
       <div className="h-40 overflow-hidden">
@@ -49,14 +51,22 @@ const ProjectCard = ({ project }) => (
       <div className="p-4 flex flex-col h-full">
         <div className="grow">
           <h3 className="text-xl font-semibold text-gray-900 mb-0.5">{project.title}</h3>
-          <p className="text-[#6f35c8] text-xs mb-1">{project.date}</p>
+          <p className="text-xs mb-1" style={{ color: accentColors.main }}>{project.date}</p>
           <p className="text-gray-600 text-xl mt-6 line-clamp-2 leading-tight">{project.subtext}</p>
           <div className="flex items-center gap-3 mt-4">
-            <span className="text-base font-medium text-[#6f35c8]">View Project</span>
-            <div className="group-hover:bg-[#6f35c8] transition-colors duration-300 w-16 h-16 ml-32 rounded-full flex items-center justify-center overflow-hidden shadow group-hover:shadow-md">
+            <span className="text-base font-medium" style={{ color: accentColors.main }}>View Project</span>
+            <div 
+              className="transition-all duration-300 w-16 h-16 ml-32 rounded-full flex items-center justify-center overflow-hidden shadow group-hover:shadow-md hover:bg-opacity-10"
+              style={{ 
+                backgroundColor: 'transparent',
+                border: `2px solid ${accentColors.main}`,
+                '--bg-hover': accentColors.main 
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-[#6f35c8] group-hover:text-white transition-colors duration-300"
+                className="h-5 w-5 transition-colors duration-300"
+                style={{ color: accentColors.main }}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -75,6 +85,18 @@ const ProjectCard = ({ project }) => (
     </motion.div>
   </Link>
 );
+
+ProjectCard.propTypes = {
+  project: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    subtext: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    category: PropTypes.string
+  }).isRequired
+};
 
 const Projects = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -118,15 +140,15 @@ const Projects = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <section className="py-16 bg-[#f4eff4]">
+    <section className="py-16" style={{ backgroundColor: '#f5f5f5' }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Projects</h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {currentProjects.map((project, index) => (
-            <ProjectCard key={index} project={project} />
+          {currentProjects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
         
@@ -134,7 +156,12 @@ const Projects = () => {
           <button 
             onClick={() => paginate(currentPage > 1 ? currentPage - 1 : 1)}
             disabled={currentPage === 1}
-            className="p-3 rounded-full bg-[#6f35c8]/10 hover:bg-[#6f35c8]/20 text-[#6f35c8] disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+            className="p-3 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+            style={{ backgroundColor: `${accentColors.main}1a`, color: accentColors.main, '--hover-bg': `${accentColors.main}33` }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}33`}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}1a`}
+            onFocus={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}33`}
+            onBlur={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}1a`}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -145,11 +172,15 @@ const Projects = () => {
             <button
               key={number}
               onClick={() => paginate(number)}
-              className={`w-12 h-12 rounded-full flex items-center justify-center font-medium text-lg ${
+              className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ${
                 currentPage === number 
-                  ? 'bg-[#6f35c8] text-white shadow-lg transform scale-105' 
-                  : 'text-[#6f35c8] hover:bg-[#6f35c8]/10'
+                  ? `text-white shadow-lg transform scale-110` 
+                  : `text-gray-700 hover:bg-gray-200`
               } transition-all duration-300`}
+              style={{
+                backgroundColor: currentPage === number ? accentColors.main : 'transparent',
+                border: currentPage === number ? 'none' : `2px solid ${accentColors.main}`,
+              }}
             >
               {number}
             </button>
@@ -158,7 +189,12 @@ const Projects = () => {
           <button 
             onClick={() => paginate(currentPage < totalPages ? currentPage + 1 : totalPages)}
             disabled={currentPage === totalPages}
-            className="p-3 rounded-full bg-[#6f35c8]/10 hover:bg-[#6f35c8]/20 text-[#6f35c8] disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+            className="p-3 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+            style={{ backgroundColor: `${accentColors.main}1a`, color: accentColors.main, '--hover-bg': `${accentColors.main}33` }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}33`}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}1a`}
+            onFocus={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}33`}
+            onBlur={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}1a`}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

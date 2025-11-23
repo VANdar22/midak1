@@ -6,6 +6,41 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import { accentColors } from '../constants/colors';
+
+const ViewButton = styled.button`
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background-color: ${accentColors.main};
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: white;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  svg {
+    color: white;
+    height: 1.5rem;
+    width: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  &:hover svg {
+    color: ${accentColors.main} !important;
+    transform: translate(2px, -1px);
+  }
+`;
 
 // Custom scrollbar hiding for mobile
 const globalStyles = `
@@ -22,7 +57,7 @@ const FeaturedPostContainer = styled(motion.div)`
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 
-    0 60px 120px -20px rgba(0, 0, 0, 0.3),
+    0 60px 120px -20px ${accentColors.alpha20},
     0 0 0 1px rgba(255, 255, 255, 0.1);
   transform: 
     perspective(1500px) 
@@ -32,7 +67,7 @@ const FeaturedPostContainer = styled(motion.div)`
     translateZ(0);
   transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   will-change: transform, box-shadow;
-  background: linear-gradient(145deg, #1a1a1a, #000000);
+  background: linear-gradient(145deg, ${accentColors.darkest}, #000000);
   padding: 0;
   backface-visibility: hidden;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -44,7 +79,7 @@ const FeaturedPostContainer = styled(motion.div)`
       rotateX(5deg) 
       translateZ(20px);
     box-shadow: 
-      0 80px 140px -30px rgba(0, 0, 0, 0.4),
+      0 80px 140px -30px ${accentColors.alpha20},
       0 0 0 1px rgba(255, 255, 255, 0.1);
   }
 
@@ -309,8 +344,8 @@ const Blog = () => {
             modules={[Autoplay, Pagination]}
             className="h-full w-full"
             style={{
-              '--swiper-pagination-color': '#8b5cf6',
-              '--swiper-pagination-bullet-inactive-color': '#c4b5fd',
+              '--swiper-pagination-color': '#9B2C2C',
+              '--swiper-pagination-bullet-inactive-color': '#C53030',
               '--swiper-pagination-bullet-size': '8px',
               '--swiper-pagination-bullet-horizontal-gap': '6px',
               '--swiper-pagination-bullet-opacity': '1',
@@ -361,23 +396,23 @@ const Blog = () => {
                 >
                   <div className="w-full max-w-3xl text-left">
                     <span 
-                      className="inline-block px-3 py-1 mb-3 text-xs font-semibold text-white bg-[#6f35c8] rounded-full"
+                      className="inline-block px-3 py-1 mb-3 text-xs font-semibold text-white rounded-full"
                       style={{
                         transform: 'translateZ(40px)',
                         display: 'inline-block',
                         backdropFilter: 'blur(10px)',
-                        backgroundColor: 'rgba(111, 53, 200, 0.7)'
+                        backgroundColor: `${accentColors.main}E6`
                       }}
                     >
                       {post.category}
                     </span>
-                    <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4 leading-tight">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans font-semibold text-white mb-2 sm:mb-3 leading-tight">
                       {post.title}
                     </h1>
-                    <p className="text-white/90 mb-6 max-w-2xl text-base sm:text-lg leading-relaxed line-clamp-2 sm:line-clamp-3">
+                    <p className="text-white/90 mb-4 max-w-2xl text-base sm:text-lg leading-relaxed line-clamp-2 sm:line-clamp-3">
                       {post.excerpt}
                     </p>
-                    <div className="text-sm text-white/80">
+                    <div className="text-sm text-white/80 font-sans">
                       <time dateTime={post.date}>{post.date}</time>
                     </div>
                   </div>
@@ -390,7 +425,7 @@ const Blog = () => {
 
       {/* Midak Insights Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-left">
-        <h1 className="text-4xl font-bold text-[#6d28d9] text-changa-one mb-4">Midak Insights</h1>
+        <h1 className="text-4xl font-bold text-changa-one mb-4" style={{ color: accentColors.main }}>Midak Insights</h1>
         <p className="text-xl text-gray-600">
           Your source for the latest news, product updates, and industry insights
         </p>
@@ -417,9 +452,16 @@ const Blog = () => {
                   onClick={() => setActiveCategory(category)}
                   className={`whitespace-nowrap px-2 py-2 sm:py-3 font-medium sm:font-semibold text-sm sm:text-base transition-all duration-200 ${
                     activeCategory === category
-                      ? 'text-[#6f35c8]/80 border-b-2 border-[#6f35c8]/80 font-semibold'
-                      : 'text-gray-600 hover:text-[#6f35c8]/80'
+                      ? 'font-semibold border-b-2'
+                      : 'text-gray-600 hover:opacity-80'
                   }`}
+                  style={{
+                    color: activeCategory === category ? accentColors.main : 'inherit',
+                    borderColor: activeCategory === category ? accentColors.main : 'transparent',
+                    '&:hover': {
+                      color: accentColors.main
+                    }
+                  }}
                 >
                   {category}
                 </button>
@@ -433,7 +475,22 @@ const Blog = () => {
               <button
                 type="button"
                 onClick={() => setIsSortOpen(!isSortOpen)}
-                className="group flex items-center justify-between w-full sm:w-40 px-4 py-3 sm:py-2.5 text-sm font-medium text-[#6f35c8] hover:text-[#6f35c8]/90 focus:outline-none transition-all duration-200 border border-[#6f35c8]/30 rounded-lg sm:rounded-md bg-white hover:bg-[#6f35c8]/5 focus:ring-2 focus:ring-[#6f35c8]/20 shadow-sm"
+                className="group flex items-center justify-between w-full sm:w-40 px-4 py-3 sm:py-2.5 text-sm font-medium focus:outline-none transition-all duration-200 border rounded-lg sm:rounded-md bg-white shadow-sm"
+                style={{
+                  color: accentColors.main,
+                  borderColor: `${accentColors.main}4D`,
+                  '&:hover': {
+                    color: `${accentColors.main}E6`,
+                    backgroundColor: `${accentColors.main}0D`
+                  },
+                  '&:focus': {
+                    '--tw-ring-opacity': '1',
+                    '--tw-ring-color': `${accentColors.main}33`,
+                    '--tw-ring-offset-shadow': 'var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)',
+                    '--tw-ring-shadow': 'var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color)',
+                    'box-shadow': 'var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)'
+                  }
+                }}
                 aria-haspopup="listbox"
                 aria-expanded={isSortOpen}
               >
@@ -467,11 +524,15 @@ const Blog = () => {
                       setSortBy(option.value);
                       setIsSortOpen(false);
                     }}
-                    className={`${
-                      sortBy === option.value 
-                        ? 'bg-[#6f35c8]/80 text-[#f4f4f4] font-semibold' 
-                        : 'text-gray-600 hover:bg-[#6f35c8]/50 hover:text-[#f4f4f4] font-semibold'
-                    } block w-full px-4 py-2 text-left text-sm transition-colors duration-150`}
+                    className="block w-full px-4 py-2 text-left text-sm font-semibold transition-colors duration-150"
+                    style={{
+                      backgroundColor: sortBy === option.value ? accentColors.main : 'transparent',
+                      color: sortBy === option.value ? accentColors.text : 'var(--gray-600)',
+                      '&:hover': {
+                        backgroundColor: sortBy === option.value ? accentColors.dark : `${accentColors.main}26`,
+                        color: sortBy === option.value ? accentColors.text : accentColors.darkest
+                      }
+                    }}
                     role="menuitem"
                   >
                     {option.label}
@@ -500,11 +561,11 @@ const Blog = () => {
               </div>
               <div className="p-4 flex-1 flex flex-col justify-between">
                 <div className="flex-1">
-                  <p className="text-xs font-medium text-[#6f35c8]/80">
+                  <p className="text-xs font-medium" style={{ color: `${accentColors.main}CC` }}>
                     {post.category}
                   </p>
                   <div className="block mt-1">
-                    <Link to={`/blog/${post.slug}`} className="hover:text-[#6f35c8] transition-colors duration-200">
+                    <Link to={`/blog/${post.slug}`} className="transition-colors duration-200" style={{ '--tw-text-opacity': '1', color: `var(--tw-text-opacity, ${accentColors.main})` }}>
                     <p className="text-lg font-semibold text-gray-900 line-clamp-2">{post.title}</p>
                   </Link>
                     <p className="mt-2 text-sm text-gray-500 line-clamp-2 mb-4">{post.excerpt}</p>
@@ -517,25 +578,21 @@ const Blog = () => {
                   </div>
                   <div className="flex items-center ml-4">
                     <Link to={`/blog/${post.slug}`} className="block" aria-label={`Read more about ${post.title}`}>
-                      <button className="group relative bg-[#6f35c8] w-12 h-12 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl">
-                        <span className="relative z-10">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6 text-white transition-all duration-300 transform group-hover:translate-x-0.5 group-hover:translate-y-[-1px] group-hover:text-[#6f35c8]"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M5 19L19 5m0 0H9m10 0v10"
-                            />
-                          </svg>
-                        </span>
-                        <span className="absolute inset-0 rounded-full bg-white opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100 origin-center z-0"></span>
-                      </button>
+                      <ViewButton>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M5 19L19 5M19 5H9m10 0v10"
+                          />
+                        </svg>
+                      </ViewButton>
                     </Link>
                   </div>
                 </div>
@@ -550,7 +607,15 @@ const Blog = () => {
             <button 
               onClick={() => paginate(currentPage > 1 ? currentPage - 1 : 1)}
               disabled={currentPage === 1}
-              className="p-3 rounded-full bg-[#6f35c8]/10 hover:bg-[#6f35c8]/20 text-[#6f35c8] disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+              className="p-3 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+              style={{
+                backgroundColor: `${accentColors.main}1A`,
+                color: accentColors.main,
+                '--tw-bg-opacity': '0.1',
+                '&:hover': {
+                  backgroundColor: `${accentColors.main}33`
+                }
+              }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -561,11 +626,17 @@ const Blog = () => {
               <button
                 key={number}
                 onClick={() => paginate(number)}
-                className={`w-12 h-12 rounded-full flex items-center justify-center font-medium text-lg ${
+                className={`w-5 h-5 rounded-full flex items-center justify-center font-medium text-lg ${
                   currentPage === number 
-                    ? 'bg-[#6f35c8] text-white shadow-lg transform scale-105' 
-                    : 'text-[#6f35c8] hover:bg-[#6f35c8]/10'
+                    ? 'text-white shadow-lg transform scale-105' 
+                    : 'hover:bg-opacity-10'
                 } transition-all duration-300`}
+                style={{
+                  backgroundColor: currentPage === number ? accentColors.main : 'transparent',
+                  color: currentPage === number ? accentColors.text : accentColors.main,
+                  '--tw-bg-opacity': '0.1',
+                  '--tw-text-opacity': '1'
+                }}
               >
                 {number}
               </button>
@@ -574,7 +645,15 @@ const Blog = () => {
             <button 
               onClick={() => paginate(currentPage < totalPages ? currentPage + 1 : totalPages)}
               disabled={currentPage === totalPages}
-              className="p-3 rounded-full bg-[#6f35c8]/10 hover:bg-[#6f35c8]/20 text-[#6f35c8] disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+              className="p-3 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+              style={{
+                backgroundColor: `${accentColors.main}1A`,
+                color: accentColors.main,
+                '--tw-bg-opacity': '0.1',
+                '&:hover': {
+                  backgroundColor: `${accentColors.main}33`
+                }
+              }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

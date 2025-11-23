@@ -1,4 +1,5 @@
 import React from 'react';
+import { accentColors } from '../constants/colors';
 
 const sections = [
   {
@@ -23,7 +24,7 @@ const Terms = () => (
   <div className="min-h-screen">
     <div className="w-full max-w-4xl mx-auto px-4 py-16 space-y-8">
       <header>
-        <p className="text-sm tracking-wide uppercase text-[#6f35c8] font-semibold">Terms</p>
+        <p className={`text-sm tracking-wide uppercase text-[${accentColors.DEFAULT}] font-semibold`}>Terms</p>
         <h1 className="text-4xl font-bold text-gray-900 mt-2">Terms of Service</h1>
         <p className="text-gray-600 mt-3">
           These terms outline the rules and conditions for using our website and consulting services.

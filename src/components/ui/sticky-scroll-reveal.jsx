@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useMotionValueEvent, useScroll } from "motion/react";
 import { motion } from "motion/react";
+import { accentColors } from "@/constants/colors";
 import { cn } from "@/lib/utils";
 
 const StickyScrollReveal = ({
@@ -59,7 +60,7 @@ const StickyScrollReveal = ({
         {/* Content */}
         <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-12">
           <div className="max-w-4xl">
-            <div className="text-purple-400 text-sm sm:text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-3 md:mb-4">
+            <div className={`text-[${accentColors.light}] text-sm sm:text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-3 md:mb-4`}>
               ABOUT MIDAK
             </div>
             <p className="text-base sm:text-base md:text-xl lg:text-2xl xl:text-3xl text-gray-200 leading-relaxed sm:leading-7 md:leading-8">
@@ -77,13 +78,13 @@ const StickyScrollReveal = ({
             </span>
             <button 
               onClick={scrollToContent}
-              className="group relative bg-[#6f35c8] text-white w-16 h-16 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 shadow-md hover:shadow-lg hover:bg-white"
+              className={`group relative bg-[${accentColors.DEFAULT}] text-white w-16 h-16 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 shadow-md hover:shadow-lg hover:bg-white hover:text-[${accentColors.DEFAULT}]`}
               aria-label="Scroll down"
             >
               <span className="relative z-10">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 transition-all duration-300 transform group-hover:translate-y-1 group-hover:stroke-[#6f35c8]"
+                  className={`h-6 w-6 transition-all duration-300 transform text-white group-hover:translate-y-1 group-hover:text-[${accentColors.DEFAULT}]`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

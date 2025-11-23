@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Menu, X } from 'lucide-react';
+import { accentColors } from '../constants/colors';
 
 gsap.registerPlugin(useGSAP);
 
@@ -100,7 +101,15 @@ const Navbar = () => {
         <div className="hidden md:block">
           <button 
             onClick={toggleNavbar}
-            className="fixed top-4 right-4 z-40 bg-white text-[#6f35c8] p-3 rounded-full shadow-lg hover:bg-[#5d2da8] hover:text-white transition-all duration-500 ease-in-out delay-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 flex items-center justify-center transform hover:scale-105"
+            className="fixed top-4 right-4 z-40 p-3 rounded-full shadow-lg transition-all duration-500 ease-in-out delay-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 flex items-center justify-center transform"
+            style={{ 
+              color: accentColors.main,
+              backgroundColor: 'white',
+              ':hover': {
+                backgroundColor: accentColors.main,
+                color: 'white'
+              }
+            }}
             aria-label="Show navigation"
           >
             <Menu className="h-8 w-8" />
@@ -120,10 +129,12 @@ const Navbar = () => {
         }}
       >
       <div 
-        className="backdrop-blur-md bg-[#6f35c8]/80 px-6 sm:px-10 py-3 md:py-4 flex items-center justify-between w-full rounded-full transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+        className="backdrop-blur-md px-6 sm:px-10 py-3 md:py-4 flex items-center justify-between w-full rounded-full transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
         style={{
+          backgroundColor: `${accentColors.main}CC`, // CC is 80% opacity in hex
           transform: 'translateZ(0)',
-          willChange: 'transform, opacity'
+          willChange: 'transform, opacity',
+          background: `linear-gradient(135deg, ${accentColors.main}CC, ${accentColors.dark}CC)`
         }}
       >
         {/* Logo */}
@@ -180,25 +191,17 @@ const Navbar = () => {
             <span className="text-xl font-medium !text-white">Contact Us</span>
             <Link 
               to="/contact"
-              className="group relative bg-white w-12 h-12 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-[#6f35c8]"
+              className="group relative w-12 h-12 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 bg-white hover:bg-[#800020]"
             >
-              <span className="relative z-10">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-[#6f35c8] transition-all duration-300 transform group-hover:translate-x-1 group-hover:text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2.5}
-                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                  />
-                </svg>
-              </span>
-              <span className="absolute inset-0 rounded-full bg-[#6f35c8] opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100 origin-center"></span>
+              <svg className="relative z-10 w-6 h-6 text-[#800020] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                />
+              </svg>
+              <span className="absolute inset-0 bg-[#800020] transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
             </Link>
           </div>
         </div>
@@ -232,18 +235,21 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div 
-        className={`md:hidden bg-[#6f35c8] transition-all duration-300 ease-in-out overflow-hidden ${
+        className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
           isMenuOpen ? 'max-h-96 py-4 opacity-100' : 'max-h-0 py-0 opacity-0'
-        } absolute left-0 right-0 top-full mt-1 z-[60] rounded-b-2xl mx-4`}
+        } absolute left-0 right-0 top-full mt-1 z-60 rounded-b-2xl mx-4`}
         style={{
-          boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
+          background: `linear-gradient(135deg, ${accentColors.dark}EE, ${accentColors.darkest}EE)`,
+          boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2)',
+          backdropFilter: 'blur(16px)',
+          border: '1px solid rgba(255, 255, 255, 0.15)'
         }}
       >
-        <div className="flex flex-col items-stretch space-y-2 px-6">
+        <div className="flex flex-col items-stretch space-y-3 px-6">
           <Link 
             to="/"
-            className={`w-full text-center py-3 px-4 rounded-lg text-lg font-medium transition-colors duration-200 !text-white ${
-              isActive('/') ? 'bg-white/20' : 'opacity-90 hover:bg-white/10 hover:opacity-100'
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 !text-white ${
+              isActive('/') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
@@ -251,8 +257,8 @@ const Navbar = () => {
           </Link>
           <Link 
             to="/services"
-            className={`w-full text-center py-3 px-4 rounded-lg text-lg font-medium transition-colors duration-200 !text-white ${
-              isActive('/services') ? 'bg-white/20' : 'opacity-90 hover:bg-white/10 hover:opacity-100'
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 !text-white ${
+              isActive('/services') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
@@ -260,8 +266,8 @@ const Navbar = () => {
           </Link>
           <Link 
             to="/about"
-            className={`w-full text-center py-3 px-4 rounded-lg text-lg font-medium transition-colors duration-200 !text-white ${
-              isActive('/about') ? 'bg-white/20' : 'opacity-90 hover:bg-white/10 hover:opacity-100'
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 !text-white ${
+              isActive('/about') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
@@ -269,8 +275,8 @@ const Navbar = () => {
           </Link>
           <Link 
             to="/blog"
-            className={`w-full text-center py-3 px-4 rounded-lg text-lg font-medium transition-colors duration-200 !text-white ${
-              isActive('/blog') ? 'bg-white/20' : 'opacity-90 hover:bg-white/10 hover:opacity-100'
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 !text-white ${
+              isActive('/blog') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
@@ -278,8 +284,8 @@ const Navbar = () => {
           </Link>
           <Link 
             to="/contact"
-            className={`w-full text-center py-3 px-4 rounded-lg text-lg font-medium transition-colors duration-200 !text-white ${
-              isActive('/contact') ? 'bg-white/20' : 'opacity-90 hover:bg-white/10 hover:opacity-100'
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 !text-white ${
+              isActive('/contact') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
           >

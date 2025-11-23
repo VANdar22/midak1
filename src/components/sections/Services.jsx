@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Accordion from '../ui/Accordion';
+import { accentColors } from '../../constants/colors';
 
 const Services = () => {
   const controls = useAnimation();
@@ -40,7 +41,7 @@ const Services = () => {
   };
 
   return (
-    <section className="w-full pt-8 pb-20 bg-[#f4eff4] overflow-hidden">
+    <section className="w-full pt-8 pb-20 overflow-hidden" style={{ backgroundColor: '#f5f5f5' }}>
       <motion.div 
         className="container mx-auto px-4"
         ref={ref}

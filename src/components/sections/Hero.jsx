@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import RotatingText from "../RotatingText";
+import { accentColors } from "../../constants/colors";
 
 // Check if we're on a mobile device or have reduced motion preference
 const isMobile = () => {
@@ -75,16 +76,16 @@ const Hero = () => {
 
   return (
     <ParallaxProvider>
-      <section ref={heroRef} className="relative min-h-screen flex items-center pt-24 md:pt-0 [&_*:focus]:outline-none overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen flex items-center pt-20 md:pt-0 [&_*:focus]:outline-none overflow-hidden">
         {/* Parallax Background Layer */}
         <Parallax speed={-20} className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-gradient-to-br from-[#E0E0E0]/30 to-[#E0E0E0]/10" />
+          <div className="w-full h-full bg-[#f5f5f5]" />
         </Parallax>
 
         {/* Parallax Decorative Circles */}
-        <Parallax speed={-15} className="absolute w-40 h-40 bg-[#6f35c8]/50 -left-10 top-1/4 rounded-full animate-float"></Parallax>
-        <Parallax speed={-10} className="absolute w-60 h-60 bg-[#6f35c8]/50 -right-8 -top-8 rounded-full animate-float animation-delay-1000"></Parallax>
-      <div className="container mx-auto px-4 relative z-10">
+        <Parallax speed={-15} className="absolute w-40 h-40 -left-10 top-1/4 rounded-full animate-float" style={{ backgroundColor: `${accentColors.lighter}80` }}></Parallax>
+        <Parallax speed={-10} className="absolute w-60 h-60 -right-8 -top-8 rounded-full animate-float animation-delay-1000" style={{ backgroundColor: `${accentColors.lighter}80` }}></Parallax>
+      <div className="container mx-auto px-0 sm:px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between">
           {/* Left Column - Text */}
           <div className="lg:w-[45%] text-center lg:text-left mb-12 lg:mb-0 font-['League_Spartan']">
@@ -96,7 +97,7 @@ const Hero = () => {
                 >
                   <div className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-2">
                     <span className="whitespace-normal sm:whitespace-nowrap word">Transform Data Into</span>
-                    <span className="text-[#6f35c8] inline-block">
+                    <span className="inline-block" style={{ color: accentColors.main }}>
                       <RotatingText
                         texts={["Impact", "Results", "Success"]}
                         rotationInterval={3000}
@@ -110,7 +111,7 @@ const Hero = () => {
                     </span>
                   </div>
                 </h1>
-                <p className="text-lg sm:text-2xl md:text-3xl text-gray-600 font-normal max-w-2xl leading-relaxed hero-paragraph">
+                <p className="text-lg sm:text-2xl md:text-3xl font-normal max-w-2xl leading-relaxed hero-paragraph text-black">
                   <span className="line block">Unlock the power of data with our comprehensive research and analysis solutions</span>
                 </p>
               </div>
@@ -121,10 +122,11 @@ const Hero = () => {
             {/* Hidden on mobile, shown on desktop */}
             <div className="hidden lg:flex flex-col sm:flex-row gap-6 items-center justify-center lg:justify-start mr-2">
               <div className="flex items-center gap-4">
-                <span className="text-2xl font-medium text-[#6f35c8]">Get Started</span>
+                <span className="text-2xl font-medium" style={{ color: accentColors.main }}>Get Started</span>
                 <Link
                   to="/contact"
-                  className="group relative bg-white text-[#6f35c8] w-16 h-16 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 opacity-100 shadow-md hover:shadow-lg"
+                  className="group relative bg-white w-16 h-16 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 opacity-100 shadow-md hover:shadow-lg"
+                  style={{ color: accentColors.main }}
                 >
                   <span className="relative z-10">
                     <svg
@@ -132,38 +134,70 @@ const Hero = () => {
                       className="h-6 w-6 transition-all duration-300 transform group-hover:translate-x-1 group-hover:stroke-white"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke="#6f35c8"
+                      style={{ stroke: accentColors.main }}
                     >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2.5}
                         d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                        className="transition-colors duration-300"
+                        className="transition-colors duration-300 group-hover:stroke-white"
                       />
                     </svg>
                   </span>
-                  <span className="absolute inset-0 rounded-full bg-[#6f35c8] opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100 origin-center"></span>
+                  <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100 origin-center" style={{ backgroundColor: accentColors.main }}></span>
                 </Link>
               </div>
             </div>
           </div>
 
-          {/* Right Column - Image */}
-          <div className="lg:w-[55%] -mt-16 -ml-4 md:ml-0 md:mt-0">
-            <img
-              src="../assets/images/hero4.png"
-              alt="Hero"
-              className="w-full h-auto max-h-[80vh] object-contain"
-            />
+          {/* Right Column - Video */}
+          <div className="w-full lg:w-[45%] -mt-8 lg:-mt-16 -mx-4 lg:ml-0 lg:mr-0 lg:mt-0 px-4 lg:px-0">
+            <div 
+              className="relative w-full h-full aspect-video overflow-hidden rounded-xl lg:rounded-2xl shadow-lg lg:shadow-2xl transform-gpu transition-all duration-500 hover:scale-[1.02] lg:hover:scale-105"
+              style={{
+                transformStyle: 'preserve-3d',
+                transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.98)',
+                boxShadow: '10px 10px 20px rgba(0,0,0,0.1)'
+              }}
+            >
+              <div 
+                className="absolute inset-0 rounded-xl lg:rounded-2xl overflow-hidden"
+                style={{
+                  transform: 'translateZ(10px)',
+                  boxShadow: 'inset 0 0 10px rgba(0,0,0,0.1)'
+                }}
+              >
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                >
+                  <source src="/assets/images/Scene.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+              </div>
+              {/* 3D Border Effect - Only on desktop */}
+              <div 
+                className="hidden lg:block absolute inset-0 rounded-2xl border-2 border-white/20 pointer-events-none"
+                style={{
+                  transform: 'translateZ(20px)',
+                  boxShadow: '0 0 15px rgba(255,255,255,0.1)'
+                }}
+              ></div>
+            </div>
             
             {/* Mobile Get Started - Only shows on mobile */}
-            <div className="lg:hidden w-full flex justify-center mt-8">
+            <div className="lg:hidden w-full flex justify-center mt-6 px-4">
               <div className="flex items-center gap-4">
-                <span className="text-2xl font-medium text-[#6f35c8]">Get Started</span>
+                <span className="text-2xl font-medium" style={{ color: accentColors.main }}>Get Started</span>
                 <Link
                   to="/contact"
-                  className="group relative bg-white text-[#6f35c8] w-16 h-16 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 opacity-100 shadow-md hover:shadow-lg"
+                  className="group relative bg-white w-16 h-16 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 opacity-100 shadow-md hover:shadow-lg"
+                  style={{ color: accentColors.main }}
                 >
                   <span className="relative z-10">
                     <svg
@@ -171,18 +205,18 @@ const Hero = () => {
                       className="h-6 w-6 transition-all duration-300 transform group-hover:translate-x-1 group-hover:stroke-white"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke="#6f35c8"
+                      style={{ stroke: accentColors.main }}
                     >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2.5}
                         d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                        className="transition-colors duration-300"
+                        className="transition-colors duration-300 group-hover:stroke-white"
                       />
                     </svg>
                   </span>
-                  <span className="absolute inset-0 rounded-full bg-[#6f35c8] opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100 origin-center"></span>
+                  <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100 origin-center" style={{ backgroundColor: accentColors.main }}></span>
                 </Link>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { accentColors } from '../constants/colors';
 
 const ContactPage = () => {
   const navigate = useNavigate();
@@ -110,24 +111,31 @@ const ContactPage = () => {
         <div className="w-full bg-white p-6 md:p-12">
           <div className="w-full max-w-7xl mx-auto">
             <div className="mb-8">
-              <p className="text-2xl md:text-4xl font-semibold text-gray-800 mb-12 leading-tight max-w-4xl font-['League_Spartan']">
+              <p className="text-2xl md:text-4xl font-semibold text-gray-800 mb-12 leading-tight max-w-4xl font-sans">
                 Contact us to facilitate your journey through high-quality project development and exploratory research support
               </p>
               
-              <div className="space-y-6">
+              <div className="space-y-6 font-sans">
                 <div>
-                  <h3 className="font-semibold text-[#6f35c8] text-lg mb-1 font-['League_Spartan']">Email Us</h3>
-                  <a href="mailto:info@midakresearch.com" className="text-gray-700 hover:text-[#6f35c8] transition-colors font-['League_Spartan']">info@midakresearch.com</a>
+                  <h3 className={`font-semibold text-[${accentColors.DEFAULT}] text-lg mb-1`}>Email Us</h3>
+                  <a href="mailto:info@midakresearch.com" className={`text-gray-700 hover:text-[${accentColors.DEFAULT}] transition-colors`}>
+                    info@midakresearch.com
+                  </a>
                 </div>
                 
                 <div>
-                  <h3 className="font-semibold text-[#6f35c8] text-lg mb-1 font-['League_Spartan']">Location</h3>
-                  <p className="text-gray-700 font-['League_Spartan']">Accra, Ghana<br />Operating Globally</p>
+                  <h3 className={`font-semibold text-[${accentColors.DEFAULT}] text-lg mb-1`}>Location</h3>
+                  <p className="text-gray-700">Accra, Ghana<br />Operating Globally</p>
                 </div>
                 
                 <div>
-                  <h3 className="font-semibold text-[#6f35c8] text-lg mb-1 font-['League_Spartan']">Connect</h3>
-                  <a href="https://linkedin.com/company/midak-research-consult" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-[#6f35c8] transition-colors font-['League_Spartan']">
+                  <h3 className={`font-semibold text-[${accentColors.DEFAULT}] text-lg mb-1`}>Connect</h3>
+                  <a 
+                    href="https://linkedin.com/company/midak-research-consult" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className={`text-gray-700 hover:text-[${accentColors.DEFAULT}] transition-colors`}
+                  >
                     LinkedIn: Midak Research Consult (MRC)
                   </a>
                 </div>
@@ -154,7 +162,7 @@ const ContactPage = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f35c8] focus:border-transparent font-['League_Spartan'] transition-all duration-200"
+                    className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[${accentColors.DEFAULT}] focus:border-transparent font-['League_Spartan'] transition-all duration-200`}
                     placeholder="Michael Asante"
                   />
                 </div>
@@ -168,7 +176,7 @@ const ContactPage = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f35c8] focus:border-transparent font-['League_Spartan'] transition-all duration-200"
+                    className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[${accentColors.DEFAULT}] focus:border-transparent font-['League_Spartan'] transition-all duration-200`}
                     placeholder="midakresearch@example.com"
                   />
                 </div>
@@ -182,7 +190,7 @@ const ContactPage = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f35c8] focus:border-transparent font-['League_Spartan'] transition-all duration-200"
+                    className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[${accentColors.DEFAULT}] focus:border-transparent font-['League_Spartan'] transition-all duration-200`}
                     placeholder="How can we help?"
                   />
                 </div>
@@ -196,7 +204,7 @@ const ContactPage = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6f35c8] focus:border-transparent font-['League_Spartan'] transition-all duration-200"
+                    className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[${accentColors.DEFAULT}] focus:border-transparent font-['League_Spartan'] transition-all duration-200`}
                     placeholder="Tell us more about your project..."
                   ></textarea>
                 </div>
@@ -205,7 +213,7 @@ const ContactPage = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full flex items-center justify-center bg-[#6f35c8] border-2 border-[#6f35c8] px-6 py-3 rounded-full text-white hover:bg-white hover:text-[#6f35c8] hover:border-[#6f35c8] transition-all duration-300 font-['League_Spartan'] font-semibold shadow-md hover:shadow-lg ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                    className={`w-full flex items-center justify-center bg-[${accentColors.DEFAULT}] border-2 border-[${accentColors.DEFAULT}] px-6 py-3 rounded-full text-white hover:bg-white hover:text-[${accentColors.DEFAULT}] hover:border-[${accentColors.DEFAULT}] transition-all duration-300 font-['League_Spartan'] font-semibold shadow-md hover:shadow-lg ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
@@ -219,10 +227,10 @@ const ContactPage = () => {
         <div className="my-12 border-t border-gray-200 w-full"></div>
 
         {/* FAQ Section */}
-        <div className="mt-12">
-          <h2 className="text-3xl font-bold text-center text-[#6f35c8] font-['Changa_One',cursive] mb-8">
-          Frequently Asked Questions
-        </h2>
+        <div className="mt-12 font-sans">
+          <h2 className={`text-3xl font-bold text-center text-[${accentColors.DEFAULT}] mb-8`}>
+            Frequently Asked Questions
+          </h2>
           
           <div className="space-y-4 max-w-4xl mx-auto">
             {faqItems.map((item, index) => (
@@ -233,7 +241,7 @@ const ContactPage = () => {
                 >
                   <span className="font-semibold text-gray-800">{item.question}</span>
                   <svg
-                    className={`w-5 h-5 text-[#6f35c8] transform transition-transform ${
+                    className={`w-5 h-5 text-[${accentColors.DEFAULT}] transform transition-transform ${
                       openFaqs.includes(index) ? 'rotate-180' : ''
                     }`}
                     fill="none"

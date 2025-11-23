@@ -54,8 +54,8 @@ const footerData = {
     },
     "colors": {
       "text": "#FFFFFF",
-      "background": "#6f35c8",
-      "hover": "#B794F4",
+      "background": "#800020",
+      "hover": "#a6264a",
       "accent": "#F7FAFC"
     },
     "typography": {
@@ -160,7 +160,7 @@ const NewFooter = () => {
       style={{
         fontFamily: footerData.styles.fontFamily,
         color: footerData.styles.colors.text,
-        backgroundColor: '#6f35c8',
+        backgroundColor: footerData.styles.colors.background,
         padding: '2.5rem 0 1.25rem 0',
         position: 'relative',
         marginTop: '0',

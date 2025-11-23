@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -63,15 +63,17 @@ const ProjectPost = () => {
   const contentRef = useRef(null);
   
   // Find the project that matches the current slug
-  const project = projects.find(project => project.slug === slug);
+  const project = projects.find(proj => proj.slug === slug);
   
   // Debug: Log the project data and image URL
-  console.log('Project data:', project);
-  console.log('Image URL:', project?.image);
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Project data:', project);
+    console.log('Image URL:', project?.image);
+  }
 
   useEffect(() => {
-    // Save the current scroll position before doing anything
-    const scrollY = window.scrollY;
+    // Initialize scroll position
+    globalThis.scrollY;
     
     // Disable ScrollTrigger during initial render
     gsap.registerPlugin(ScrollTrigger);
@@ -83,12 +85,12 @@ const ProjectPost = () => {
     ScrollTrigger.getAll().forEach(instance => instance.kill());
     
     // Set up scroll restoration
-    if (window.history.scrollRestoration) {
-      window.history.scrollRestoration = 'manual';
+    if (globalThis.history.scrollRestoration) {
+      globalThis.history.scrollRestoration = 'manual';
     }
     
     // Force scroll to top
-    window.scrollTo(0, 0);
+    globalThis.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
     
@@ -127,20 +129,25 @@ const ProjectPost = () => {
       }, '-=0.4');
 
       // Animate in content
-      gsap.utils.toArray('.project-content p, .project-content h2, .project-content ul').forEach((el, i) => {
-        tl.to(el, {
+      const contentElements = gsap.utils.toArray('.project-content p, .project-content h2, .project-content ul');
+      for (let i = 0; i < contentElements.length; i++) {
+        tl.to(contentElements[i], {
           y: 0,
           opacity: 1,
           duration: 0.6,
           ease: 'power2.out'
         }, i * 0.1);
-      });
+      }
 
       // Clean up
-      return () => {
+      const cleanup = () => {
         clearTimeout(initTimeout);
-        ScrollTrigger.getAll().forEach(instance => instance.kill());
+        const instances = ScrollTrigger.getAll();
+        for (const instance of instances) {
+          instance.kill();
+        }
       };
+      return cleanup;
     }, 100);
 
   }, [slug]);
@@ -172,11 +179,11 @@ const ProjectPost = () => {
         <div className="container mx-auto px-4 pt-8">
           <div className="absolute bottom-12 left-0 w-full px-4">
             <div className="container mx-auto">
-              <h1 className="text-4xl md:text-6xl font-bold font-['Changa_One',cursive] text-white mb-6 max-w-4xl leading-tight tracking-tight">
+              <h1 className="text-4xl md:text-6xl font-bold font-sans text-white mb-6 max-w-4xl leading-tight tracking-tight">
                 {project.title}
               </h1>
               <div className="flex items-center">
-                <div className="text-white/90 text-sm font-['League_Spartan'] flex flex-wrap gap-4">
+                <div className="text-white/90 text-sm font-sans flex flex-wrap gap-4">
                  
                   <div className="flex items-center">
                     <span className="font-medium">Duration:&nbsp;</span>
@@ -199,8 +206,8 @@ const ProjectPost = () => {
           <div className="w-full pt-8 px-6 pb-12 md:pt-12 md:px-12 md:pb-12 project-content">
 
             <div ref={contentRef} className="prose prose-lg max-w-none">
-              {project.content.map((paragraph, index) => (
-                <p key={index} className="text-gray-700 leading-relaxed mb-6">
+              {project.content.map((paragraph, idx) => (
+                <p key={`para-${idx}`} className="text-gray-700 leading-relaxed mb-6">
                   {paragraph}
                 </p>
               ))}
@@ -209,9 +216,9 @@ const ProjectPost = () => {
                 <div className="mt-12 pt-8 border-t border-gray-100">
                   <h3 className="text-xl font-semibold text-gray-900 mb-6">Technologies & Methods</h3>
                   <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, index) => (
+                    {project.technologies.map((tech, techIdx) => (
                       <span
-                        key={index}
+                        key={`tech-${techIdx}`}
                         className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gray-50 text-gray-800"
                       >
                         {tech}
@@ -224,22 +231,24 @@ const ProjectPost = () => {
               <div className="mt-12 pt-8 border-t border-gray-200">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <p className="text-base text-gray-500 font-['League_Spartan']">
-                    Project by <span className="text-[#6f35c8] font-bold text-lg">{project.client}</span>
+                    Project by <span className="text-accent font-bold text-lg hover:text-accent/80 transition-colors">{project.client}</span>
                   </p>
-                  <button
-                    onClick={() => navigate(-1)}
-                    className="inline-flex items-center gap-2 rounded-full border border-gray-900 px-6 py-3 text-sm font-semibold hover:bg-purple-600 text-gray-900 hover:text-white transition-colors group whitespace-nowrap"
-                  >
-                    <span className="group-hover:text-white transition-colors">Back to Projects</span>
-                    <span className="group-hover:text-white transition-colors" aria-hidden>↗</span>
-                  </button>
+                  <div className="group">
+                    <button
+                      onClick={() => navigate(-1)}
+                      className="inline-flex items-center gap-2 rounded-full border-2 border-accent px-6 py-3 text-sm font-semibold bg-accent/10 text-accent transition-all duration-300 whitespace-nowrap group-hover:bg-[#800020] group-hover:border-[#800020] group-hover:text-white"
+                    >
+                      <span className="group-hover:translate-x-0.5 transition-transform">Back to Projects</span>
+                      <span className="group-hover:translate-x-0.5 transition-transform" aria-hidden>→</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <style jsx global>{`
+      <style global jsx>{`
         @import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&display=swap');
       `}</style>
     </div>

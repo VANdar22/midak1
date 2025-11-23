@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { accentColors } from '../constants/colors';
 
 // Sample insight post data - in a real app, this would come from an API
 const insightPosts = {
@@ -13,6 +14,8 @@ const insightPosts = {
     readTime: '6 min read',
     excerpt: 'An in-depth analysis of emerging market trends and strategic insights for businesses in 2023.',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop',
+    backgroundColor: accentColors.darkest,
+    color: accentColors.text,
     content: [
       {
         type: 'paragraph',
@@ -20,6 +23,7 @@ const insightPosts = {
       },
       {
         type: 'heading',
+        color: accentColors.main,
         text: 'Emerging Market Trends'
       },
       {
@@ -43,6 +47,7 @@ const insightPosts = {
       },
       {
         type: 'heading',
+        color: accentColors.main,
         text: 'Strategic Implications'
       },
       {
@@ -71,6 +76,7 @@ const insightPosts = {
         title: 'Digital Transformation Strategies',
         excerpt: 'Key strategies for successful digital transformation in the modern business environment.',
         date: 'October 28, 2023',
+        borderBottom: `2px solid ${accentColors.main}`,
         category: 'Digital Strategy',
         readTime: '7 min read',
         slug: 'digital-transformation-strategies',

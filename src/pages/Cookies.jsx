@@ -1,4 +1,5 @@
 import React from 'react';
+import { accentColors } from '../constants/colors';
 
 const Cookies = () => {
   const table = [
@@ -11,7 +12,7 @@ const Cookies = () => {
     <div className="min-h-screen bg-white pt-24">
       <div className="w-full max-w-4xl mx-auto px-4 pb-12 space-y-8">
         <header>
-          <p className="text-sm tracking-wide uppercase text-[#6f35c8] font-semibold">Cookies</p>
+          <p className={`text-sm tracking-wide uppercase text-[${accentColors.DEFAULT}] font-semibold`}>Cookies</p>
           <h1 className="text-4xl font-bold text-gray-900 mt-2">Cookie Policy</h1>
           <p className="text-gray-600 mt-3">
             This policy explains how we use cookies and similar technologies to provide, protect, and improve our services.

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Puzzle, Workflow, UsersRound, ShieldCheck } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import PixelTransition from '../components/PixelTransition';
+import { accentColors } from '../constants/colors';
 
 const fadeInUp = {
   hidden: { 
@@ -216,7 +217,7 @@ const insights = [
 const Services = () => {
   return (
     <PageTransition>
-      <div className="min-h-screen bg-[#f4f4f4] text-gray-900">
+      <div className="min-h-screen" style={{ backgroundColor: '#f5f5f5', color: '#1a1a1a' }}>
       {/* hero */}
       <motion.section 
         className="mx-auto max-w-6xl px-6 py-24 overflow-hidden"
@@ -228,7 +229,7 @@ const Services = () => {
         <div className="flex flex-col gap-10 md:flex-row md:items-end">
           <div className="flex-1">
             <AnimatedText>
-              <p className="text-sm uppercase tracking-[0.3em] text-[#6f35c8]/80">Services</p>
+              <p className="text-sm uppercase tracking-[0.3em]" style={{ color: `${accentColors.main}80` }}>Services</p>
             </AnimatedText>
             <AnimatedText delay={0.2} split>
               <h1 className="mt-4 text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
@@ -247,12 +248,23 @@ const Services = () => {
               <div className="flex flex-wrap gap-4">
                 <motion.a
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-black px-6 py-3 text-base font-semibold hover:bg-purple-600 hover:text-white transition [&>span]:hover:text-white"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 rounded-full border border-black px-6 py-3 text-base font-semibold transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+                  style={{
+                    backgroundColor: 'transparent',
+                    color: '#1a1a1a',
+                    borderColor: '#1a1a1a',
+                    '--tw-shadow': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
+                  }}
+                  whileHover={{
+                    backgroundColor: accentColors.main,
+                    color: 'white',
+                    borderColor: accentColors.main,
+                    boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)'
+                  }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  Talk to us
-                  <span aria-hidden>↗</span>
+                  <span>Talk to us</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">↗</span>
                 </motion.a>
               </div>
             </div>
@@ -261,10 +273,10 @@ const Services = () => {
       </motion.section>
 
       {/* capabilities */}
-      <section className="mx-auto max-w-6xl px-6 py-16 bg-[#f4f4f4] space-y-10">
+      <section className="mx-auto max-w-6xl px-6 py-16 space-y-10" style={{ backgroundColor: '#f5f5f5' }}>
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.3em] text-[#6f35c8]/80">What we do</p>
+            <p className="text-sm uppercase tracking-[0.3em]" style={{ color: `${accentColors.main}80` }}>What we do</p>
             <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">Simple structure, deep capability.</h2>
           </div>
           <p className="text-gray-600 md:max-w-md leading-relaxed">
@@ -280,15 +292,15 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`grid gap-10 lg:grid-cols-2 items-center border-t border-[#6f35c8]/80 pt-12 ${
+              className={`grid gap-10 lg:grid-cols-2 items-center pt-12 ${
                 index === 0 ? 'border-t-0 pt-0' : ''
               } ${index % 2 === 0 ? '' : 'lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1'}`}
             >
               <div className="space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 text-xs font-medium uppercase tracking-widest">
-                    <span className="h-px w-8 bg-[#6f35c8]/80" />
-                    <span className="text-[#6f35c8]/80">{capability.label}</span>
+                    <span className="h-px w-8" style={{ backgroundColor: `${accentColors.main}80` }} />
+                    <span style={{ color: `${accentColors.main}80` }}>{capability.label}</span>
                   </div>
                   <h3 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 md:text-4xl">{capability.title}</h3>
                 </div>
@@ -301,10 +313,26 @@ const Services = () => {
                     </div>
                   ))}
                 </div>
-                <button className="inline-flex items-center gap-2 rounded-full border border-gray-900 px-6 py-2 text-sm font-semibold hover:bg-purple-600 hover:text-white transition [&>span]:hover:text-white">
-                  {capability.cta}
-                  <span aria-hidden>↗</span>
-                </button>
+                <motion.button 
+                  className="group inline-flex items-center gap-2 rounded-full border border-gray-900 px-6 py-2 text-sm font-semibold transition-all duration-300 ease-in-out hover:shadow-md"
+                  style={{
+                    backgroundColor: 'transparent',
+                    color: '#1a1a1a',
+                    borderColor: '#1a1a1a',
+                    '--tw-shadow': '0 1px 2px 0 rgb(0 0 0 / 0.05)'
+                  }}
+                  whileHover={{
+                    backgroundColor: accentColors.main,
+                    color: 'white',
+                    borderColor: accentColors.main,
+                    scale: 1.05,
+                    boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <span>{capability.cta}</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-0.5">↗</span>
+                </motion.button>
               </div>
               <div
                 className={`relative h-[400px] w-5/5 mx-auto lg:mx-0 lg:w-[90%] overflow-hidden ${
@@ -344,10 +372,10 @@ const Services = () => {
       </section>
 
       {/* solutions */}
-      <section className="border-t border-gray-200 bg-[#f4f4f4]">
+      <section className="border-t border-gray-200" style={{ backgroundColor: '#f5f5f5' }}>
         <div className="mx-auto max-w-6xl px-6 py-20 space-y-12">
           <div className="max-w-3xl">
-            <p className="text-sm uppercase tracking-[0.3em] text-[#6f35c8]/80">Solutions</p>
+            <p className="text-sm uppercase tracking-[0.3em]" style={{ color: `${accentColors.main}80` }}>Solutions</p>
             <h2 className="text-3xl font-semibold text-gray-900 mt-2">Where we plug in</h2>
             <div className="w-24 h-0.5 bg-gray-200 mt-6"></div>
           </div>
@@ -356,8 +384,8 @@ const Services = () => {
             <div className="grid gap-12 md:grid-cols-2">
               {solutions.map(({ icon: Icon, title, body }) => (
                 <article key={title} className="space-y-4 group">
-                  <div className="inline-flex h-16 w-16 items-center justify-center rounded-full border-2 border-gray-200 group-hover:border-purple-200 group-hover:bg-purple-50 transition-colors">
-                    <Icon className="h-6 w-6 text-[#6f35c8]/80" strokeWidth={1.75} />
+                  <div className="h-16 w-16 rounded-full flex items-center justify-center" style={{ backgroundColor: `${accentColors.main}10` }}>
+                    <Icon className="h-6 w-6" strokeWidth={1.75} style={{ color: `${accentColors.main}80` }} />
                   </div>
                   <div className="space-y-4">
                     <h3 className="text-xl font-bold tracking-tight text-gray-900 md:text-2xl">{title}</h3>
@@ -375,23 +403,37 @@ const Services = () => {
       <section className="mx-auto max-w-6xl px-6 bg-[#f4f4f4] py-16 space-y-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#6f35c8]/80">Latest insights</p>
+            <p className="text-sm font-medium uppercase tracking-[0.3em]" style={{ color: `${accentColors.main}80` }}>Latest insights</p>
             <h2 className="text-3xl font-bold tracking-tight mt-2 md:text-4xl">Thinking that travels from lab to boardroom.</h2>
           </div>
-          <Link
-            to="/blog"
-            className="inline-flex items-center gap-2 rounded-full border border-gray-900 px-5 py-2 text-sm font-semibold hover:bg-purple-600 hover:border-purple-600 hover:!text-white transition-colors [&>span]:hover:!text-white"
+          <motion.a
+            href="/blog"
+            className="group inline-flex items-center gap-2 rounded-full border border-gray-900 px-5 py-2 text-sm font-semibold transition-all duration-300 ease-in-out hover:shadow-md"
+            style={{
+              backgroundColor: 'transparent',
+              color: '#1a1a1a',
+              borderColor: '#1a1a1a',
+              '--tw-shadow': '0 1px 2px 0 rgb(0 0 0 / 0.05)'
+            }}
+            whileHover={{
+              backgroundColor: accentColors.main,
+              color: 'white',
+              borderColor: accentColors.main,
+              scale: 1.05,
+              boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
+            }}
+            whileTap={{ scale: 0.98 }}
           >
-            Discover more
-            <span aria-hidden>↗</span>
-          </Link>
+            <span>Discover more</span>
+            <span className="transition-transform duration-300 group-hover:translate-x-0.5">↗</span>
+          </motion.a>
         </div>
         <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
           {insights.map((item) => (
             <Link
               to="/blog"
               key={item.title}
-              className="flex flex-col rounded-lg overflow-hidden h-full border border-gray-200 transition-colors duration-300 hover:border-gray-300"
+              className="group flex flex-col rounded-lg overflow-hidden h-full border border-gray-200 transition-all duration-300 hover:border-transparent hover:shadow-xl hover:-translate-y-1"
             >
               <div className="shrink-0 overflow-hidden h-48">
                 <div className="relative h-full w-full group">
@@ -406,7 +448,7 @@ const Services = () => {
               </div>
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div className="flex-1">
-                  <p className="text-xs font-semibold text-[#6f35c8]/80 uppercase tracking-wider">
+                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: `${accentColors.main}80` }}>
                     {item.category}
                   </p>
                   <div className="block mt-1">
@@ -419,20 +461,22 @@ const Services = () => {
                     <time>{item.date}</time>
                   </div>
                   <div className="flex items-center ml-4">
-                    <div className="group relative bg-[#6f35c8] w-11 h-11 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl">
-                      <span className="relative z-10">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 text-white transition-all duration-300 transform group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:text-[#6f35c8]"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 19L19 5m0 0H9m10 0v10" />
-                        </svg>
-                      </span>
-                      <span className="absolute inset-0 rounded-full bg-white opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100 origin-center z-0"></span>
+                    <div 
+                      className="relative w-11 h-11 rounded-full flex items-center justify-center overflow-hidden shadow-lg"
+                      style={{
+                        backgroundColor: accentColors.main
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 19L19 5m0 0H9m10 0v10" />
+                      </svg>
                     </div>
                   </div>
                 </div>

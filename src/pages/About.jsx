@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React from 'react';
+import { accentColors } from '@/constants/colors';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import AboutSection from '@/components/sections/AboutSection';
 import { StickyScrollReveal } from '@/components/ui/sticky-scroll-reveal';
@@ -14,7 +15,7 @@ const content = [
         <img 
           src="/assets/images/image1.png" 
           alt="Who We Are"
-          className="w-full h-full text-[#6f35c8] object-cover"
+          className="w-full h-full text-[${accentColors.DEFAULT}] object-cover"
           style={{
             minWidth: '100%',
             minHeight: '100%',
@@ -33,7 +34,7 @@ const content = [
         <img 
           src="/assets/images/image2.png" 
           alt="Our Approach"
-          className="w-full h-full text-[#6f35c8] object-cover"
+          className="w-full h-full text-[${accentColors.DEFAULT}] object-cover"
           style={{
             minWidth: '100%',
             minHeight: '100%',
@@ -52,7 +53,7 @@ const content = [
         <img 
           src="/assets/images/founder1.png" 
           alt="Our Story"
-          className="w-full h-full text-[#6f35c8] object-cover"
+          className="w-full h-full text-[${accentColors.DEFAULT}] object-cover"
           style={{
             minWidth: '100%',
             minHeight: '100%',
@@ -71,7 +72,7 @@ const content = [
         <img 
           src="/assets/images/image4.png" 
           alt="Our Impact"
-          className="w-full h-full text-[#6f35c8] object-cover"
+          className="w-full h-full text-[${accentColors.DEFAULT}] object-cover"
           style={{
             minWidth: '100%',
             minHeight: '100%',
@@ -105,7 +106,7 @@ const content = [
 
 const About = () => {
   return (
-    <div className="bg-[#6f35c8]/80">
+    <div className="bg-[${accentColors.DEFAULT}]/80">
       <section className="w-full bg-[#6f35c8]/80">
         <StickyScrollReveal 
           content={content} 
@@ -114,10 +115,8 @@ const About = () => {
         <div className="flex justify-center items-center py-4 bg-[#f4f4f4]">
           <ScrollVelocity 
             texts={[
-              <span className="text-[#6f35c8]/50">
-                Research Excellence <span className="text-yellow-400">✦</span> Data-Driven Insights <span className="text-yellow-400">✦</span> Strategic Consulting <span className="text-yellow-400">✦</span> 
-                Innovative Solutions <span className="text-yellow-400">✦</span> Market Analysis <span className="text-yellow-400">✦</span> Impact Assessment <span className="text-yellow-400">✦</span> 
-                Academic Research <span className="text-yellow-400">✦</span> Business Intelligence <span className="text-yellow-400">✦</span>
+              <span className="text-[#800020]  text-2xl opacity-50">
+                Research Excellence✦ Data-Driven Insights✦ Strategic Consulting✦ Innovative Solutions✦ Market Analysis✦ Impact Assessment✦ Academic Research✦ Business Intelligence✦
               </span>
             ]} 
             velocity={50}

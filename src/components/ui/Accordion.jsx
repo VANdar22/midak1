@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { accentColors } from '../../constants/colors';
 
 
 // Color for all number circles
-const circleColor = 'bg-[#6f35c8]'; // Purple
+const circleColor = accentColors.active // Purple
 
 // --- DATA (Using your existing structure for content) ---
 const accordionItems = [
@@ -111,7 +112,7 @@ const Accordion = () => {
     };
 
     return (
-        <section className="w-full bg-[#f4eff4] pt-8 pb-16">
+        <section className="w-full bg-[#f5f5f5] pt-8 pb-16">
             <div className="w-full px-4">
                 <div className="w-full space-y-4">
                     {accordionItems.map((item) => {
@@ -127,7 +128,7 @@ const Accordion = () => {
                             >
                                 {/* ACCORDION BUTTON (HEADER) */}
                                 <div
-                                    className="w-full pl-2 pr-8 py-6 text-left focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-transparent focus:ring-transparent flex items-center h-40 justify-between bg-[#f4eff4] border-b border-gray-500 cursor-pointer md:px-8"
+                                    className="w-full pl-2 pr-8 py-6 text-left focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-transparent focus:ring-transparent flex items-center h-40 justify-between bg-[#f5f5f5] border-b border-gray-500 cursor-pointer md:px-8"
                                     onMouseEnter={() => handleItemHover(item.id)}
                                     onMouseLeave={handleItemLeave}
                                     onClick={() => handleItemClick(item.id)}
@@ -138,10 +139,9 @@ const Accordion = () => {
                                     <div className="flex items-center space-x-2 md:space-x-8">
                                         {/* IMPROVED LABEL STYLE */}
                                         <div className={`
-                                            w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center
-                                            border-2 transition-all duration-500 ease-[cubic-bezier(0.4, 0, 0.2, 1)]
-                                            border-white/50 bg-[#6f35c8] text-white
-                                            hover:scale-105 transform transition-all duration-300
+                                            w-12 h-12 rounded-full shrink-0 flex items-center justify-center
+                                            border-2 transition-all duration-500 ease-in-out
+                                            border-white/50 text-white bg-[#6b2a4c]
                                         `}>
                                             <span className="text-2xl font-bold">
                                                 {item.label}

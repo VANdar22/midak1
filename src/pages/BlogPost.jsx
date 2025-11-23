@@ -1,7 +1,31 @@
 import { useEffect, useRef } from 'react';
+import { accentColors } from '../constants/colors';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import styled from '@emotion/styled';
+
+const BackButton = styled(Link)(props => ({
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '0.5rem',
+  borderRadius: '9999px',
+  padding: '0.75rem 1.5rem',
+  fontSize: '0.875rem',
+  fontWeight: 600,
+  color: '#1f2937',
+  backgroundColor: 'transparent',
+  border: `1px solid ${accentColors.main}`,
+  transition: 'all 0.2s ease',
+  '&:hover': {
+    backgroundColor: accentColors.main,
+    color: 'white',
+    borderColor: 'transparent',
+  },
+  '&:hover span': {
+    color: 'white',
+  }
+}));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,6 +47,8 @@ const BlogPost = () => {
         'Mixology is both an art and a science, requiring precision, creativity, and a deep understanding of flavors. Whether you\'re a beginner or an experienced home bartender, there\'s always something new to learn in the world of cocktails.'
       ],
       date: 'October 15, 2023',
+      backgroundColor: accentColors.main,
+      color: accentColors.text,
       category: 'Mixology',
       author: 'John Mixer',
       image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1470&auto=format&fit=crop'
@@ -36,6 +62,9 @@ const BlogPost = () => {
         'Each recipe has been carefully crafted to bring out the best summer flavors.'
       ],
       date: 'July 22, 2023',
+      padding: '2rem',
+      backgroundColor: accentColors.darkest,
+      color: accentColors.text,
       category: 'Recipes',
       author: 'Sarah Mixer',
       image: 'https://images.unsplash.com/photo-1514361892635-6b07e874567b?q=80&w=1470&auto=format&fit=crop'
@@ -171,10 +200,10 @@ const BlogPost = () => {
                 {blogPost.title}
               </h1>
               <div className="flex items-center">
-                <span className="inline-block bg-[#6f35c8] text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">
+                <span className="inline-block text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider" style={{ backgroundColor: accentColors.main, color: accentColors.text }}>
                   {blogPost.category}
                 </span>
-                <span className="ml-4 text-white/90 text-sm font-['League_Spartan']">{blogPost.date}</span>
+                <span className="ml-4 text-sm font-['League_Spartan']" style={{ color: `${accentColors.text}E6` }}>{blogPost.date}</span>
               </div>
             </div>
           </div>
@@ -195,18 +224,58 @@ const BlogPost = () => {
               </div>
               
               <div className="mt-20 mb-16 -ml-4">
-                <h2 className="text-3xl font-bold text-[#6f35c8] font-['Changa_One',cursive] mb-6">Key Takeaways</h2>
+                <h2 className="text-3xl font-bold font-['League_Spartan'] mb-6" style={{ color: accentColors.main }}>Key Takeaways</h2>
                 <ul className="space-y-4 pl-2 -ml-2 text-gray-700 font-['League_Spartan'] text-lg leading-relaxed">
-                  <li className="relative pl-6 before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:bg-[#6f35c8] before:rounded-full">
+                  <li className="relative pl-6">
+                    <span style={{
+                      position: 'absolute',
+                      left: '0',
+                      top: '12px',
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      backgroundColor: accentColors.main,
+                      display: 'inline-block'
+                    }}></span>
                     <span className="font-semibold text-gray-800">Master the basics</span> - Learn essential mixology techniques that form the foundation of great cocktails
                   </li>
-                  <li className="relative pl-6 before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:bg-[#6f35c8] before:rounded-full">
+                  <li className="relative pl-6">
+                    <span style={{
+                      position: 'absolute',
+                      left: '0',
+                      top: '12px',
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      backgroundColor: accentColors.main,
+                      display: 'inline-block'
+                    }}></span>
                     <span className="font-semibold text-gray-800">Flavor mastery</span> - Understand the art of balancing and pairing flavors for perfect cocktails
                   </li>
-                  <li className="relative pl-6 before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:bg-[#6f35c8] before:rounded-full">
+                  <li className="relative pl-6">
+                    <span style={{
+                      position: 'absolute',
+                      left: '0',
+                      top: '12px',
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      backgroundColor: accentColors.main,
+                      display: 'inline-block'
+                    }}></span>
                     <span className="font-semibold text-gray-800">Professional presentation</span> - Elevate your drinks with expert presentation techniques
                   </li>
-                  <li className="relative pl-6 before:content-[''] before:absolute before:left-0 before:top-3 before:w-2 before:h-2 before:bg-[#6f35c8] before:rounded-full">
+                  <li className="relative pl-6">
+                    <span style={{
+                      position: 'absolute',
+                      left: '0',
+                      top: '12px',
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      backgroundColor: accentColors.main,
+                      display: 'inline-block'
+                    }}></span>
                     <span className="font-semibold text-gray-800">Essential tools</span> - Discover the must-have bar tools and how to use them effectively
                   </li>
                 </ul>
@@ -215,15 +284,12 @@ const BlogPost = () => {
               <div className="mt-20 pt-8 border-t border-gray-200">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <p className="text-base text-gray-500 font-['League_Spartan']">
-                    Written by <span className="text-[#6f35c8] font-bold text-lg">{blogPost.author}</span>
+                    Written by <span className="font-bold text-lg" style={{ color: accentColors.main }}>{blogPost.author}</span>
                   </p>
-                  <Link 
-                    to="/blog" 
-                    className="inline-flex items-center gap-2 rounded-full border border-gray-900 px-6 py-3 text-sm font-semibold hover:bg-purple-600 text-gray-900 hover:text-white transition-colors group whitespace-nowrap"
-                  >
-                    <span className="group-hover:text-white transition-colors">Back insights</span>
-                    <span className="group-hover:text-white transition-colors" aria-hidden>↗</span>
-                  </Link>
+                  <BackButton to="/blog">
+                    <span>Back to insights</span>
+                    <span aria-hidden>↗</span>
+                  </BackButton>
                 </div>
               </div>
             </div>
