@@ -8,6 +8,14 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
             {/* Brand + Tagline */}
             <div className="md:col-span-4 border-b md:border-b-0 md:border-r border-white/50 pb-8 md:pb-0 md:pr-8">
+              <div className="bg-white rounded-full p-1.5 w-16 h-16 flex items-center justify-center mb-4">
+                <img 
+                  src="/assets/images/logo.png" 
+                  alt="Logo" 
+                  className="w-4/5 h-4/5"
+                  style={{ objectFit: 'contain' }}
+                />
+              </div>
               <h3 className="text-3xl font-bold tracking-tight mb-4">
                 Midak Research Consult
               </h3>

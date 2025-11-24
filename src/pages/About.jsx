@@ -109,14 +109,18 @@ const About = () => {
     <div className="bg-[${accentColors.DEFAULT}]/80">
       <section className="w-full bg-[#6f35c8]/80">
         <StickyScrollReveal 
-          content={content} 
+          content={content.map(item => ({
+            ...item,
+            title: <span style={{ color: accentColors.DEFAULT }}>{item.title}</span>,
+            description: item.description
+          }))}
           contentClassName="text-3xl md:text-4xl text-gray-900 leading-relaxed max-w-5xl mx-auto px-6 py-16"
         />
         <div className="flex justify-center items-center py-4 bg-[#f4f4f4]">
           <ScrollVelocity 
             texts={[
-              <span className="text-[#800020]  text-2xl opacity-50">
-                Research Excellence✦ Data-Driven Insights✦ Strategic Consulting✦ Innovative Solutions✦ Market Analysis✦ Impact Assessment✦ Academic Research✦ Business Intelligence✦
+              <span key="scrolling-text" className="text-xl" style={{ color: `${accentColors.main}80` }}>
+                Research Excellence <span style={{ color: accentColors.DEFAULT }}>✦</span> Data-Driven Insights <span style={{ color: accentColors.DEFAULT }}>✦</span> Strategic Consulting <span style={{ color: accentColors.DEFAULT }}>✦</span> Innovative Solutions <span style={{ color: accentColors.DEFAULT }}>✦</span> Market Analysis <span style={{ color: accentColors.DEFAULT }}>✦</span> Impact Assessment <span style={{ color: accentColors.DEFAULT }}>✦</span> Academic Research <span style={{ color: accentColors.DEFAULT }}>✦</span> Business Intelligence
               </span>
             ]} 
             velocity={50}

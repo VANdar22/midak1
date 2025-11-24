@@ -7,7 +7,7 @@ const ImageWithDescription = ({
   reverse = false
 }) => {
   // Video configuration
-  const videoSource = '/assets/images/Scene.mp4';
+  const videoSource = '/assets/images/videoi.mp4';
   return (
     <section className="relative w-full py-12 sm:py-16 md:py-24 overflow-hidden" style={{
       clipPath: 'polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)'
@@ -41,16 +41,16 @@ const ImageWithDescription = ({
           >
             <div className="w-full max-w-3xl space-y-6 sm:space-y-8 px-4 sm:px-6">
               <p 
-                className="text-2xl xs:text-3xl sm:text-4xl md:text-3xl lg:text-4xl leading-snug font-normal tracking-tight text-[#f4f4f4] mx-auto w-full" 
+                className="text-2xl xs:text-4xl sm:text-3xl md:text-3xl lg:text-5xl font-normal letter-spacing-2 text-[#f4f4f4] ml-auto mr-0 w-11/12 pl-8" 
                 style={{ 
                   fontFamily: 'League Spartan, sans-serif',
                   lineHeight: '1.3',
                   textShadow: '0 2px 4px rgba(0,0,0,0.3)',
                   WebkitFontSmoothing: 'antialiased',
                   MozOsxFontSmoothing: 'grayscale',
-                  maxWidth: '90%',
-                  marginLeft: 'auto',
-                  marginRight: 'auto'
+                  maxWidth: '100%',
+                  marginLeft: '10%',
+                  marginRight: '0'
                 }}
               >
                 {description}

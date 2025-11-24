@@ -22,28 +22,30 @@ const App = () => {
     position: 'relative',
     overflowX: 'hidden',
     backgroundColor: '#f4eff4',
-    color: '#000000'
+    color: '#000000',
   };
 
   return (
     <Router>
-      <div style={appStyles}>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/approach" element={<Approach />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/cookies" element={<Cookies />} />
-          <Route path="/policy" element={<Policy />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/projects/:slug" element={<ProjectPost />} />
-        </Routes>
-        <NewFooter />
+      <div style={{ minHeight: '100vh', position: 'relative' }}>
+          <div style={appStyles}>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/approach" element={<Approach />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/cookies" element={<Cookies />} />
+              <Route path="/policy" element={<Policy />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/projects/:slug" element={<ProjectPost />} />
+            </Routes>
+            <NewFooter />
+          </div>
       </div>
     </Router>
   );

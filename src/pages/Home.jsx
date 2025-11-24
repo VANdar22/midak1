@@ -23,8 +23,8 @@ const Home = () => {
         <div className="flex justify-center items-center py-4 bg-[#f5f5f5]">
           <ScrollVelocity 
             texts={[
-              <span key="scroll-text-1" className="text-2xl" style={{ color: `${accentColors.main}80` }}> Market Research <span style={{ color: accentColors.DEFAULT }}>✦</span> Data Analysis <span style={{ color: accentColors.DEFAULT }}>✦</span> Impact Assessment <span style={{ color: accentColors.DEFAULT }}>✦</span> Feasibility Studies <span style={{ color: accentColors.DEFAULT }}>✦</span> </span>,
-              <span key="scroll-text-2" className="text-2xl" style={{ color: `${accentColors.main}80` }}>Project Development <span style={{ color: accentColors.DEFAULT }}>✦</span> Exploratory Research <span style={{ color: accentColors.DEFAULT }}>✦</span> Academic Support <span style={{ color: accentColors.DEFAULT }}>✦</span> Strategic Insights <span style={{ color: accentColors.DEFAULT }}>✦</span></span>
+              <span key="scroll-text-1" className="text-xl" style={{ color: `${accentColors.main}80` }}> Market Research <span style={{ color: accentColors.DEFAULT }}>✦</span> Data Analysis <span style={{ color: accentColors.DEFAULT }}>✦</span> Impact Assessment <span style={{ color: accentColors.DEFAULT }}>✦</span> Feasibility Studies <span style={{ color: accentColors.DEFAULT }}>✦</span> </span>,
+              <span key="scroll-text-2" className="text-xl" style={{ color: `${accentColors.main}80` }}>Project Development <span style={{ color: accentColors.DEFAULT }}>✦</span> Exploratory Research <span style={{ color: accentColors.DEFAULT }}>✦</span> Academic Support <span style={{ color: accentColors.DEFAULT }}>✦</span> Strategic Insights <span style={{ color: accentColors.DEFAULT }}>✦</span></span>
             ]} 
             velocity={50} 
             className="custom-scroll-text"

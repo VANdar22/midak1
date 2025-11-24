@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const footerData = {
   "logo": {
-    "src": "/images/logo.png",
+    "src": "/assets/images/logo.png",
     "position": "top-left"
   },
   "columns": [
@@ -185,11 +185,11 @@ const NewFooter = () => {
         <div className="w-full px-4 sm:px-6 text-white" style={{ maxWidth: '100%' }}>
           {/* Logo */}
           {footerData.logo && footerData.logo.position === 'top-left' && (
-            <div className="mb-8 sm:mb-12 text-center sm:text-left">
+            <div className="mb-8 sm:mb-10 text-center sm:text-left">
               <img 
                 src={footerData.logo.src} 
                 alt="Logo" 
-                className="h-8 mx-auto sm:mx-0"
+                className="h-16 w-auto sm:h-20"
               />
             </div>
           )}

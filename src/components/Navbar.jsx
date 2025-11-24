@@ -131,69 +131,77 @@ const Navbar = () => {
       <div 
         className="backdrop-blur-md px-6 sm:px-10 py-3 md:py-4 flex items-center justify-between w-full rounded-full transition-all duration-500 ease-in-out"
         style={{
-          backgroundColor: `${accentColors.main}CC`, // CC is 80% opacity in hex
           transform: 'translateZ(0)',
           willChange: 'transform, opacity',
-          background: `linear-gradient(135deg, ${accentColors.main}CC, ${accentColors.dark}CC)`
+          // Mobile: Keep the gradient background
+          // Desktop: Use white translucent background
+          '@media (max-width: 767px)': {
+            background: `linear-gradient(135deg, ${accentColors.main}99, ${accentColors.dark}99)`
+          },
+          '@media (min-width: 768px)': {
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)'
+          }
         }}
       >
         {/* Logo */}
         <Link to="/" className="shrink-0 flex items-center justify-center">
-          <img src="/images/logo.png" alt="Logo" className="h-8 sm:h-10 w-auto" />
+          <img 
+            src="/assets/images/logo.png" 
+            alt="Logo" 
+            className="h-12 w-auto sm:h-16"
+          />
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center ml-32">
           <Link 
             to="/"
-            className={`group relative px-4 py-2 text-xl font-medium transition-all duration-200 text-white! ${
+            className={`group relative px-6 py-2.5 rounded-full text-xl font-medium transition-all duration-300 md:text-gray-800 text-white ${
               isActive('/') ? 'opacity-100' : 'opacity-90 hover:opacity-100'
-            }`}
+            } hover:bg-opacity-[0.01] hover:bg-[#800020] hover:scale-105 transform transition-transform duration-200`}
           >
-            <span className="relative z-10">Home</span>
-            <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-white transition-all duration-300 -translate-x-1/2 group-hover:w-3/4"></span>
+            <span className="relative z-10 group-hover:font-medium group-hover:text-opacity-100 group-hover:text-white transition-all duration-200">Home</span>
           </Link>
           <div className="h-8 w-0.5 bg-white/20 mx-1"></div>
           <Link 
             to="/services"
-            className={`group relative px-4 py-2 text-xl font-medium transition-all duration-200 text-white! ${
+            className={`group relative px-6 py-2.5 rounded-full text-xl font-medium transition-all duration-300 md:text-gray-800 text-white ${
               isActive('/services') ? 'opacity-100' : 'opacity-90 hover:opacity-100'
-            }`}
+            } hover:bg-opacity-[0.01] hover:bg-[#800020] hover:scale-105 transform transition-transform duration-200`}
           >
-            <span className="relative z-10">Services</span>
-            <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-white transition-all duration-300 -translate-x-1/2 group-hover:w-3/4"></span>
+            <span className="relative z-10 group-hover:font-medium group-hover:text-opacity-100 group-hover:text-white transition-all duration-200">Services</span>
           </Link>
           <div className="h-8 w-0.5 bg-white/20 mx-1"></div>
           <Link 
             to="/about"
-            className={`group relative px-4 py-2 text-xl font-medium transition-all duration-200 text-white! ${
+            className={`group relative px-6 py-2.5 rounded-full text-xl font-medium transition-all duration-300 md:text-gray-800 text-white ${
               isActive('/about') ? 'opacity-100' : 'opacity-90 hover:opacity-100'
-            }`}
+            } hover:bg-opacity-[0.01] hover:bg-[#800020] hover:scale-105 transform transition-transform duration-200`}
           >
-            <span className="relative z-10">About</span>
-            <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-white transition-all duration-300 -translate-x-1/2 group-hover:w-3/4"></span>
+            <span className="relative z-10 group-hover:font-medium group-hover:text-opacity-100 group-hover:text-white transition-all duration-200">About</span>
           </Link>
           <div className="h-8 w-0.5 bg-white/20 mx-1"></div>
           <Link 
             to="/blog"
-            className={`group relative px-4 py-2 text-xl font-medium transition-all duration-200 active:scale-95 !text-white ${
+            className={`group relative px-6 py-2.5 rounded-full text-xl font-medium transition-all duration-300 active:scale-95 md:text-gray-800 text-white ${
               isActive('/blog') ? 'opacity-100' : 'opacity-90 hover:opacity-100'
-            }`}
+            } hover:bg-opacity-[0.01] hover:bg-[#800020] hover:scale-105 transform transition-transform duration-200`}
           >
-            <span className="relative z-10">Insights</span>
-            <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-white transition-all duration-300 -translate-x-1/2 group-hover:w-3/4"></span>
+            <span className="relative z-10 group-hover:font-medium group-hover:text-opacity-100 group-hover:text-white transition-all duration-200">Insights</span>
           </Link>
         </div>
 
         {/* CTA Button - Desktop */}
         <div className="hidden md:flex items-center">
           <div className="flex items-center gap-4">
-            <span className="text-xl font-medium text-white!">Contact Us</span>
+            <span className="text-xl font-medium md:text-gray-800 text-white">Contact Us</span>
             <Link 
               to="/contact"
               className="group relative w-12 h-12 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 bg-white hover:bg-[#800020]"
             >
-              <svg className="relative z-10 w-6 h-6 text-[#800020] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="relative z-10 w-6 h-6 md:text-[#800020] text-[#800020] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -211,23 +219,24 @@ const Navbar = () => {
         <div className="md:hidden flex items-center justify-center">
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="mobile-menu-button w-10 h-10 flex items-center justify-center bg-transparent border-0 p-0 m-0 text-white hover:bg-white/20 transition-colors duration-200"
+            className="mobile-menu-button w-10 h-10 flex items-center justify-center border-0 p-0 m-0 transition-all duration-200 rounded-full"
             aria-label="Toggle menu"
             style={{
               minWidth: '2.5rem',
               minHeight: '2.5rem',
-              borderRadius: '0.375rem',
               height: 'auto',
               padding: '0',
-              backgroundColor: 'transparent',
+              backgroundColor: accentColors.main,
+              color: 'white',
               fontFamily: 'inherit',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
             }}
           >
             {isMenuOpen ? (
-              <X size={24} className="text-white m-auto" />
+              <X size={24} className="m-auto" />
             ) : (
-              <Menu size={24} className="text-white m-auto" />
+              <Menu size={24} className="m-auto" />
             )}
           </button>
         </div>
@@ -237,19 +246,18 @@ const Navbar = () => {
       <div 
         className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
           isMenuOpen ? 'max-h-96 py-4 opacity-100' : 'max-h-0 py-0 opacity-0'
-        } absolute left-0 right-0 top-full mt-1 z-60 rounded-b-2xl mx-4`}
+        } absolute left-0 right-0 top-full mt-1 z-60 rounded-b-2xl mx-4 bg-white shadow-lg`}
         style={{
-          background: `linear-gradient(135deg, ${accentColors.dark}EE, ${accentColors.darkest}EE)`,
-          boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2)',
-          backdropFilter: 'blur(16px)',
-          border: '1px solid rgba(255, 255, 255, 0.15)'
+          border: '1px solid rgba(0, 0, 0, 0.1)'
         }}
       >
         <div className="flex flex-col items-stretch space-y-3 px-6">
           <Link 
             to="/"
-            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 text-white! ${
-              isActive('/') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 ${
+              isActive('/') 
+                ? 'bg-[#80002060] text-[#800020] font-medium shadow-sm scale-[1.02]' 
+                : 'text-gray-800 opacity-100 hover:bg-gray-50 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
@@ -257,8 +265,10 @@ const Navbar = () => {
           </Link>
           <Link 
             to="/services"
-            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 text-white! ${
-              isActive('/services') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 ${
+              isActive('/services') 
+                ? 'bg-[#80002030] text-[#800020] font-medium shadow-sm scale-[1.02]' 
+                : 'text-gray-800 opacity-100 hover:bg-gray-50 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
@@ -266,8 +276,10 @@ const Navbar = () => {
           </Link>
           <Link 
             to="/about"
-            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 text-white! ${
-              isActive('/about') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 ${
+              isActive('/about') 
+                ? 'bg-[#80002030] text-[#800020] font-medium shadow-sm scale-[1.02]' 
+                : 'text-gray-800 opacity-100 hover:bg-gray-50 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
@@ -275,8 +287,10 @@ const Navbar = () => {
           </Link>
           <Link 
             to="/blog"
-            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 text-white! ${
-              isActive('/blog') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 ${
+              isActive('/blog') 
+                ? 'bg-[#80002030] text-[#800020] font-medium shadow-sm scale-[1.02]' 
+                : 'text-gray-800 opacity-100 hover:bg-gray-50 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
@@ -284,8 +298,10 @@ const Navbar = () => {
           </Link>
           <Link 
             to="/contact"
-            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 text-white! ${
-              isActive('/contact') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 ${
+              isActive('/contact') 
+                ? 'bg-[#80002030] text-[#800020] font-medium shadow-sm scale-[1.02]' 
+                : 'text-gray-800 opacity-100 hover:bg-gray-50 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
