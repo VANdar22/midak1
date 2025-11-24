@@ -86,19 +86,22 @@ const Hero = () => {
         <Parallax speed={-15} className="absolute w-40 h-40 -left-10 top-1/4 rounded-full animate-float" style={{ backgroundColor: `${accentColors.lighter}80` }}></Parallax>
         <Parallax speed={-10} className="absolute w-60 h-60 -right-8 -top-8 rounded-full animate-float animation-delay-1000" style={{ backgroundColor: `${accentColors.lighter}80` }}></Parallax>
       <div className="container mx-auto px-0 sm:px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between">
           {/* Left Column - Text */}
-          <div className="lg:w-[45%] text-center lg:text-left mb-12 lg:mb-0 font-['League_Spartan']">
-            <div className="md:mt-20 mb-6">
-              <div className="space-y-2 md:space-y-4">
+            <div className="lg:w-[45%] text-left mb-12 lg:mb-0 font-['League_Spartan'] px-4 sm:px-6 md:px-8 lg:px-0">
+            <div className="pt-10 sm:pt-16 md:pt-24 lg:pt-32 mb-8 md:mb-10">
+              <div className="space-y-3 xs:space-y-4 sm:space-y-5 md:space-y-6">
                 <h1 
                   ref={headingRef} 
-                  className="text-xl xs:text-2xl sm:text-4xl md:text-5xl text-gray-900 font-bold leading-tight tracking-tight hero-heading"
+                  className="text-3xl xs:text-4xl sm:text-5xl md:text-5xl lg:text-7xl text-gray-900 font-bold leading-tight tracking-tight hero-heading w-full md:overflow-x-visible"
                 >
-                  <div className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-2">
-                    <span className="whitespace-normal sm:whitespace-nowrap word">Transform Data Into</span>
-                    <span className="inline-block" style={{ color: accentColors.main }}>
-                      <RotatingText
+                  <div className="flex flex-col md:flex-row items-start md:items-baseline gap-y-2 md:gap-x-2 md:whitespace-nowrap">
+                    <span className="word">Transform Data</span>
+                    <div className="flex items-baseline">
+                      <span className="md:hidden">Into&nbsp;</span>
+                      <span className="hidden md:inline">Into&nbsp;</span>
+                      <span className="inline-block relative" style={{ color: accentColors.main }}>
+                        <RotatingText
                         texts={["Impact", "Results", "Success"]}
                         rotationInterval={3000}
                         mainClassName="inline-block"
@@ -107,12 +110,23 @@ const Hero = () => {
                         splitBy="words"
                         auto={true}
                         loop={true}
+                        transition={{
+                          type: 'spring',
+                          damping: 15,
+                          stiffness: 100,
+                          mass: 0.5
+                        }}
+                        initial={{ y: '20%', opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: '-20%', opacity: 0 }}
                       />
-                    </span>
+                        <span className="absolute inset-0 bg-gradient-to-r from-transparent to-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                      </span>
+                    </div>
                   </div>
                 </h1>
-                <p className="text-lg sm:text-2xl md:text-3xl font-normal max-w-2xl leading-relaxed hero-paragraph text-black">
-                  <span className="line block">Unlock the power of data with our comprehensive research and analysis solutions</span>
+                <p className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl font-normal max-w-2xl leading-relaxed md:leading-normal hero-paragraph text-gray-800">
+                  <span className="line block">Unlock the power of data with our comprehensive research and analysis solutions that drive meaningful business outcomes and strategic decisions.</span>
                 </p>
               </div>
             </div>
@@ -152,7 +166,7 @@ const Hero = () => {
           </div>
 
           {/* Right Column - Video */}
-          <div className="w-full lg:w-[45%] -mt-8 -mx-4 lg:ml-0 lg:mr-0 lg:mt-0 px-4 lg:px-0">
+          <div className="w-full h-full lg:w-[40%] lg:h-[40%] -mt-8 -mx-4 lg:ml-0 lg:mr-0 lg:mt-0 px-4 lg:px-0">
             <div 
               className="relative w-full h-full aspect-video overflow-hidden rounded-xl lg:rounded-2xl shadow-lg lg:shadow-2xl transform-gpu transition-all duration-500 hover:scale-[1.02] lg:hover:scale-105"
               style={{
@@ -191,9 +205,9 @@ const Hero = () => {
             </div>
             
             {/* Mobile Get Started - Only shows on mobile */}
-            <div className="lg:hidden w-full flex justify-center mt-6 px-4">
-              <div className="flex items-center gap-4">
-                <span className="text-2xl font-medium" style={{ color: accentColors.main }}>Get Started</span>
+            <div className="lg:hidden w-full flex justify-center mt-8 sm:mt-10 px-4">
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <span className="text-xl sm:text-2xl font-medium" style={{ color: accentColors.main }}>Get Started</span>
                 <Link
                   to="/contact"
                   className="group relative bg-white w-16 h-16 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 opacity-100 shadow-md hover:shadow-lg"

@@ -14,43 +14,45 @@ const ImageWithDescription = ({
     }}>
       {/* Background Video */}
       <div className="absolute inset-0 w-full h-full z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source src={videoSource} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div className="absolute inset-0 bg-gray-900/70"></div>
+        <div className="relative w-full h-full">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full min-h-[100vh] object-cover"
+          >
+            <source src={videoSource} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="absolute inset-0 bg-gray-900/70"></div>
+          <div className="absolute inset-0 border-4 border-white/20 rounded-lg m-4 pointer-events-none"></div>
+        </div>
       </div>
       
       {/* Decorative Circle - Smaller on mobile */}
-      <div className="absolute -right-16 -bottom-16 w-40 h-40 sm:w-60 sm:h-60 rounded-full bg-white/10 z-0"></div>
+      {/* Decorative Elements */}
+      <div className="absolute -right-12 -bottom-12 w-32 h-32 sm:w-48 sm:h-48 rounded-full bg-white/10 z-0"></div>
+      <div className="absolute -left-8 -top-8 w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-white/5 z-0"></div>
       
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center justify-center min-h-[70vh] sm:min-h-[60vh]">
+        <div className="flex flex-col items-center justify-center min-h-[60vh] sm:min-h-[70vh] py-12 sm:py-16">
           <motion.div 
-            className="w-full max-w-4xl mx-auto text-center"
+            className="w-full max-w-5xl mx-auto px-4 sm:px-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <div className="w-full max-w-3xl space-y-6 sm:space-y-8 px-4 sm:px-6">
+            <div className="w-full max-w-4xl mx-auto lg:ml-auto lg:mr-0 lg:pr-12">
               <p 
-                className="text-2xl xs:text-4xl sm:text-3xl md:text-3xl lg:text-5xl font-normal letter-spacing-2 text-[#f4f4f4] ml-auto mr-0 w-11/12 pl-8" 
+                className="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-normal text-[#f4f4f4] leading-tight md:leading-normal text-left"
                 style={{ 
                   fontFamily: 'League Spartan, sans-serif',
-                  lineHeight: '1.3',
                   textShadow: '0 2px 4px rgba(0,0,0,0.3)',
                   WebkitFontSmoothing: 'antialiased',
                   MozOsxFontSmoothing: 'grayscale',
-                  maxWidth: '100%',
-                  marginLeft: '10%',
-                  marginRight: '0'
+                  letterSpacing: '0.5px'
                 }}
               >
                 {description}

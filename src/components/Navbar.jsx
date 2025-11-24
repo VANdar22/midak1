@@ -119,17 +119,20 @@ const Navbar = () => {
       
       {/* Main Navbar */}
       <nav 
-        className={`fixed md:top-4 top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-6xl z-50 rounded-full overflow-visible backdrop-blur-sm bg-white/10 border border-white/20 shadow-lg transition-all duration-500 ease-in-out ${isVisible ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+        className={`fixed md:top-4 top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-6xl z-50 rounded-full overflow-visible backdrop-blur-sm bg-white/10 border border-white/20 shadow-lg transition-all duration-300 ease-in-out ${isVisible ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
         style={{ 
           transform: isVisible ? 'translate(-50%, 0) scale(1)' : 'translate(-50%, -100%) scale(0.98)',
           willChange: 'transform, opacity',
           transformStyle: 'preserve-3d',
           backfaceVisibility: 'hidden',
-          WebkitFontSmoothing: 'antialiased'
+          WebkitFontSmoothing: 'antialiased',
+          '@media (min-width: 768px) and (max-width: 1024px)': {
+            width: 'calc(100% - 3rem)'
+          }
         }}
       >
       <div 
-        className="backdrop-blur-md px-6 sm:px-10 py-3 md:py-4 flex items-center justify-between w-full rounded-full transition-all duration-500 ease-in-out"
+        className="backdrop-blur-md px-4 sm:px-6 md:px-8 py-2 md:py-3 lg:py-4 flex items-center justify-between w-full rounded-full transition-all duration-300 ease-in-out"
         style={{
           transform: 'translateZ(0)',
           willChange: 'transform, opacity',
@@ -155,48 +158,48 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center ml-32">
+        <div className="hidden md:flex items-center lg:ml-32 md:ml-12">
           <Link 
             to="/"
-            className={`group relative px-6 py-2.5 rounded-full text-xl font-medium transition-all duration-300 md:text-gray-800 text-white ${
+            className={`group relative px-4 lg:px-6 py-2 rounded-full text-base lg:text-xl font-medium transition-all duration-300 md:text-gray-800 text-white ${
               isActive('/') ? 'opacity-100' : 'opacity-90 hover:opacity-100'
             } hover:bg-opacity-[0.01] hover:bg-[#800020] hover:scale-105 transform transition-transform duration-200`}
           >
-            <span className="relative z-10 group-hover:font-medium group-hover:text-opacity-100 group-hover:text-white transition-all duration-200">Home</span>
+            <span className="relative z-10 group-hover:font-medium group-hover:text-opacity-100 group-hover:text-white transition-all duration-200 whitespace-nowrap">Home</span>
           </Link>
-          <div className="h-8 w-0.5 bg-white/20 mx-1"></div>
+          <div className="h-6 lg:h-8 w-0.5 bg-white/20 mx-1"></div>
           <Link 
             to="/services"
-            className={`group relative px-6 py-2.5 rounded-full text-xl font-medium transition-all duration-300 md:text-gray-800 text-white ${
+            className={`group relative px-4 lg:px-6 py-2 rounded-full text-base lg:text-xl font-medium transition-all duration-300 md:text-gray-800 text-white ${
               isActive('/services') ? 'opacity-100' : 'opacity-90 hover:opacity-100'
             } hover:bg-opacity-[0.01] hover:bg-[#800020] hover:scale-105 transform transition-transform duration-200`}
           >
-            <span className="relative z-10 group-hover:font-medium group-hover:text-opacity-100 group-hover:text-white transition-all duration-200">Services</span>
+            <span className="relative z-10 group-hover:font-medium group-hover:text-opacity-100 group-hover:text-white transition-all duration-200 whitespace-nowrap">Services</span>
           </Link>
-          <div className="h-8 w-0.5 bg-white/20 mx-1"></div>
+          <div className="h-6 lg:h-8 w-0.5 bg-white/20 mx-1"></div>
           <Link 
             to="/about"
-            className={`group relative px-6 py-2.5 rounded-full text-xl font-medium transition-all duration-300 md:text-gray-800 text-white ${
+            className={`group relative px-4 lg:px-6 py-2 rounded-full text-base lg:text-xl font-medium transition-all duration-300 md:text-gray-800 text-white ${
               isActive('/about') ? 'opacity-100' : 'opacity-90 hover:opacity-100'
             } hover:bg-opacity-[0.01] hover:bg-[#800020] hover:scale-105 transform transition-transform duration-200`}
           >
-            <span className="relative z-10 group-hover:font-medium group-hover:text-opacity-100 group-hover:text-white transition-all duration-200">About</span>
+            <span className="relative z-10 group-hover:font-medium group-hover:text-opacity-100 group-hover:text-white transition-all duration-200 whitespace-nowrap">About</span>
           </Link>
-          <div className="h-8 w-0.5 bg-white/20 mx-1"></div>
+          <div className="h-6 lg:h-8 w-0.5 bg-white/20 mx-1"></div>
           <Link 
             to="/blog"
-            className={`group relative px-6 py-2.5 rounded-full text-xl font-medium transition-all duration-300 active:scale-95 md:text-gray-800 text-white ${
+            className={`group relative px-4 lg:px-6 py-2 rounded-full text-base lg:text-xl font-medium transition-all duration-300 active:scale-95 md:text-gray-800 text-white ${
               isActive('/blog') ? 'opacity-100' : 'opacity-90 hover:opacity-100'
             } hover:bg-opacity-[0.01] hover:bg-[#800020] hover:scale-105 transform transition-transform duration-200`}
           >
-            <span className="relative z-10 group-hover:font-medium group-hover:text-opacity-100 group-hover:text-white transition-all duration-200">Insights</span>
+            <span className="relative z-10 group-hover:font-medium group-hover:text-opacity-100 group-hover:text-white transition-all duration-200 whitespace-nowrap">Insights</span>
           </Link>
         </div>
 
         {/* CTA Button - Desktop */}
         <div className="hidden md:flex items-center">
-          <div className="flex items-center gap-4">
-            <span className="text-xl font-medium md:text-gray-800 text-white">Contact Us</span>
+          <div className="flex items-center gap-2 lg:gap-4">
+            <span className="text-base lg:text-xl font-medium md:text-gray-800 text-white whitespace-nowrap">Contact Us</span>
             <Link 
               to="/contact"
               className="group relative w-12 h-12 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 bg-white hover:bg-[#800020]"
