@@ -103,7 +103,7 @@ export default function InsightPost() {
     const contentElements = contentRef.current?.querySelectorAll('.animate-on-scroll');
     
     if (contentElements) {
-      contentElements.forEach((element, index) => {
+      for (const [index, element] of contentElements.entries()) {
         gsap.fromTo(
           element,
           { y: 50, opacity: 0 },
@@ -120,12 +120,15 @@ export default function InsightPost() {
             }
           }
         );
-      });
+      }
     }
 
     // Clean up animations on unmount
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      const triggers = ScrollTrigger.getAll();
+    for (const trigger of triggers) {
+      trigger.kill();
+    }
     };
   }, [post]);
 
@@ -136,24 +139,25 @@ export default function InsightPost() {
 
   const renderContent = () => {
     return post.content.map((item, index) => {
+      const itemKey = `content-${item.type}-${index}`;
       switch (item.type) {
         case 'heading':
           return (
-            <h2 key={index} className="text-2xl md:text-3xl font-bold mt-12 mb-6 text-gray-900 animate-on-scroll">
+            <h2 key={`${itemKey}-heading`} className="text-2xl md:text-3xl font-bold mt-12 mb-6 text-gray-900 animate-on-scroll">
               {item.text}
             </h2>
           );
         case 'paragraph':
           return (
-            <p key={index} className="text-lg text-gray-700 leading-relaxed mb-6 animate-on-scroll">
+            <p key={`${itemKey}-para`} className="text-lg text-gray-700 leading-relaxed mb-6 animate-on-scroll">
               {item.text}
             </p>
           );
         case 'list':
           return (
-            <ul key={index} className="list-disc list-inside space-y-2 mb-6 pl-4 animate-on-scroll">
+            <ul key={`${itemKey}-list`} className="list-disc list-inside space-y-2 mb-6 pl-4 animate-on-scroll">
               {item.items.map((listItem, i) => (
-                <li key={i} className="text-gray-700">
+                <li key={`${itemKey}-item-${i}`} className="text-gray-700">
                   {listItem}
                 </li>
               ))}
@@ -161,11 +165,12 @@ export default function InsightPost() {
           );
         case 'image':
           return (
-            <div key={index} className="my-8 rounded-lg overflow-hidden shadow-lg animate-on-scroll">
+            <div key={`${itemKey}-img`} className="my-8 rounded-lg overflow-hidden shadow-lg animate-on-scroll">
               <img 
                 src={item.src} 
                 alt={item.alt} 
                 className="w-full h-auto object-cover"
+                loading="lazy"
               />
               {item.caption && (
                 <p className="text-sm text-gray-500 italic mt-2 text-center">
@@ -190,7 +195,7 @@ export default function InsightPost() {
           alt={post.title} 
           className="w-full h-96 object-cover"
         />
-        <div className="container mx-auto px-4 relative z-20 -mt-32">
+        <div className="container mlx-auto px-4 relative z-20 -mt-32">
           <div className="max-w-3xl bg-white p-8 rounded-lg shadow-xl">
             <div className="flex items-center space-x-2 mb-4">
               <span className="px-3 py-1 bg-purple-100 text-purple-800 text-sm font-medium rounded-full">
@@ -235,10 +240,19 @@ export default function InsightPost() {
             <h2 className="text-3xl font-bold text-center mb-12">Related Insights</h2>
             <div className="grid md:grid-cols-2 gap-8">
               {post.relatedInsights.map((insight) => (
-                <div 
-                  key={insight.id} 
-                  className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+                <article 
+                  key={`insight-${insight.id}`}
+                  className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+                  tabIndex={0}
+                  role="button"
                   onClick={() => navigate(`/insights/${insight.slug}`)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      navigate(`/insights/${insight.slug}`);
+                    }
+                  }}
+                  aria-label={`View ${insight.title}`}
                 >
                   <img 
                     src={insight.image} 
@@ -263,7 +277,7 @@ export default function InsightPost() {
                       </span>
                     </div>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
@@ -271,7 +285,7 @@ export default function InsightPost() {
       )}
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
+      <section className="bg-linear-to-r from-purple-600 to-blue-600 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to transform your business with data-driven insights?

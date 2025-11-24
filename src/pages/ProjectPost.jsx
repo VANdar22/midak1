@@ -72,8 +72,7 @@ const ProjectPost = () => {
   }
 
   useEffect(() => {
-    // Initialize scroll position
-    globalThis.scrollY;
+    // Scroll position will be handled by the subsequent scrollTo calls
     
     // Disable ScrollTrigger during initial render
     gsap.registerPlugin(ScrollTrigger);
@@ -82,7 +81,9 @@ const ProjectPost = () => {
     ScrollTrigger.defaults({ immediateRender: false });
     
     // Kill any existing ScrollTrigger instances
-    ScrollTrigger.getAll().forEach(instance => instance.kill());
+    for (const instance of ScrollTrigger.getAll()) {
+      instance.kill();
+    }
     
     // Set up scroll restoration
     if (globalThis.history.scrollRestoration) {
@@ -206,19 +207,23 @@ const ProjectPost = () => {
           <div className="w-full pt-8 px-6 pb-12 md:pt-12 md:px-12 md:pb-12 project-content">
 
             <div ref={contentRef} className="prose prose-lg max-w-none">
-              {project.content.map((paragraph, idx) => (
-                <p key={`para-${idx}`} className="text-gray-700 leading-relaxed mb-6">
-                  {paragraph}
-                </p>
-              ))}
+              {project.content.map((paragraph) => {
+                // Create a more stable key using the first 20 characters of the paragraph
+                const key = `para-${paragraph.substring(0, 20).replaceAll(/\s+/g, '-')}`;
+                return (
+                  <p key={key} className="text-gray-700 leading-relaxed mb-6">
+                    {paragraph}
+                  </p>
+                );
+              })}
 
               {project.technologies && (
                 <div className="mt-12 pt-8 border-t border-gray-100">
                   <h3 className="text-xl font-semibold text-gray-900 mb-6">Technologies & Methods</h3>
                   <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIdx) => (
+                    {project.technologies.map((tech) => (
                       <span
-                        key={`tech-${techIdx}`}
+                        key={`tech-${tech}`}
                         className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gray-50 text-gray-800"
                       >
                         {tech}
@@ -248,7 +253,7 @@ const ProjectPost = () => {
           </div>
         </div>
       </div>
-      <style global jsx>{`
+      <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&display=swap');
       `}</style>
     </div>

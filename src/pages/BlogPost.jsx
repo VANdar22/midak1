@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { accentColors } from '../constants/colors';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styled from '@emotion/styled';
@@ -31,7 +31,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
+
   const contentRef = useRef(null);
   
   // Sample blog posts data (in a real app, this would come from an API)
@@ -89,8 +89,8 @@ const BlogPost = () => {
   const blogPost = blogPosts.find(post => post.slug === slug) || blogPosts[0]; // Fallback to first post if not found
 
   useEffect(() => {
-    // Save the current scroll position before doing anything
-    const scrollY = window.scrollY;
+    // Save scroll position for restoration if needed
+    // Removed unused scrollY variable as it wasn't being used
     
     // Disable ScrollTrigger during initial render
     gsap.registerPlugin(ScrollTrigger);
@@ -99,17 +99,19 @@ const BlogPost = () => {
     ScrollTrigger.defaults({ immediateRender: false });
     
     // Kill any existing ScrollTrigger instances
-    ScrollTrigger.getAll().forEach(instance => instance.kill());
+    for (const instance of ScrollTrigger.getAll()) {
+      instance.kill();
+    }
     
     // Set up scroll restoration
-    if (window.history.scrollRestoration) {
-      window.history.scrollRestoration = 'manual';
+    if (globalThis.history?.scrollRestoration) {
+      globalThis.history.scrollRestoration = 'manual';
     }
     
     // Force scroll to top
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    globalThis.scrollTo(0, 0);
+    globalThis.document.documentElement.scrollTop = 0;
+    globalThis.document.body.scrollTop = 0;
     
     // Set initial styles
     gsap.set('.blog-content p, .blog-content h2, .blog-content ul', { 
@@ -142,7 +144,7 @@ const BlogPost = () => {
       
       // Set up scroll triggers after content is loaded
       const contentSections = document.querySelectorAll('.blog-content > *');
-      contentSections.forEach((section, i) => {
+      for (const [i, section] of Array.from(contentSections).entries()) {
         gsap.fromTo(section,
           { y: 30, opacity: 0 },
           {
@@ -157,7 +159,7 @@ const BlogPost = () => {
             }
           }
         );
-      });
+      }
       
       // Refresh ScrollTrigger after a short delay to ensure all content is loaded
       const refreshTimer = setTimeout(() => {
@@ -170,15 +172,17 @@ const BlogPost = () => {
     // Cleanup function
     return () => {
       clearTimeout(initTimeout);
-      ScrollTrigger.getAll().forEach(instance => instance.kill());
+      for (const instance of ScrollTrigger.getAll()) {
+        instance.kill();
+      }
       ScrollTrigger.clearMatchMedia();
       
       // Restore scroll behavior
       document.documentElement.style.scrollBehavior = '';
       document.body.style.scrollBehavior = '';
       
-      if (window.history.scrollRestoration) {
-        window.history.scrollRestoration = 'auto';
+      if (globalThis.history?.scrollRestoration) {
+        globalThis.history.scrollRestoration = 'auto';
       }
     };
   }, [slug]); // Re-run effect when slug changes
@@ -216,11 +220,15 @@ const BlogPost = () => {
           <article ref={contentRef} className="w-full pt-8 px-6 pb-12 md:pt-12 md:px-12 md:pb-12 blog-content">
             <div className="w-full">
               <div className="space-y-8">
-                {blogPost.content.map((paragraph, index) => (
-                  <p key={index} className="text-gray-700 text-lg leading-8 font-['League_Spartan']">
-                    {paragraph}
-                  </p>
-                ))}
+                {blogPost.content.map((paragraph, index) => {
+                  // Create a simple hash of the content for a more stable key
+                  const key = `para-${paragraph.substring(0, 20).replaceAll(/\s+/g, '-')}-${index}`;
+                  return (
+                    <p key={key} className="text-gray-700 text-lg leading-8 font-['League_Spartan']">
+                      {paragraph}
+                    </p>
+                  );
+                })}
               </div>
               
               <div className="mt-20 mb-16 -ml-4">

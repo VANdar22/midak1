@@ -1,13 +1,19 @@
 import React, { Children, cloneElement, forwardRef, isValidElement, useEffect, useMemo, useRef } from 'react';
+import PropTypes from 'prop-types';
 import gsap from 'gsap';
 
 export const Card = forwardRef(({ customClass, ...rest }, ref) => (
   <div
     ref={ref}
     {...rest}
-    className={`absolute top-1/2 left-1/2 rounded-xl border-2 border-black [transform-style:preserve-3d] [will-change:transform] [backface-visibility:hidden] ${customClass ?? ''} ${rest.className ?? ''}`.trim()} />
+    className={`absolute top-1/2 left-1/2 rounded-xl border-2 border-black transform-3d will-change-transform backface-hidden ${customClass ?? ''} ${rest.className ?? ''}`.trim()} />
 ));
+
 Card.displayName = 'Card';
+Card.propTypes = {
+  customClass: PropTypes.string,
+  className: PropTypes.string
+};
 
 const makeSlot = (i, distX, distY, total) => ({
   x: i * distX,
@@ -41,9 +47,14 @@ const CardSwap = ({
   easing = 'elastic',
   children
 }) => {
+  const getEase = () => {
+    if (easing === 'elastic') return 'elastic.out(0.6,0.9)';
+    if (easing === 'power2.inOut') return 'power2.inOut';
+    return 'power1.inOut';
+  };
+
   const config = {
-    ease: easing === 'elastic' ? 'elastic.out(0.6,0.9)' : 
-          easing === 'power2.inOut' ? 'power2.inOut' : 'power1.inOut',
+    ease: getEase(),
     durDrop: 0.6,
     durMove: 0.6,
     durReturn: 0.6,
@@ -66,9 +77,9 @@ const CardSwap = ({
 
   useEffect(() => {
     const total = refs.length;
-    refs.forEach(
-      (r, i) => placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount)
-    );
+    for (const [i, ref] of refs.entries()) {
+      placeNow(ref.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount);
+    }
 
     const swap = () => {
       if (order.current.length < 2) return;
@@ -85,7 +96,7 @@ const CardSwap = ({
       });
 
       tl.addLabel('promote', `-=${config.durDrop * config.promoteOverlap}`);
-      rest.forEach((idx, i) => {
+      for (const [i, idx] of rest.entries()) {
         const el = refs[idx].current;
         const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
         tl.set(el, { zIndex: slot.zIndex }, 'promote');
@@ -96,7 +107,7 @@ const CardSwap = ({
           duration: config.durMove,
           ease: config.ease
         }, `promote+=${i * 0.15}`);
-      });
+      }
 
       const backSlot = makeSlot(refs.length - 1, cardDistance, verticalDistance, refs.length);
       tl.addLabel('return', `promote+=${config.durMove * config.returnDelay}`);
@@ -127,7 +138,7 @@ const CardSwap = ({
       };
       const resume = () => {
         tlRef.current?.play();
-        intervalRef.current = window.setInterval(swap, delay);
+        intervalRef.current = globalThis.setInterval(swap, delay);
       };
       node.addEventListener('mouseenter', pause);
       node.addEventListener('mouseleave', resume);
@@ -141,15 +152,15 @@ const CardSwap = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing]);
 
-  const rendered = childArr.map((child, i) =>
+  const rendered = childArr.map((child, index) =>
     isValidElement(child)
       ? cloneElement(child, {
-          key: i,
-          ref: refs[i],
-          style: { width, height, ...(child.props.style ?? {}) },
+          key: `card-${child.key || index}`,
+          ref: refs[index],
+          style: { width, height, ...(child.props.style || {}) },
           onClick: e => {
             child.props.onClick?.(e);
-            onCardClick?.(i);
+            onCardClick?.(index);
           }
         })
       : child);
@@ -162,6 +173,30 @@ const CardSwap = ({
       {rendered}
     </div>
   );
+};
+
+CardSwap.propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
+  cardDistance: PropTypes.number,
+  verticalDistance: PropTypes.number,
+  delay: PropTypes.number,
+  pauseOnHover: PropTypes.bool,
+  onCardClick: PropTypes.func,
+  skewAmount: PropTypes.number,
+  easing: PropTypes.oneOf(['elastic', 'power2.inOut', 'power1.inOut']),
+  children: PropTypes.node.isRequired
+};
+
+CardSwap.defaultProps = {
+  width: 500,
+  height: 400,
+  cardDistance: 60,
+  verticalDistance: 70,
+  delay: 5000,
+  pauseOnHover: false,
+  skewAmount: 6,
+  easing: 'elastic'
 };
 
 export default CardSwap;

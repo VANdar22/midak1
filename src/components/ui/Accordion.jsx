@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { accentColors } from '../../constants/colors';
 
 
@@ -127,13 +127,20 @@ const Accordion = () => {
                                 `}
                             >
                                 {/* ACCORDION BUTTON (HEADER) */}
-                                <div
-                                    className="w-full pl-2 pr-8 py-6 text-left focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-offset-transparent focus:ring-transparent flex items-center h-40 justify-between bg-[#f5f5f5] border-b border-gray-500 cursor-pointer md:px-8"
+                                <button
+                                    className="w-full pl-2 pr-8 py-6 text-left focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent focus:ring-[#6b2a4c] flex items-center h-40 justify-between bg-[#f5f5f5] border-b border-gray-500 cursor-pointer md:px-8"
                                     onMouseEnter={() => handleItemHover(item.id)}
                                     onMouseLeave={handleItemLeave}
                                     onClick={() => handleItemClick(item.id)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            handleItemClick(item.id);
+                                        }
+                                    }}
                                     aria-expanded={isExpanded}
                                     aria-controls={`panel-${item.id}`}
+                                    id={`button-${item.id}`}
                                     style={{ minHeight: '100px' }}
                                 >
                                     <div className="flex items-center space-x-2 md:space-x-8">
@@ -152,8 +159,7 @@ const Accordion = () => {
                                             {item.title}
                                         </h3>
                                     </div>
-
-                                </div>
+                                </button>
                                 
                                 {/* ACCORDION PANEL (CONTENT) */}
                                 <div
@@ -163,7 +169,6 @@ const Accordion = () => {
                                         ${isExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}
                                         hover:max-h-[500px] hover:opacity-100
                                     `}
-                                    role="region"
                                     aria-labelledby={`button-${item.id}`}
                                 >
                                     <div className="px-2 md:px-8 pt-4">
@@ -172,9 +177,9 @@ const Accordion = () => {
                                             <div className="md:w-1/2">
                                                 {item.content
                                                     .filter(content => content.type === 'image')
-                                                    .map((content, index) => (
+                                                    .map((content, imgIndex) => (
                                                         <img 
-                                                            key={index}
+                                                            key={`${item.id}-img-${imgIndex}`}
                                                             src={content.src} 
                                                             alt={content.alt} 
                                                             className="w-full h-auto object-cover"
@@ -186,8 +191,8 @@ const Accordion = () => {
                                             <div className="md:w-1/2 space-y-4">
                                                 {item.content
                                                     .filter(content => content.type === 'text')
-                                                    .map((content, index) => (
-                                                        <p key={index} className="text-gray-600 leading-relaxed text-md md:text-2xl font-medium tracking-wide">
+                                                    .map((content, textIndex) => (
+                                                        <p key={`${item.id}-text-${textIndex}`} className="text-gray-600 leading-relaxed text-md md:text-2xl font-medium tracking-wide">
                                                             {content.text}
                                                         </p>
                                                     ))}

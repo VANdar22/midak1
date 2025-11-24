@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Puzzle, Workflow, UsersRound, ShieldCheck } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
-import PixelTransition from '../components/PixelTransition';
 import { accentColors } from '../constants/colors';
 
 const fadeInUp = {
@@ -68,19 +68,32 @@ const letterAnimation = {
   })
 };
 
-const AnimatedText = ({ children, delay = 0, split = false, className = '' }) => {
+/**
+ * AnimatedText Component
+ * @param {React.ReactNode} children - The text content to animate
+ * @param {number} [delay=0] - Delay before animation starts in seconds
+ * @param {boolean} [split=false] - Whether to split text into words for individual animation
+ * @param {string} [className=''] - Additional CSS classes
+ */
+const AnimatedText = ({ 
+  children, 
+  delay = 0, 
+  split = false, 
+  className = '' 
+}) => {
   if (split && typeof children === 'string') {
     // Split into words and preserve spaces
-    const words = children.split(/(\s+)/);
+    const words = children.split(/(\s+)/u);
     return (
       <span className={`inline-block ${className}`}>
         {words.map((word, wordIndex) => {
+          const wordKey = `word-${word.trim() || 'space'}-${wordIndex}`;
           if (word.trim() === '') {
-            return <span key={wordIndex}>&nbsp;</span>;
+            return <span key={wordKey}>&nbsp;</span>;
           }
           return (
             <motion.span
-              key={wordIndex}
+              key={wordKey}
               className="inline-block mr-1.5 last:mr-0"
               variants={fadeInUp}
               initial="hidden"
@@ -338,33 +351,15 @@ const Services = () => {
                 className={`relative h-[400px] w-5/5 mx-auto lg:mx-0 lg:w-[90%] overflow-hidden ${
                   index % 2 === 0 ? 'lg:ml-auto' : 'lg:mr-auto'
                 }`}
-                style={{ clipPath: 'polygon(60px 0, 100% 0, 100% calc(100% - 60px), calc(100% - 60px) 100%, 0 100%, 0 60px)' }}
               >
-                <PixelTransition
-                  firstContent={
-                    <div className="w-full h-full bg-gray-200"></div>
-                  }
-                  secondContent={
-                    <div className="h-full w-full">
-                      <img
-                        src={capability.image}
-                        alt={capability.title}
-                        className="h-full w-full object-cover transition-transform duration-300 hover:scale-103"
-                        loading="lazy"
-                      />
-                    </div>
-                  }
-                  pixelColor="#f4f4f4"  // Gray color for pixels
-                  animationStepDuration={0.3}
-                  once={true}
-                  gridSize={5}  // Fewer pixels for a more dramatic effect
-                  className="h-full w-full"
-                  style={{
-                    backgroundColor: 'transparent',
-                    border: 'none',
-                    boxShadow: 'none'
-                  }}
-                />
+                <div className="h-full w-full">
+                  <img
+                    src={capability.image}
+                    alt={capability.title}
+                    className="h-full w-full object-cover transition-transform duration-300 hover:scale-103"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </motion.article>
           ))}
@@ -489,6 +484,14 @@ const Services = () => {
       </div>
     </PageTransition>
   );
+};
+
+// Add prop type validation for the AnimatedText component
+AnimatedText.propTypes = {
+  children: PropTypes.node,
+  delay: PropTypes.number,
+  split: PropTypes.bool,
+  className: PropTypes.string
 };
 
 export default Services;

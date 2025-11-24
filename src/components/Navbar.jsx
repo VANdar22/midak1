@@ -119,7 +119,7 @@ const Navbar = () => {
       
       {/* Main Navbar */}
       <nav 
-        className={`fixed md:top-4 top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-6xl z-50 rounded-full overflow-visible backdrop-blur-sm bg-white/10 border border-white/20 shadow-lg transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${isVisible ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+        className={`fixed md:top-4 top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-6xl z-50 rounded-full overflow-visible backdrop-blur-sm bg-white/10 border border-white/20 shadow-lg transition-all duration-500 ease-in-out ${isVisible ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
         style={{ 
           transform: isVisible ? 'translate(-50%, 0) scale(1)' : 'translate(-50%, -100%) scale(0.98)',
           willChange: 'transform, opacity',
@@ -129,7 +129,7 @@ const Navbar = () => {
         }}
       >
       <div 
-        className="backdrop-blur-md px-6 sm:px-10 py-3 md:py-4 flex items-center justify-between w-full rounded-full transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+        className="backdrop-blur-md px-6 sm:px-10 py-3 md:py-4 flex items-center justify-between w-full rounded-full transition-all duration-500 ease-in-out"
         style={{
           backgroundColor: `${accentColors.main}CC`, // CC is 80% opacity in hex
           transform: 'translateZ(0)',
@@ -138,7 +138,7 @@ const Navbar = () => {
         }}
       >
         {/* Logo */}
-        <Link to="/" className="flex-shrink-0 flex items-center justify-center">
+        <Link to="/" className="shrink-0 flex items-center justify-center">
           <img src="/images/logo.png" alt="Logo" className="h-8 sm:h-10 w-auto" />
         </Link>
 
@@ -146,7 +146,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center ml-32">
           <Link 
             to="/"
-            className={`group relative px-4 py-2 text-xl font-medium transition-all duration-200 !text-white ${
+            className={`group relative px-4 py-2 text-xl font-medium transition-all duration-200 text-white! ${
               isActive('/') ? 'opacity-100' : 'opacity-90 hover:opacity-100'
             }`}
           >
@@ -156,7 +156,7 @@ const Navbar = () => {
           <div className="h-8 w-0.5 bg-white/20 mx-1"></div>
           <Link 
             to="/services"
-            className={`group relative px-4 py-2 text-xl font-medium transition-all duration-200 !text-white ${
+            className={`group relative px-4 py-2 text-xl font-medium transition-all duration-200 text-white! ${
               isActive('/services') ? 'opacity-100' : 'opacity-90 hover:opacity-100'
             }`}
           >
@@ -166,7 +166,7 @@ const Navbar = () => {
           <div className="h-8 w-0.5 bg-white/20 mx-1"></div>
           <Link 
             to="/about"
-            className={`group relative px-4 py-2 text-xl font-medium transition-all duration-200 !text-white ${
+            className={`group relative px-4 py-2 text-xl font-medium transition-all duration-200 text-white! ${
               isActive('/about') ? 'opacity-100' : 'opacity-90 hover:opacity-100'
             }`}
           >
@@ -188,7 +188,7 @@ const Navbar = () => {
         {/* CTA Button - Desktop */}
         <div className="hidden md:flex items-center">
           <div className="flex items-center gap-4">
-            <span className="text-xl font-medium !text-white">Contact Us</span>
+            <span className="text-xl font-medium text-white!">Contact Us</span>
             <Link 
               to="/contact"
               className="group relative w-12 h-12 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 bg-white hover:bg-[#800020]"
@@ -248,7 +248,7 @@ const Navbar = () => {
         <div className="flex flex-col items-stretch space-y-3 px-6">
           <Link 
             to="/"
-            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 !text-white ${
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 text-white! ${
               isActive('/') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
@@ -257,7 +257,7 @@ const Navbar = () => {
           </Link>
           <Link 
             to="/services"
-            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 !text-white ${
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 text-white! ${
               isActive('/services') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
@@ -266,7 +266,7 @@ const Navbar = () => {
           </Link>
           <Link 
             to="/about"
-            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 !text-white ${
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 text-white! ${
               isActive('/about') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
@@ -275,7 +275,7 @@ const Navbar = () => {
           </Link>
           <Link 
             to="/blog"
-            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 !text-white ${
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 text-white! ${
               isActive('/blog') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}
@@ -284,7 +284,7 @@ const Navbar = () => {
           </Link>
           <Link 
             to="/contact"
-            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 !text-white ${
+            className={`w-full text-center py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 text-white! ${
               isActive('/contact') ? 'bg-white/25 shadow-lg scale-[1.02]' : 'opacity-100 hover:bg-white/15 hover:scale-[1.02]'
             }`}
             onClick={() => setIsMenuOpen(false)}

@@ -7,9 +7,9 @@ import { accentColors } from "../../constants/colors";
 
 // Check if we're on a mobile device or have reduced motion preference
 const isMobile = () => {
-  return (typeof window !== 'undefined') && 
-    (window.innerWidth <= 768 || 
-     window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  return (globalThis.window !== undefined) && 
+    (globalThis.window.innerWidth <= 768 || 
+     globalThis.window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 };
 
 const Hero = () => {
@@ -21,10 +21,10 @@ const Hero = () => {
 
   // Optimized animation setup with will-change and reduced motion support
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (globalThis.window === undefined) return;
     
     // Check for reduced motion preference
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mediaQuery = globalThis.window.matchMedia('(prefers-reduced-motion: reduce)');
     if (mediaQuery.matches) {
       // Skip animations if user prefers reduced motion
       return;
@@ -152,7 +152,7 @@ const Hero = () => {
           </div>
 
           {/* Right Column - Video */}
-          <div className="w-full lg:w-[45%] -mt-8 lg:-mt-16 -mx-4 lg:ml-0 lg:mr-0 lg:mt-0 px-4 lg:px-0">
+          <div className="w-full lg:w-[45%] -mt-8 -mx-4 lg:ml-0 lg:mr-0 lg:mt-0 px-4 lg:px-0">
             <div 
               className="relative w-full h-full aspect-video overflow-hidden rounded-xl lg:rounded-2xl shadow-lg lg:shadow-2xl transform-gpu transition-all duration-500 hover:scale-[1.02] lg:hover:scale-105"
               style={{
@@ -178,7 +178,7 @@ const Hero = () => {
                   <source src="/assets/images/Scene.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent"></div>
               </div>
               {/* 3D Border Effect - Only on desktop */}
               <div 
