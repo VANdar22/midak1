@@ -5,7 +5,7 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <!-- Home -->
     <url>
-        <loc>https://midak-research.com/</loc>
+        <loc>https://midakresearch.com/</loc>
         <lastmod>2025-11-30</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
@@ -13,7 +13,7 @@
     
     <!-- About -->
     <url>
-        <loc>https://midak-research.com/about</loc>
+        <loc>https://midakresearch.com/about</loc>
         <lastmod>2025-11-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -21,7 +21,7 @@
     
     <!-- Services -->
     <url>
-        <loc>https://midak-research.com/services</loc>
+        <loc>https://midakresearch.com/services</loc>
         <lastmod>2025-11-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -29,15 +29,15 @@
     
     <!-- Contact -->
     <url>
-        <loc>https://midak-research.com/contact</loc>
+        <loc>https://midakresearch.com/contact</loc>
         <lastmod>2025-11-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
-    <!-- Blog/Insights -->
+    <!-- Insights -->
     <url>
-        <loc>https://midak-research.com/insights</loc>
+        <loc>https://midakresearch.com/insights</loc>
         <lastmod>2025-11-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
@@ -45,7 +45,7 @@
     
     <!-- Careers -->
     <url>
-        <loc>https://midak-research.com/careers</loc>
+        <loc>https://midakresearch.com/careers</loc>
         <lastmod>2025-11-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
