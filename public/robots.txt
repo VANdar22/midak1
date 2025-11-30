@@ -1,0 +1,74 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://midak-research.com/sitemap.xml
+
+# Disallow admin and API routes
+Disallow: /admin/
+Disallow: /api/
+
+# Allow all other pages
+Allow: /*.js$
+Allow: /*.css$
+Allow: /public/
+
+# Crawl-delay: 10
+
+# Block specific files
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Block specific pages
+Disallow: /404/
+Disallow: /500/
+
+# Block search engines from indexing development and staging environments
+Disallow: /*?*
+
+# Block specific file types
+Disallow: /*.pdf$
+Disallow: /*.doc$
+Disallow: /*.docx$
+Disallow: /*.xls$
+Disallow: /*.xlsx$
+
+# Allow media files
+Allow: /assets/images/*
+Allow: /assets/fonts/*
+
+# Block specific directories
+Disallow: /cgi-bin/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+
+# Block WordPress login and admin pages
+Disallow: /wp-login.php
+Disallow: /wp-admin/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+
+# Block comment feeds
+Disallow: /comments/feed/
+
+# Block search results
+Disallow: /search/
+Disallow: /*?s=
+
+# Block user profiles
+Disallow: /author/
+
+# Block feeds
+Disallow: /feed/
+Disallow: /rss/
+Disallow: /rss2/
+
+# Block trackbacks and comments
+Disallow: /trackback/
+
+# Block all queries
+Disallow: /*?*
+
+# Block all admin-ajax.php requests
+Disallow: /wp-admin/admin-ajax.php

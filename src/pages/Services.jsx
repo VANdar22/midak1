@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Puzzle, Workflow, UsersRound, ShieldCheck } from 'lucide-react';
+import { Puzzle, Workflow, UsersRound, ShieldCheck, Handshake, Target } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import { accentColors } from '../constants/colors';
 
@@ -183,29 +183,39 @@ const capabilities = [
 const solutions = [
   {
     icon: Puzzle,
-    title: 'Decision & Planning',
-    body: 'Forecasting, scenario modeling, and optimization to guide plans, schedules, and pricing with always-updated data.',
+    title: 'Evidence with Purpose',
+    body: 'Our work is always anchored in a clear decision or problem. We design studies so that findings can be used, not just admired.',
   },
   {
     icon: Workflow,
-    title: 'Operations & Execution',
-    body: 'Automates workflows, approvals, and case resolution while orchestrating clean handoffs between humans and software.',
+    title: 'Academic Rigor & Practical Strategy',
+    body: 'We bring PhD-level research capacity to real-world challenges, translating complex analysis into straightforward options for action.',
   },
   {
     icon: UsersRound,
-    title: 'Workforce Productivity',
-    body: 'Supports drafting, task routing, and coordination inside existing tools so teams scale output without more headcount.',
+    title: 'Technology at the Core',
+    body: 'From advanced analytics to automated reporting, technology is embedded in our processes, helping clients see more and decide faster.',
   },
   {
     icon: ShieldCheck,
-    title: 'Monitoring & Compliance',
-    body: 'Tracks KPIs, policies, and controls in real time, building audit trails, validating data, and enforcing governance.',
+    title: 'Africa-Centered, Globally Aligned',
+    body: 'We are deeply rooted in African contexts yet benchmark our methods and quality standards against leading global practices.',
+  },
+  {
+    icon: Handshake,
+    title: 'Partnership Mindset',
+    body: 'We work collaboratively, listening first, adapting as we learn, and co-owning both challenges and solutions with our clients.',
+  },
+  {
+    icon: Target,
+    title: 'Clarity and Precision',
+    body: 'We specialize in translating complexity into clear insights, concise narratives, and visually engaging outputs.',
   },
 ];
 
 const insights = [
   {
-    title: 'Closing the Gap Between AI’s Promise and Reality',
+    title: 'Transforming Data into Strategic Advantage',
     category: 'Insights',
     date: 'Nov 4, 2025',
     image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1600&q=80',
@@ -370,8 +380,8 @@ const Services = () => {
       <section className="border-t border-gray-200" style={{ backgroundColor: '#f5f5f5' }}>
         <div className="mx-auto max-w-6xl px-6 py-20 space-y-12">
           <div className="max-w-3xl">
-            <p className="text-sm uppercase tracking-[0.3em]" style={{ color: `${accentColors.main}80` }}>Solutions</p>
-            <h2 className="text-3xl font-semibold text-gray-900 mt-2">Where we plug in</h2>
+            <p className="text-sm uppercase tracking-[0.3em]" style={{ color: `${accentColors.main}80` }}>Our Differentiators</p>
+            <h2 className="text-3xl font-semibold text-gray-900 mt-2">What Makes Midak Different</h2>
             <div className="w-24 h-0.5 bg-gray-200 mt-6"></div>
           </div>
           
