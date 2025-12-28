@@ -165,43 +165,14 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right Column - Video */}
-          <div className="w-full h-full lg:w-[40%] lg:h-[40%] -mt-8 -mx-4 lg:ml-0 lg:mr-0 lg:mt-0 px-4 lg:px-0">
-            <div 
-              className="relative w-full h-full aspect-video overflow-hidden rounded-xl lg:rounded-2xl shadow-lg lg:shadow-2xl transform-gpu transition-all duration-500 hover:scale-[1.02] lg:hover:scale-105"
-              style={{
-                transformStyle: 'preserve-3d',
-                transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.98)',
-                boxShadow: '10px 10px 20px rgba(0,0,0,0.1)'
-              }}
-            >
-              <div 
-                className="absolute inset-0 rounded-xl lg:rounded-2xl overflow-hidden"
-                style={{
-                  transform: 'translateZ(10px)',
-                  boxShadow: 'inset 0 0 10px rgba(0,0,0,0.1)'
-                }}
-              >
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                >
-                  <source src="/assets/images/Scene.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent"></div>
-              </div>
-              {/* 3D Border Effect - Only on desktop */}
-              <div 
-                className="hidden lg:block absolute inset-0 rounded-2xl border-2 border-white/20 pointer-events-none"
-                style={{
-                  transform: 'translateZ(20px)',
-                  boxShadow: '0 0 15px rgba(255,255,255,0.1)'
-                }}
-              ></div>
+          {/* Right Column - Image */}
+          <div className="w-full lg:w-[40%] lg:ml-0 lg:mr-0 lg:mt-0 px-4 lg:px-0">
+            <div className="relative w-120% h-120% aspect-video">
+              <img
+                src="/assets/images/heroh.png"
+                alt="Hero"
+                className="w-full h-100% object-cover"
+              />
             </div>
             
             {/* Mobile Get Started - Only shows on mobile */}
