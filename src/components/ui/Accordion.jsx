@@ -10,47 +10,75 @@ const accordionItems = [
     {
         id: "1",
         label: "1",
-        title: "Energy Monitoring",
+        title: "Market Research & Intelligence",
         color: circleColor,
         content: [
             { type: "image", src: "https://placehold.co/600x400/4F46E5/FFFFFF?text=Energy+Monitoring", alt: "Energy Monitoring System" },
-            { type: "text", text: "Comprehensive energy monitoring solutions provide real-time insights into your building's energy consumption patterns." },
-            { type: "text", text: "Our advanced analytics help identify inefficiencies and opportunities for significant cost savings and sustainability improvements." }
+            { type: "text", text: "Helping organizations understand markets, customers, and competition to make confident strategic decisions." },
+            { type: "text", text: "1. Market Assessment & Opportunity Analysis" },
+            { type: "text", text: "2. Competitive Intelligence & Benchmarking" },
+            { type: "text", text: "3. Industry & Sector Deep Dives" },
+            { type: "text", text: "4. Feasibility Studies & Business Case Development" },
         ]
     },
     {
         id: "2",
         label: "2",
-        title: "Heat recovery",
+        title: "Customer & Consumer Analytics",
         color: circleColor,
         content: [
             { type: "image", src: "https://placehold.co/600x400/10B981/FFFFFF?text=Heat+Recovery", alt: "Heat Recovery System" },
-            { type: "text", text: "Heat recovery systems capture waste heat from various processes and redistribute it as an additional energy source." },
-            { type: "text", text: "This can be used for space heating, water heating, or other industrial processes, significantly improving energy efficiency." }
+            { type: "text", text: "Deep insights into customer behavior, preferences, and decision-making drivers." },
+            { type: "text", text: "1. Customer Satisfaction & Experience Studies" },
+            { type: "text", text: "2. Consumer Behavior & Insights Research" },
+            { type: "text", text: "3. Brand Health & Positioning Studies" },
+            { type: "text", text: "4. Usage & Attitude (U&A) Studies" },
         ]
     },
     {
         id: "3",
         label: "3",
-        title: "Automation & Control",
+        title: "Data Analytics & Visualization",
         color: circleColor,
         content: [
             { type: "image", src: "https://placehold.co/600x400/3B82F6/FFFFFF?text=Automation+Control", alt: "Automation & Control System" },
-            { type: "text", text: "Advanced automation and control systems optimize building performance and energy usage." },
-            { type: "text", text: "Smart controls can adjust lighting, heating, and cooling based on occupancy and environmental conditions." }
+            { type: "text", text: "Turning complex data into actionable insights and decision-ready intelligence." },
+            { type: "text", text: "1. Advanced Statistical Analysis" },
+            { type: "text", text: "2. Predictive Analytics & Machine Learning" },
+            { type: "text", text: "3. Interactive Dashboards & Data Visualization" },
+            { type: "text", text: "4. Data Quality & Management" },
         ]
     },
     {
         id: "4",
         label: "4",
-        title: "Zone and demand control",
+        title: "Monitoring, Evaluation & Impact Assessment (M&E)",
         color: circleColor,
         content: [
             { type: "image", src: "https://placehold.co/600x400/8B5CF6/FFFFFF?text=Zone+Control", alt: "Zone Control System" },
-            { type: "text", text: "In many buildings all rooms receive the same amount of heating, cooling, and ventilation regardless of their specific needs." },
-            { type: "text", text: "Zone control systems allow for independent temperature and airflow control in different areas, reducing energy waste and improving comfort." }
+            { type: "text", text: "Measuring results, proving impact, and supporting adaptive learning." },
+            { type: "text", text: "1. Program Design & Theory of Change" },
+            { type: "text", text: "2. Monitoring & Evaluation Systems" },
+            { type: "text", text: "3. Impact Evaluations" },
+            { type: "text", text: "4. Real-Time Monitoring & Adaptive Management" },
         ]
-    }
+
+    },
+
+    {
+        id: "5",
+        label: "5",
+        title: "Policy Research & Strategic Analysis",
+        color: circleColor,
+        content: [
+            { type: "image", src: "https://placehold.co/600x400/3B82F6/FFFFFF?text=Automation+Control", alt: "Automation & Control System" },
+            { type: "text", text: "Strategy grounded in evidence and focused on execution." },
+            { type: "text", text:"1. Policy Analysis & Evaluation" },
+            { type: "text", text:"2. Evidence Synthesis & Policy Briefs" },
+            { type: "text", text:"3. Socio-Economic Research" },
+            { type: "text", text:"4. Governance & Institutional Analysis" },
+        ]
+    },
 ];
 
 // --- MODERN ACCORDION COMPONENT ---

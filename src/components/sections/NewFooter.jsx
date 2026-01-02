@@ -37,7 +37,7 @@ const footerData = {
     }
   ],
   "bottomBar": {
-    "left": `© ${new Date().getFullYear()} Midak Research Consult. All rights reserved.`,
+    "left": `© ${new Date().getFullYear()} Midak Research Analytics. All rights reserved.`,
     "center": "",
     "right": [
       { "label": "Privacy Policy", "href": "/privacy" },

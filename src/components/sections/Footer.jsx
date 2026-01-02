@@ -17,7 +17,7 @@ const Footer = () => {
                 />
               </div>
               <h3 className="text-3xl font-bold tracking-tight mb-4">
-                Midak Research Consult
+                Midak Research Analytics
               </h3>
               <p className="text-lg leading-relaxed max-w-sm text-white/90">
                 Aligning research, data, and clarity — helping organizations make confident, impact-driven decisions.
@@ -71,7 +71,7 @@ const Footer = () => {
       <div className="w-full bg-purple-900 py-6">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-white/80">
-            <p> {new Date().getFullYear()} Midak Research Consult. All rights reserved.</p>
+            <p> {new Date().getFullYear()} Midak Research Analytics. All rights reserved.</p>
             <div className="flex items-center space-x-6 mt-4 md:mt-0">
               <a href="#" className="hover:text-gray-300 transition-colors duration-300">Privacy Policy</a>
               <a href="#" className="hover:text-gray-300 transition-colors duration-300">Terms of Service</a>
