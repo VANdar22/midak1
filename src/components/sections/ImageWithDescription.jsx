@@ -46,13 +46,15 @@ const ImageWithDescription = ({
           >
             <div className="w-full max-w-4xl mx-auto lg:ml-auto lg:mr-0 lg:pr-12">
               <p 
-                className="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-normal text-[#f4f4f4] leading-tight md:leading-normal text-left"
+                className="text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-normal text-[#f4f4f4] leading-tight md:leading-normal text-left"
                 style={{ 
-                  fontFamily: 'League Spartan, sans-serif',
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: 400,
                   textShadow: '0 2px 4px rgba(0,0,0,0.3)',
                   WebkitFontSmoothing: 'antialiased',
                   MozOsxFontSmoothing: 'grayscale',
-                  letterSpacing: '0.5px'
+                  letterSpacing: '0.5px',
+                  lineHeight: '1.4'
                 }}
               >
                 {description}

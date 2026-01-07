@@ -10,73 +10,61 @@ const accordionItems = [
     {
         id: "1",
         label: "1",
-        title: "Market Research & Intelligence",
+        title: "MARKET RESEARCH & INTELLIGENCE",
         color: circleColor,
         content: [
-            { type: "image", src: "https://placehold.co/600x400/4F46E5/FFFFFF?text=Energy+Monitoring", alt: "Energy Monitoring System" },
-            { type: "text", text: "Helping organizations understand markets, customers, and competition to make confident strategic decisions." },
-            { type: "text", text: "1. Market Assessment & Opportunity Analysis" },
-            { type: "text", text: "2. Competitive Intelligence & Benchmarking" },
-            { type: "text", text: "3. Industry & Sector Deep Dives" },
-            { type: "text", text: "4. Feasibility Studies & Business Case Development" },
+            { type: "image", src: "/assets/images/market.png", alt: "Market Research" },
+            { type: "text", text: "We provide in-depth market assessments that clarify opportunities, risks, and competitive dynamics." },
+            { type: "text", text: "Our research answers critical questions about demand, pricing, and market gaps before major investments are made." },
+            { type: "text", text: "Each study is tailored to your specific business or investment decisions." }
         ]
     },
     {
         id: "2",
         label: "2",
-        title: "Customer & Consumer Analytics",
+        title: "CUSTOMER & CONSUMER ANALYTICS",
         color: circleColor,
         content: [
-            { type: "image", src: "https://placehold.co/600x400/10B981/FFFFFF?text=Heat+Recovery", alt: "Heat Recovery System" },
-            { type: "text", text: "Deep insights into customer behavior, preferences, and decision-making drivers." },
-            { type: "text", text: "1. Customer Satisfaction & Experience Studies" },
-            { type: "text", text: "2. Consumer Behavior & Insights Research" },
-            { type: "text", text: "3. Brand Health & Positioning Studies" },
-            { type: "text", text: "4. Usage & Attitude (U&A) Studies" },
+            { type: "image", src: "/assets/images/strategy.png", alt: "Customer Analytics" },
+            { type: "text", text: "We uncover what truly drives customer behavior, satisfaction, and loyalty." },
+            { type: "text", text: "Our analytics go beyond surface metrics to identify experience breakdowns and improvement opportunities." },
+            { type: "text", text: "The result is actionable insight that reduces churn and strengthens customer relationships." }
         ]
     },
     {
         id: "3",
         label: "3",
-        title: "Data Analytics & Visualization",
+        title: "DATA ANALYTICS & VISUALIZATION",
         color: circleColor,
         content: [
-            { type: "image", src: "https://placehold.co/600x400/3B82F6/FFFFFF?text=Automation+Control", alt: "Automation & Control System" },
-            { type: "text", text: "Turning complex data into actionable insights and decision-ready intelligence." },
-            { type: "text", text: "1. Advanced Statistical Analysis" },
-            { type: "text", text: "2. Predictive Analytics & Machine Learning" },
-            { type: "text", text: "3. Interactive Dashboards & Data Visualization" },
-            { type: "text", text: "4. Data Quality & Management" },
+            { type: "image", src: "/assets/images/3.png", alt: "Data Analytics" },
+            { type: "text", text: "We transform complex datasets into clear insights and decision-ready dashboards." },
+            { type: "text", text: "Our analyses reveal patterns, trends, and drivers that matter most to your organization." },
+            { type: "text", text: "We focus on interpretation and action—not just statistics." }
         ]
     },
     {
         id: "4",
         label: "4",
-        title: "Monitoring, Evaluation & Impact Assessment (M&E)",
+        title: "MONITORING, EVALUATION & IMPACT ASSESSMENT",
         color: circleColor,
         content: [
-            { type: "image", src: "https://placehold.co/600x400/8B5CF6/FFFFFF?text=Zone+Control", alt: "Zone Control System" },
-            { type: "text", text: "Measuring results, proving impact, and supporting adaptive learning." },
-            { type: "text", text: "1. Program Design & Theory of Change" },
-            { type: "text", text: "2. Monitoring & Evaluation Systems" },
-            { type: "text", text: "3. Impact Evaluations" },
-            { type: "text", text: "4. Real-Time Monitoring & Adaptive Management" },
+            { type: "image", src: "/assets/images/4.png", alt: "Monitoring & Evaluation" },
+            { type: "text", text: "We design M&E systems that measure what matters and support continuous learning." },
+            { type: "text", text: "Our approach tracks results across inputs, outputs, outcomes, and long-term impact." },
+            { type: "text", text: "The goal is improvement and accountability, not box-ticking compliance." }
         ]
-
     },
-
     {
         id: "5",
         label: "5",
-        title: "Policy Research & Strategic Analysis",
+        title: "POLICY RESEARCH & STRATEGIC ANALYSIS",
         color: circleColor,
         content: [
-            { type: "image", src: "https://placehold.co/600x400/3B82F6/FFFFFF?text=Automation+Control", alt: "Automation & Control System" },
-            { type: "text", text: "Strategy grounded in evidence and focused on execution." },
-            { type: "text", text:"1. Policy Analysis & Evaluation" },
-            { type: "text", text:"2. Evidence Synthesis & Policy Briefs" },
-            { type: "text", text:"3. Socio-Economic Research" },
-            { type: "text", text:"4. Governance & Institutional Analysis" },
+            { type: "image", src: "/assets/images/5.png", alt: "Policy Research" },
+            { type: "text", text: "We evaluate policies to determine what works, what doesn't, and why." },
+            { type: "text", text: "Our research combines data analysis with real-world implementation insights." },
+            { type: "text", text: "Findings are translated into practical recommendations that inform better decisions and systemic change." }
         ]
     },
 ];
@@ -171,7 +159,7 @@ const Accordion = () => {
                                     id={`button-${item.id}`}
                                     style={{ minHeight: '100px' }}
                                 >
-                                    <div className="flex items-center space-x-2 md:space-x-8">
+                                    <div className="flex items-center space-x-2 md:space-x-4 -ml-6 md:-ml-12">
                                         {/* IMPROVED LABEL STYLE */}
                                         <div className={`
                                             w-12 h-12 rounded-full shrink-0 flex items-center justify-center
@@ -183,7 +171,7 @@ const Accordion = () => {
                                             </span>
                                         </div>
                                         {/* IMPROVED TITLE STYLE */}
-                                        <h3 className="text-xl font-semibold text-gray-800 pl-2 md:pl-0">
+                                        <h3 className="text-lg xs:text-lg sm:text-2xl md:text-2xl lg:text-2xl font-semibold text-gray-800 pl-2 md:pl-0">
                                             {item.title}
                                         </h3>
                                     </div>

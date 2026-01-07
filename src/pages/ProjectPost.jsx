@@ -58,6 +58,9 @@ const projects = [
 ];
 
 const ProjectPost = () => {
+  const containerStyle = {
+    fontFamily: "'Montserrat', sans-serif"
+  };
   const { slug } = useParams();
   const navigate = useNavigate();
   const contentRef = useRef(null);
@@ -171,13 +174,13 @@ const ProjectPost = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
+    <div className="min-h-screen bg-white" style={containerStyle}>
       {/* Full-width header with background image */}
       <div 
         className="relative w-full h-96 md:h-[500px] bg-cover bg-center flex flex-col"
         style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(${project.image})` }}
       >
-        <div className="container mx-auto px-4 pt-8">
+        <div className="container mx-auto px-4">
           <div className="absolute bottom-12 left-0 w-full px-4">
             <div className="container mx-auto">
               <h1 className="text-4xl md:text-6xl font-bold font-sans text-white mb-6 max-w-4xl leading-tight tracking-tight">

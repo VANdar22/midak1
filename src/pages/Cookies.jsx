@@ -9,7 +9,7 @@ const Cookies = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white pt-24">
+    <div className="min-h-screen bg-white pt-24" style={{ fontFamily: "'Montserrat', sans-serif" }}>
       <div className="w-full max-w-4xl mx-auto px-4 pb-12 space-y-8">
         <header>
           <p className={`text-sm tracking-wide uppercase text-[${accentColors.DEFAULT}] font-semibold`}>Cookies</p>
@@ -34,7 +34,7 @@ const Cookies = () => {
             disabling essential cookies may impact core functionality.
           </p>
           <div className="overflow-x-auto">
-            <table className="w-full text-left border border-gray-100 rounded-xl overflow-hidden text-sm">
+            <table className="w-full text-left border border-gray-100 rounded-xl overflow-hidden text-sm font-['Montserrat_Alternates']" style={{ fontFamily: "'Montserrat Alternates', sans-serif" }}>
               <thead className="bg-gray-50">
                 <tr>
                   <th className="px-4 py-3 text-gray-600 font-semibold">Type</th>

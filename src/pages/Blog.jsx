@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -131,6 +131,16 @@ const FeaturedPostContainer = styled(motion.div)`
 
 
 const Blog = () => {
+  // Apply Montserrat font to the entire page
+  useEffect(() => {
+    document.body.style.fontFamily = 'Montserrat, sans-serif';
+    return () => {
+      document.body.style.fontFamily = ''; // Reset on unmount if needed
+    };
+  }, []);
+  // Apply Montserrat font to the entire page
+  document.body.style.fontFamily = 'Montserrat, sans-serif';
+  
   const [activeCategory, setActiveCategory] = useState('View all');
   const [sortBy, setSortBy] = useState('mostRecent');
   const [isSortOpen, setIsSortOpen] = useState(false);
@@ -292,7 +302,7 @@ const Blog = () => {
   const featuredPosts = [featuredPost, ...posts].slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-[#f4f4f4]">
+    <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Montserrat, sans-serif' }}>
       {/* Featured Posts Carousel */}
       <div 
         className="relative mx-auto w-[calc(100%-32px)] md:w-11/12 max-w-5xl"
@@ -406,10 +416,10 @@ const Blog = () => {
                     >
                       {post.category}
                     </span>
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans font-semibold text-white mb-2 sm:mb-3 leading-tight">
+                    <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white mb-2 sm:mb-3 leading-tight" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                       {post.title}
                     </h1>
-                    <p className="text-white/90 mb-4 max-w-2xl text-base sm:text-lg leading-relaxed line-clamp-2 sm:line-clamp-3">
+                    <p className="text-white/90 mb-4 max-w-2xl text-sm sm:text-base leading-relaxed line-clamp-2 sm:line-clamp-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                       {post.excerpt}
                     </p>
                     <div className="text-sm text-white/80 font-sans">

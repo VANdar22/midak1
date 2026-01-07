@@ -284,23 +284,7 @@ export default function InsightPost() {
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="bg-linear-to-r from-purple-600 to-blue-600 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to transform your business with data-driven insights?
-          </h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Get in touch with our team of experts to discuss how we can help you uncover valuable business insights.
-          </p>
-          <button 
-            className="bg-white text-purple-700 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors duration-300"
-            onClick={() => navigate('/contact')}
-          >
-            Contact Us
-          </button>
-        </div>
-      </section>
-    </div>
-  );
+      </div>
+    
+  );  
 }

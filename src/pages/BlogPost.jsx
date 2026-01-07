@@ -30,6 +30,13 @@ const BackButton = styled(Link)(props => ({
 gsap.registerPlugin(ScrollTrigger);
 
 const BlogPost = () => {
+  // Apply Montserrat font to the entire page
+  useEffect(() => {
+    document.body.style.fontFamily = 'Montserrat, sans-serif';
+    return () => {
+      document.body.style.fontFamily = ''; // Reset on unmount if needed
+    };
+  }, []);
   const { slug } = useParams();
 
   const contentRef = useRef(null);
@@ -200,14 +207,14 @@ const BlogPost = () => {
         <div className="container mx-auto px-4 pt-8">
           <div className="absolute bottom-12 left-0 w-full px-4">
             <div className="container mx-auto">
-              <h1 className="text-4xl md:text-6xl font-bold font-['Changa_One',cursive] text-white mb-6 max-w-4xl leading-tight tracking-tight">
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 max-w-4xl leading-tight tracking-tight" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 {blogPost.title}
               </h1>
               <div className="flex items-center">
                 <span className="inline-block text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider" style={{ backgroundColor: accentColors.main, color: accentColors.text }}>
                   {blogPost.category}
                 </span>
-                <span className="ml-4 text-sm font-['League_Spartan']" style={{ color: `${accentColors.text}E6` }}>{blogPost.date}</span>
+                <span className="ml-4 text-sm" style={{ color: `${accentColors.text}E6`, fontFamily: 'Montserrat, sans-serif' }}>{blogPost.date}</span>
               </div>
             </div>
           </div>
@@ -224,7 +231,7 @@ const BlogPost = () => {
                   // Create a simple hash of the content for a more stable key
                   const key = `para-${paragraph.substring(0, 20).replaceAll(/\s+/g, '-')}-${index}`;
                   return (
-                    <p key={key} className="text-gray-700 text-lg leading-8 font-['League_Spartan']">
+                    <p key={key} className="text-gray-700 text-lg leading-8" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                       {paragraph}
                     </p>
                   );
@@ -232,8 +239,8 @@ const BlogPost = () => {
               </div>
               
               <div className="mt-20 mb-16 -ml-4">
-                <h2 className="text-3xl font-bold font-['League_Spartan'] mb-6" style={{ color: accentColors.main }}>Key Takeaways</h2>
-                <ul className="space-y-4 pl-2 -ml-2 text-gray-700 font-['League_Spartan'] text-lg leading-relaxed">
+                <h2 className="text-3xl font-bold mb-6" style={{ color: accentColors.main, fontFamily: 'Montserrat, sans-serif' }}>Key Takeaways</h2>
+                <ul className="space-y-4 pl-2 -ml-2 text-gray-700 text-lg leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                   <li className="relative pl-6">
                     <span style={{
                       position: 'absolute',
@@ -287,18 +294,6 @@ const BlogPost = () => {
                     <span className="font-semibold text-gray-800">Essential tools</span> - Discover the must-have bar tools and how to use them effectively
                   </li>
                 </ul>
-              </div>
-              
-              <div className="mt-20 pt-8 border-t border-gray-200">
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                  <p className="text-base text-gray-500 font-['League_Spartan']">
-                    Written by <span className="font-bold text-lg" style={{ color: accentColors.main }}>{blogPost.author}</span>
-                  </p>
-                  <BackButton to="/blog">
-                    <span>Back to insights</span>
-                    <span aria-hidden>↗</span>
-                  </BackButton>
-                </div>
               </div>
             </div>
           </article>

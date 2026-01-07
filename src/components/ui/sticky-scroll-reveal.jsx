@@ -1,12 +1,13 @@
 "use client";
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
-import { useMotionValueEvent, useScroll, motion } from "motion/react";
+import { useMotionValueEvent, useScroll, motion, AnimatePresence } from "motion/react";
 import { accentColors } from "@/constants/colors";
 import { cn } from "@/lib/utils";
 
 const StickyScrollReveal = ({ content = [], contentClassName = "" }) => {
   const [activeCard, setActiveCard] = React.useState(0);
+  const [visibleCards, setVisibleCards] = React.useState(new Set([0]));
   const [isMobile, setIsMobile] = React.useState(false);
   const contentRef = useRef(null);
 
@@ -39,7 +40,17 @@ const StickyScrollReveal = ({ content = [], contentClassName = "" }) => {
 
   // Only enable scroll animation on non-mobile devices
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (isMobile) return;
+    if (isMobile) {
+      // For mobile, track which cards are in view
+      const cardElements = document.querySelectorAll('[data-card-index]');
+      cardElements.forEach((el, index) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+          setVisibleCards(prev => new Set([...prev, index]));
+        }
+      });
+      return;
+    }
 
     const cardsBreakpoints = content.map((_, index) => index / cardLength);
     const closestBreakpointIndex = cardsBreakpoints.reduce(
@@ -53,6 +64,7 @@ const StickyScrollReveal = ({ content = [], contentClassName = "" }) => {
       0
     );
     setActiveCard(closestBreakpointIndex);
+    setVisibleCards(prev => new Set([...prev, closestBreakpointIndex]));
   });
 
   const backgroundColors = [
@@ -63,94 +75,14 @@ const StickyScrollReveal = ({ content = [], contentClassName = "" }) => {
 
   return (
     <div className="w-full">
-      {/* About Us Banner */}
-      <div className="w-full relative min-h-[80vh] md:min-h-screen flex items-center justify-center pt-48 sm:pt-40 md:pt-60 lg:pt-72 pb-12 sm:pb-16 md:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-8">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/assets/images/aboutus.png"
-            alt="About Us Background"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/30"></div>
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-12">
-          <div className="max-w-4xl">
-            <div className="max-w-4xl">
-              <div 
-                className={`text-${accentColors.DEFAULT} text-base sm:text-lg font-semibold uppercase tracking-wider mb-4 sm:mb-5`}
-                style={{ color: accentColors.DEFAULT }}
-              >
-                ABOUT MIDAK
-              </div>
-              <div className="space-y-6 text-gray-200">
-                <div className="text-lg sm:text-xl md:text-2xl leading-relaxed">
-                  <p>
-                    At Midak, we believe that meaningful progress is built on understanding. In a rapidly changing world where markets shift overnight, customer expectations evolve, and complex challenges emerge across every sector, clarity has become a strategic advantage.
-                  </p>
-                  <p>
-                    Organizations no longer succeed by relying on intuition alone; they thrive when their decisions are informed by evidence, insight, and foresight. Midak Research & Analytics exists to provide that clarity.
-                  </p>
-                  <p>
-                    We are a modern research, analytics, and strategy consultancy dedicated to turning information into intelligent action. Our role is to help leaders see more clearly, decide more confidently, and move more deliberately toward the futures they want to create.
-                  </p>
-                  <p>
-                    Whether supporting businesses, NGOs, development partners, startups, or public institutions, Midak combines rigorous research with strategic thinking to generate insights that truly matter.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Scroll Down Button - Hidden on mobile, visible on lg screens */}
-          <div className="hidden lg:flex flex-col items-center absolute bottom-8 right-8 z-20 space-y-2">
-            <button
-              type="button"
-              onClick={scrollToContent}
-              onKeyDown={(e) => e.key === "Enter" && scrollToContent()}
-              className="text-white text-xl font-bold mb-2 cursor-pointer hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
-              aria-label="Scroll to content"
-            >
-              Click me
-            </button>
-            <button
-              onClick={scrollToContent}
-              className={`group relative bg-[${accentColors.DEFAULT}] text-white w-16 h-16 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 shadow-md hover:shadow-lg hover:bg-white hover:text-[${accentColors.DEFAULT}]`}
-              aria-label="Scroll down"
-            >
-              <span className="relative z-10">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`h-6 w-6 transition-all duration-300 transform text-white group-hover:translate-y-1 group-hover:text-[${accentColors.DEFAULT}]`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2.5}
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                    className="transition-colors duration-300"
-                  />
-                </svg>
-              </span>
-              <span className="absolute inset-0 rounded-full bg-white opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100 origin-center"></span>
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/* Main Content */}
-      <div ref={contentRef}></div>
+      <div ref={contentRef} className="pt-8"></div>
       <motion.div
         animate={{
           backgroundColor:
             backgroundColors[activeCard % backgroundColors.length],
         }}
-        className={`relative flex flex-col lg:flex-row h-auto lg:h-160 w-full max-w-7xl mx-auto justify-center space-y-10 lg:space-y-0 lg:space-x-10 overflow-y-auto rounded-md p-4 sm:p-6 lg:p-10 bg-white`}
+        className={`relative flex flex-col lg:flex-row h-auto lg:h-160 w-full max-w-7xl mx-auto justify-center space-y-6 lg:space-y-0 lg:space-x-10 overflow-y-auto rounded-md p-4 sm:p-4 lg:p-6 bg-white`}
         ref={isMobile ? null : ref}
         role="region"
         aria-live="polite"
@@ -158,29 +90,79 @@ const StickyScrollReveal = ({ content = [], contentClassName = "" }) => {
       >
         <div className="relative w-full lg:w-auto flex-1">
           <div className="w-full max-w-2xl mx-auto">
-            {content.map((item, index) => (
-              <div
-                key={item.title + index}
-                className="py-8 sm:py-12 lg:py-16 border-b border-gray-100 last:border-0"
-              >
+            <AnimatePresence>
+              {content.map((item, index) => (
                 <motion.div
-                  initial={{
-                    opacity: isMobile ? 1 : 0,
-                  }}
+                  key={item.title + index}
+                  data-card-index={index}
+                  className="py-8 sm:py-12 lg:py-16 border-b border-gray-100 last:border-0"
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{
-                    opacity: isMobile ? 1 : activeCard === index ? 1 : 0.3,
+                    opacity: isMobile 
+                      ? visibleCards.has(index) ? 1 : 0.3 
+                      : activeCard === index ? 1 : 0.3,
+                    y: isMobile && visibleCards.has(index) ? 0 : 20
                   }}
-                  className="space-y-4"
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: isMobile ? index * 0.1 : 0
+                  }}
                 >
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">
-                    {item.title}
-                  </h2>
-                  <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                    {item.description}
-                  </p>
+                  <motion.div
+                    className="space-y-4"
+                  >
+                    <motion.h2 
+                      className="text-4xl font-bold text-gray-800"
+                      whileInView={{ 
+                        y: 0, 
+                        opacity: 1,
+                        transition: { 
+                          delay: isMobile ? 0.1 : 0.2,
+                          duration: 0.6,
+                          ease: [0.22, 1, 0.36, 1]
+                        } 
+                      }}
+                      initial={{ y: -40, opacity: 0 }}
+                    >
+                      {item.title}
+                    </motion.h2>
+                    {typeof item.description === 'string' ? (
+                      <motion.p 
+                        className="text-xl text-gray-600 leading-relaxed"
+                        whileInView={{ 
+                          y: 0, 
+                          opacity: 1,
+                          transition: { 
+                            delay: isMobile ? 0.2 : 0.3,
+                            duration: 0.6 
+                          } 
+                        }}
+                        initial={{ y: 20, opacity: 0 }}
+                      >
+                        {item.description}
+                      </motion.p>
+                    ) : (
+                      <motion.div 
+                        className="text-xl text-gray-600 leading-relaxed"
+                        whileInView={{ 
+                          y: 0, 
+                          opacity: 1,
+                          transition: { 
+                            delay: isMobile ? 0.2 : 0.3,
+                            duration: 0.6 
+                          } 
+                        }}
+                        initial={{ y: 20, opacity: 0 }}
+                      >
+                        {item.description}
+                      </motion.div>
+                    )}
+                  </motion.div>
                 </motion.div>
-              </div>
-            ))}
+              ))}
+            </AnimatePresence>
             {!isMobile && <div className="h-40" />}
           </div>
         </div>

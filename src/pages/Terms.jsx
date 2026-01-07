@@ -21,8 +21,8 @@ const sections = [
 ];
 
 const Terms = () => (
-  <div className="min-h-screen">
-    <div className="w-full max-w-4xl mx-auto px-4 py-16 space-y-8">
+  <div className="min-h-screen bg-white pt-24" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+    <div className="w-full max-w-4xl mx-auto px-4 pb-12 space-y-8">
       <header>
         <p className={`text-sm tracking-wide uppercase text-[${accentColors.DEFAULT}] font-semibold`}>Terms</p>
         <h1 className="text-4xl font-bold text-gray-900 mt-2">Terms of Service</h1>

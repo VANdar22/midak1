@@ -6,7 +6,7 @@ export default {
   ],
   theme: {
     fontFamily: {
-      sans: ['League Spartan', 'sans-serif'],
+      sans: ['Montserrat', 'sans-serif'],
     },
     container: {
       center: true,

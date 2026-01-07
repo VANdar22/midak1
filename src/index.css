@@ -1,10 +1,54 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Zilla+Slab+Highlight:wght@400;700&display=swap');
 @import "tailwindcss";
+
+/* Scrollbar hiding for no-scrollbar utility */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Custom scrollbar styling */
+.custom-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.custom-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Responsive SVG styles */
+.svg-responsive {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 680/340;
+}
+
+@media (max-width: 640px) {
+  .svg-responsive {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .svg-responsive {
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .svg-responsive {
+    max-width: 680px;
+  }
+}
 
 :root {
   --font-changa: 'Changa One', cursive;
-  font-family: 'League Spartan', system-ui, sans-serif;
+  --font-montserrat: 'Montserrat Alternates', 'Montserrat', system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 

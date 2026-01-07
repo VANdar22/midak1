@@ -1,7 +1,42 @@
 import React, { useState, useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import styled from '@emotion/styled';
 import { accentColors } from '../../constants/colors';
+
+const ViewButton = styled.button`
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${accentColors.main};
+  color: white;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: white;
+    color: ${accentColors.main};
+    transform: scale(1.05);
+    box-shadow: 0 0 0 1px ${accentColors.main}33;
+  }
+  
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: stroke 0.3s ease;
+  }
+  
+  &:hover svg {
+    stroke: ${accentColors.main};
+  }
+`;
 
 const projects = [
   {
@@ -33,57 +68,78 @@ const projects = [
   }
 ];
 
-import { Link } from 'react-router-dom';
-
 const ProjectCard = ({ project }) => (
-  <Link to={`/projects/${project.slug}`} className="block">
-    <motion.div 
-      className="bg-[#f5f5f5] border-2 border-gray-300 hover:border-gray-400 overflow-hidden transition-all duration-300 flex flex-col h-[380px] max-w-xs mx-auto w-full group"
-      whileHover={{ y: -5 }}
-    >
-      <div className="h-40 overflow-hidden">
-        <img 
-          src={project.image} 
-          alt={project.title} 
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
+  <div className="flex flex-col rounded-lg overflow-hidden h-full border border-gray-200 transition-colors duration-300 hover:border-gray-300">
+    <div className="flex-shrink-0 overflow-hidden h-48">
+      <div className="relative h-full w-full group">
+        <motion.div 
+          className="w-full h-full"
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <img
+            className="h-full w-full object-cover"
+            src={project.image}
+            alt={project.title}
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+        <div className="absolute top-4 right-4 bg-[#f5f5f5] px-3 py-1 rounded-full text-xs font-medium font-['Montserrat_Alternates']" 
+             style={{ 
+               color: accentColors.main, 
+               border: `1px solid ${accentColors.main}`,
+               fontFamily: "'Montserrat Alternates', sans-serif"
+             }}>
+          {project.category}
+        </div>
       </div>
-      <div className="p-4 flex flex-col h-full">
-        <div className="grow">
-          <h3 className="text-xl font-semibold text-gray-900 mb-0.5">{project.title}</h3>
-          <p className="text-xs mb-1" style={{ color: accentColors.main }}>{project.date}</p>
-          <p className="text-gray-600 text-xl mt-6 line-clamp-2 leading-tight">{project.subtext}</p>
-          <div className="flex items-center gap-3 mt-4">
-            <span className="text-base font-medium" style={{ color: accentColors.main }}>View Project</span>
-            <div 
-              className="transition-all duration-300 w-16 h-16 ml-32 rounded-full flex items-center justify-center overflow-hidden shadow group-hover:shadow-md hover:bg-opacity-10"
-              style={{ 
-                backgroundColor: 'transparent',
-                border: `2px solid ${accentColors.main}`,
-                '--bg-hover': accentColors.main 
-              }}
-            >
+    </div>
+    
+    <div className="p-6 flex-1 flex flex-col">
+      <div className="flex-1">
+        <div className="mb-2">
+          <span className="text-xs font-semibold tracking-wider uppercase font-['Montserrat_Alternates']" 
+                style={{ color: `${accentColors.main}CC`, fontFamily: "'Montserrat Alternates', sans-serif" }}>
+            {project.category}
+          </span>
+        </div>
+        <div className="block">
+          <h3 className="text-xl font-semibold text-gray-900 leading-snug mb-2 font-['Montserrat']" 
+              style={{ fontFamily: "'Montserrat', sans-serif" }}>
+            {project.title}
+          </h3>
+          <p className="text-gray-600 leading-relaxed font-['Montserrat']" 
+             style={{ fontFamily: "'Montserrat', sans-serif" }}>{project.subtext}</p>
+        </div>
+      </div>
+      
+      <div className="mt-4 flex items-center justify-between">
+        <div className="text-sm text-gray-500">
+          <time dateTime={project.date}>{project.date}</time>
+        </div>
+        <div className="flex items-center ml-4">
+          <Link to={`/projects/${project.slug}`} className="block" aria-label={`View ${project.title}`}>
+            <ViewButton>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 transition-colors duration-300"
-                style={{ color: accentColors.main }}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                strokeWidth={2.5}
+                strokeWidth={2}
+                className="w-6 h-6 transform -rotate-45"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M5 19L19 5m0 0H9m10 0v10"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
                 />
               </svg>
-            </div>
-          </div>
+            </ViewButton>
+          </Link>
         </div>
       </div>
-    </motion.div>
-  </Link>
+    </div>
+  </div>
 );
 
 ProjectCard.propTypes = {
@@ -99,109 +155,73 @@ ProjectCard.propTypes = {
 };
 
 const Projects = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  // Calculate projects per page based on screen size
-  const [projectsPerPage, setProjectsPerPage] = useState(1);
-  
-  // Update projects per page on window resize
-  React.useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setProjectsPerPage(1);
-      } else if (window.innerWidth < 1024) {
-        setProjectsPerPage(2);
-      } else {
-        setProjectsPerPage(3);
-      }
-    };
-    
-    // Set initial value
-    handleResize();
-    
-    // Add event listener
-    window.addEventListener('resize', handleResize);
-    
-    // Clean up
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  });
 
   useEffect(() => {
-    const pages = Math.max(1, Math.ceil(projects.length / projectsPerPage));
-    setCurrentPage((prev) => Math.min(prev, pages));
-  }, [projectsPerPage]);
-  
-  // Recalculate pagination when projectsPerPage changes
-  const totalPages = Math.ceil(projects.length / projectsPerPage);
-  const indexOfLastProject = currentPage * projectsPerPage;
-  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-  const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.48, 0.15, 0.25, 0.96]
+      }
+    }
+  };
 
   return (
-    <section className="py-16" style={{ backgroundColor: '#f5f5f5' }}>
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Projects</h2>
-        </div>
+    <section className="w-full py-16 overflow-hidden font-['Montserrat']" style={{ backgroundColor: '#f5f5f5', fontFamily: "'Montserrat', sans-serif" }}>
+      <motion.div 
+        className="container mx-auto px-4"
+        ref={ref}
+        initial="hidden"
+        animate={controls}
+        variants={containerVariants}
+      >
+        <motion.div className="text-left mb-16" variants={itemVariants}>
+          <h2 className="text-4xl font-bold mb-4">
+            <div className="flex flex-wrap items-baseline justify-start lg:justify-start gap-x-2 text-left">
+              <span className="whitespace-normal sm:whitespace-nowrap word">Our</span>
+              <span className="text-gray-900 inline-block">Projects</span>
+            </div>
+          </h2>
+          <motion.p 
+            className="text-lg xs:text-lg sm:text-2xl md:text-2xl lg:text-2xl text-gray-600 font-normal w-full whitespace-normal text-left leading-relaxed"
+            variants={itemVariants}
+          >
+            <span className="line">Explore our portfolio of successful projects and business solutions.</span>
+          </motion.p>
+        </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {currentProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {projects.map((project) => (
+            <motion.div key={project.id} variants={itemVariants}>
+              <ProjectCard project={project} />
+            </motion.div>
           ))}
         </div>
-        
-        <div className="flex justify-center items-center mt-16 space-x-3">
-          <button 
-            onClick={() => paginate(currentPage > 1 ? currentPage - 1 : 1)}
-            disabled={currentPage === 1}
-            className="p-3 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
-            style={{ backgroundColor: `${accentColors.main}1a`, color: accentColors.main, '--hover-bg': `${accentColors.main}33` }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}33`}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}1a`}
-            onFocus={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}33`}
-            onBlur={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}1a`}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
-            <button
-              key={number}
-              onClick={() => paginate(number)}
-              className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ${
-                currentPage === number 
-                  ? `text-white shadow-lg transform scale-110` 
-                  : `text-gray-700 hover:bg-gray-200`
-              } transition-all duration-300`}
-              style={{
-                backgroundColor: currentPage === number ? accentColors.main : 'transparent',
-                border: currentPage === number ? 'none' : `2px solid ${accentColors.main}`,
-              }}
-            >
-              {number}
-            </button>
-          ))}
-          
-          <button 
-            onClick={() => paginate(currentPage < totalPages ? currentPage + 1 : totalPages)}
-            disabled={currentPage === totalPages}
-            className="p-3 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
-            style={{ backgroundColor: `${accentColors.main}1a`, color: accentColors.main, '--hover-bg': `${accentColors.main}33` }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}33`}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}1a`}
-            onFocus={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}33`}
-            onBlur={(e) => e.currentTarget.style.backgroundColor = `${accentColors.main}1a`}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

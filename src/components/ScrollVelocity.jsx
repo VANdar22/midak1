@@ -112,8 +112,8 @@ export const ScrollVelocity = ({
         className={`${parallaxClassName} relative overflow-hidden`}
         style={parallaxStyle}>
         <motion.div
-          className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-2xl font-bold tracking-[-0.02em] drop-shadow md:text-4xl md:leading-12`}
-          style={{ x, ...scrollerStyle }}>
+          className={`${scrollerClassName} flex whitespace-nowrap text-center font-['Montserrat_Alternates'] text-2xl font-bold tracking-[-0.02em] drop-shadow md:text-4xl md:leading-12`}
+          style={{ fontFamily: "'Montserrat Alternates', sans-serif", x, ...scrollerStyle }}>
           {spans}
         </motion.div>
       </div>

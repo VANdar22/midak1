@@ -1,10 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Puzzle, Workflow, UsersRound, ShieldCheck, Handshake, Target } from 'lucide-react';
-import PageTransition from '../components/PageTransition';
+import { ArrowRight, Puzzle, Workflow, UsersRound, ShieldCheck, Handshake, Target } from 'lucide-react';
+import styled from '@emotion/styled';
 import { accentColors } from '../constants/colors';
+import PageTransition from '../components/PageTransition';
+
+const ServiceButton = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  color: ${accentColors.main};
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 1rem;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    color: ${accentColors.dark};
+    transform: translateX(4px);
+    
+    svg {
+      transform: translateX(4px);
+    }
+  }
+  
+  svg {
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+    width: 1rem;
+    height: 1rem;
+  }
+`;
 
 const fadeInUp = {
   hidden: { 
@@ -131,87 +158,139 @@ const AnimatedText = ({
 
 const capabilities = [
   {
-    label: 'Research & Foresight',
-    title: 'Evidence that moves faster than markets.',
-    body: 'We spot inflection points early with blended qualitative and quantitative research. The result is a clear brief for leadership, investors, and partners.',
-    image: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80',
+    id: 'market-research-intelligence',
+    label: 'Market Research & Intelligence',
+    title: 'How we discover',
+    body: 'We provide in-depth market assessments that clarify opportunities, risks, and competitive dynamics. Our research answers critical questions about demand, pricing, and market gaps before major investments are made.',
+    image: '/assets/images/market.png',
     bullets: [
-      'Market, policy, and ecosystem mapping',
-      'Expert interviews, ethnography, and fieldwork',
-      'Scenario planning and investment theses',
+      'Market opportunity and competitive analysis',
+      'Demand assessment and pricing studies',
+      'Sector and industry research',
     ],
-    cta: 'How we discover',
+    cta: 'Learn more',
   },
   {
-    label: 'Data & Intelligence',
-    title: 'Operational clarity through trusted data.',
-    body: 'From raw telemetry to executive dashboards, we engineer data products that leaders actually rely on.',
-    image: 'https://images.unsplash.com/photo-1480694313141-fce5e697ee25?auto=format&fit=crop&w=1200&q=80',
+    id: 'customer-consumer-analytics',
+    label: 'Customer & Consumer Analytics',
+    title: 'How we understand',
+    body: 'We uncover what truly drives customer behavior, satisfaction, and loyalty. Our analytics go beyond surface metrics to identify experience breakdowns and improvement opportunities.',
+    image: '/assets/images/strategy.png',
     bullets: [
-      'Data platform + governance design',
-      'Decision dashboards and narrative reporting',
-      'Modeling, forecasting, and AI copilots',
+      'Customer segmentation and profiling',
+      'Experience mapping and journey analysis',
+      'Satisfaction and loyalty measurement',
     ],
-    cta: 'How we build',
+    cta: 'Learn more',
   },
   {
-    label: 'Programs & Enablement',
-    title: 'Change that lands and lasts.',
-    body: 'We translate insight into operating models, playbooks, and teams that can run without us.',
-    image: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200&q=80',
+    id: 'data-analytics-visualization',
+    label: 'Data Analytics & Visualization',
+    title: 'How we build',
+    body: 'We transform complex datasets into clear insights and decision-ready dashboards. Our analyses reveal patterns, trends, and drivers that matter most to your organization.',
+    image: '/assets/images/3.png',
     bullets: [
-      'Pilot orchestration and partner coordination',
-      'Capability building and embedded specialists',
-      'Measurement, learning, and scale plans',
+      'Data exploration and pattern recognition',
+      'Interactive dashboards and reporting',
+      'Predictive modeling and forecasting',
     ],
-    cta: 'How we enable',
+    cta: 'Learn more',
   },
   {
-    label: 'Innovation & Strategy',
-    title: 'Future-proof your business model.',
-    body: 'We help you anticipate market shifts and position your organization for long-term success through strategic innovation.',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
+    id: 'monitoring-evaluation-impact',
+    label: 'Monitoring, Evaluation & Impact Assessment',
+    title: 'How we measure',
+    body: 'We design M&E systems that measure what matters and support continuous learning. Our approach tracks results across inputs, outputs, outcomes, and long-term impact.',
+    image: '/assets/images/4.png',
     bullets: [
-      'Market disruption analysis and opportunity mapping',
-      'Innovation portfolio design and management',
-      'Strategic roadmapping and execution frameworks',
+      'M&E framework and indicator development',
+      'Performance tracking and impact assessment',
+      'Learning and adaptation strategies',
     ],
-    cta: 'How we innovate',
+    cta: 'Learn more',
+  },
+  {
+    id: 'policy-research-analysis',
+    label: 'Policy Research & Strategic Analysis',
+    title: 'How we inform',
+    body: 'We evaluate policies to determine what works, what doesn\'t, and why. Our research combines data analysis with real-world implementation insights.',
+    image: '/assets/images/5.png',
+    bullets: [
+      'Policy analysis and evaluation',
+      'Stakeholder and political economy analysis',
+      'Implementation research and recommendations',
+    ],
+    cta: 'Learn more',
+  },
+  {
+    id: 'surveys-field-research',
+    label: 'Surveys & Field Research',
+    title: 'How we collect',
+    body: 'Primary data you can rely on. We design and implement high-quality quantitative and qualitative research across diverse African contexts.',
+    image: '/assets/images/6.png',
+    bullets: [
+      'Large-scale surveys (CATI, CAPI, online)',
+      'Qualitative research and mixed methods',
+      'Specialized studies and field assessments',
+    ],
+    cta: 'Learn more',
+  },
+  {
+    id: 'strategic-consulting-advisory',
+    label: 'Strategic Consulting & Advisory',
+    title: 'How we guide',
+    body: 'We support leadership teams with evidence-based strategy, planning, and execution support that turns direction into measurable results.',
+    image: '/assets/images/6.png',
+    bullets: [
+      'Organizational strategy and planning',
+      'Business planning and growth strategy',
+      'Investment due diligence and advisory',
+    ],
+    cta: 'Learn more',
   },
 ];
 
 const solutions = [
   {
-    icon: Puzzle,
+    icon: 'Puzzle',
     title: 'Evidence with Purpose',
     body: 'Our work is always anchored in a clear decision or problem. We design studies so that findings can be used, not just admired.',
   },
   {
-    icon: Workflow,
-    title: 'Academic Rigor & Practical Strategy',
-    body: 'We bring PhD-level research capacity to real-world challenges, translating complex analysis into straightforward options for action.',
+    icon: 'Workflow',
+    title: 'Rigorous Methods',
+    body: 'We use the right mix of qualitative and quantitative methods to answer your specific questions with confidence.',
   },
   {
-    icon: UsersRound,
-    title: 'Technology at the Core',
-    body: 'From advanced analytics to automated reporting, technology is embedded in our processes, helping clients see more and decide faster.',
+    icon: 'UsersRound',
+    title: 'Local Expertise',
+    body: 'Our team has deep experience working across Africa, with a network of local researchers in multiple countries.',
   },
   {
-    icon: ShieldCheck,
-    title: 'Africa-Centered, Globally Aligned',
-    body: 'We are deeply rooted in African contexts yet benchmark our methods and quality standards against leading global practices.',
+    icon: 'ShieldCheck',
+    title: 'Ethical Standards',
+    body: 'We maintain the highest ethical standards in data collection, analysis, and reporting.',
   },
   {
-    icon: Handshake,
-    title: 'Partnership Mindset',
-    body: 'We work collaboratively, listening first, adapting as we learn, and co-owning both challenges and solutions with our clients.',
+    icon: 'Handshake',
+    title: 'Partnership Approach',
+    body: 'We work closely with our clients to ensure our work meets their needs and builds their capacity.',
   },
   {
-    icon: Target,
-    title: 'Clarity and Precision',
-    body: 'We specialize in translating complexity into clear insights, concise narratives, and visually engaging outputs.',
+    icon: 'Target',
+    title: 'Actionable Insights',
+    body: 'We go beyond data to provide clear, practical recommendations that drive impact.',
   },
 ];
+
+const iconComponents = {
+  Puzzle,
+  Workflow,
+  UsersRound,
+  ShieldCheck,
+  Handshake,
+  Target
+};
 
 const insights = [
   {
@@ -240,7 +319,7 @@ const insights = [
 const Services = () => {
   return (
     <PageTransition>
-      <div className="min-h-screen" style={{ backgroundColor: '#f5f5f5', color: '#1a1a1a' }}>
+      <div className="min-h-screen font-['Montserrat']" style={{ backgroundColor: '#f5f5f5', color: '#1a1a1a' }}>
       {/* hero */}
       <motion.section 
         className="mx-auto max-w-6xl px-6 py-24 overflow-hidden"
@@ -252,42 +331,36 @@ const Services = () => {
         <div className="flex flex-col gap-10 md:flex-row md:items-end">
           <div className="flex-1">
             <AnimatedText>
-              <p className="text-sm uppercase tracking-[0.3em]" style={{ color: `${accentColors.main}80` }}>Services</p>
+              <p className="text-sm uppercase tracking-[0.3em] mb-4" style={{ color: `${accentColors.main}80` }}>Our Services</p>
             </AnimatedText>
             <AnimatedText delay={0.2} split>
-              <h1 className="mt-4 text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
+              <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 font-bold leading-tight tracking-tight font-['Montserrat_Alternates']">
                 Your partner for research-led strategy, design, and delivery.
               </h1>
             </AnimatedText>
           </div>
           <AnimatedText delay={0.2}>
-            <div className="flex-1 max-w-xl space-y-6 text-base md:text-lg text-gray-600 leading-relaxed">
-              <p className="[&>span]:inline-block [&>span]:opacity-95">
+            <div className="flex-1 max-w-xl space-y-6">
+              <div className="[&>span]:inline-block [&>span]:opacity-90 mb-8">
                 <AnimatedText split={false} delay={0.25}>
-                  We help leadership teams make confident decisions. Every engagement blends rigorous research with calm,
-                  minimal execution so the work feels as clear as it looks.
+                  <p className="text-lg xs:text-lg sm:text-xl md:text-xl lg:text-xl text-black leading-relaxed font-['Montserrat']">
+                    We help leadership teams make confident decisions. Every engagement blends rigorous research with calm,
+                    minimal execution so the work feels as clear as it looks.
+                  </p>
                 </AnimatedText>
-              </p>
+              </div>
               <div className="flex flex-wrap gap-4">
                 <motion.a
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-black px-6 py-3 text-base font-semibold transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+                  className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-medium"
                   style={{
-                    backgroundColor: 'transparent',
-                    color: '#1a1a1a',
-                    borderColor: '#1a1a1a',
-                    '--tw-shadow': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
-                  }}
-                  whileHover={{
                     backgroundColor: accentColors.main,
                     color: 'white',
-                    borderColor: accentColors.main,
-                    boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)'
+                    border: `1px solid ${accentColors.main}`
                   }}
-                  whileTap={{ scale: 0.98 }}
                 >
                   <span>Talk to us</span>
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">↗</span>
+                  <span>↗</span>
                 </motion.a>
               </div>
             </div>
@@ -297,12 +370,12 @@ const Services = () => {
 
       {/* capabilities */}
       <section className="mx-auto max-w-6xl px-6 py-16 space-y-10" style={{ backgroundColor: '#f5f5f5' }}>
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.3em]" style={{ color: `${accentColors.main}80` }}>What we do</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">Simple structure, deep capability.</h2>
+            <p className="text-sm uppercase tracking-[0.3em] mb-4" style={{ color: `${accentColors.main}80` }}>What we do</p>
+            <h2 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 font-['Montserrat_Alternates']">Simple structure, deep capability.</h2>
           </div>
-          <p className="text-gray-600 md:max-w-md leading-relaxed">
+          <p className="text-lg xs:text-lg sm:text-xl md:text-xl lg:text-xl text-black leading-relaxed opacity-90 md:max-w-2xl font-['Montserrat']">
             We keep the interface minimal so conversations stay about your business. Behind the scenes, multidisciplinary
             teams cover the detail.
           </p>
@@ -319,43 +392,37 @@ const Services = () => {
                 index === 0 ? 'border-t-0 pt-0' : ''
               } ${index % 2 === 0 ? '' : 'lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1'}`}
             >
-              <div className="space-y-6">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 text-xs font-medium uppercase tracking-widest">
-                    <span className="h-px w-8" style={{ backgroundColor: `${accentColors.main}80` }} />
-                    <span style={{ color: `${accentColors.main}80` }}>{capability.label}</span>
+              <div className="space-y-8">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 text-sm font-['Montserrat']">
+                    <span className="font-medium tracking-wider" style={{ color: accentColors.main }}>{capability.label}</span>
+                    <span className="w-1 h-1 rounded-full bg-transparent"></span>
+                    <span className="text-gray-500">{capability.cta}</span>
                   </div>
-                  <h3 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 md:text-4xl">{capability.title}</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 font-['Montserrat_Alternates']">{capability.title}</h3>
                 </div>
-                <p className="text-gray-700 text-base leading-relaxed max-w-3xl">{capability.body}</p>
+                <p className="text-lg text-gray-900 leading-relaxed opacity-90">{capability.body}</p>
                 <div className="space-y-4">
                   {capability.bullets.map((item) => (
-                    <div key={item} className="flex gap-4">
-                      <span className="mt-2 inline-block h-1 w-6 bg-gray-900" />
-                      <p className="text-base text-gray-800 leading-relaxed">{item}</p>
+                    <div key={item} className="flex gap-4 items-start">
+                      <span className="mt-3 inline-block h-1 w-6 bg-gray-900 flex-shrink-0" />
+                      <p className="text-lg text-gray-900 leading-relaxed opacity-90">{item}</p>
                     </div>
                   ))}
                 </div>
-                <motion.button 
-                  className="group inline-flex items-center gap-2 rounded-full border border-gray-900 px-6 py-2 text-sm font-semibold transition-all duration-300 ease-in-out hover:shadow-md"
-                  style={{
-                    backgroundColor: 'transparent',
-                    color: '#1a1a1a',
-                    borderColor: '#1a1a1a',
-                    '--tw-shadow': '0 1px 2px 0 rgb(0 0 0 / 0.05)'
-                  }}
-                  whileHover={{
-                    backgroundColor: accentColors.main,
-                    color: 'white',
-                    borderColor: accentColors.main,
-                    scale: 1.05,
-                    boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span>{capability.cta}</span>
-                  <span className="transition-transform duration-300 group-hover:translate-x-0.5">↗</span>
-                </motion.button>
+                <Link to={`/services/${capability.id}`}>
+                  <motion.button 
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-lg font-medium"
+                    style={{
+                      backgroundColor: accentColors.main,
+                      color: 'white',
+                      border: `1px solid ${accentColors.main}`
+                    }}
+                  >
+                    <span>{capability.cta}</span>
+                    <span>↗</span>
+                  </motion.button>
+                </Link>
               </div>
               <div
                 className={`relative h-[400px] w-5/5 mx-auto lg:mx-0 lg:w-[90%] overflow-hidden ${
@@ -366,7 +433,7 @@ const Services = () => {
                   <img
                     src={capability.image}
                     alt={capability.title}
-                    className="h-full w-full object-cover transition-transform duration-300 hover:scale-103"
+                    className="h-full w-full object-cover"
                     loading="lazy"
                   />
                 </div>
@@ -377,57 +444,57 @@ const Services = () => {
       </section>
 
       {/* solutions */}
-      <section className="border-t border-gray-200" style={{ backgroundColor: '#f5f5f5' }}>
-        <div className="mx-auto max-w-6xl px-6 py-20 space-y-12">
-          <div className="max-w-3xl">
-            <p className="text-sm uppercase tracking-[0.3em]" style={{ color: `${accentColors.main}80` }}>Our Differentiators</p>
-            <h2 className="text-3xl font-semibold text-gray-900 mt-2">What Makes Midak Different</h2>
-            <div className="w-24 h-0.5 bg-gray-200 mt-6"></div>
+      <section style={{ backgroundColor: '#f5f5f5' }}>
+        <div className="mx-auto max-w-6xl px-6 py-24 space-y-16">
+          <div className="max-w-4xl">
+            <p className="text-sm uppercase tracking-[0.3em] mb-4 font-['Montserrat']" style={{ color: `${accentColors.main}80` }}>Our Differentiators</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight tracking-tight text-gray-900 font-['Montserrat_Alternates']">
+              What Makes Midak Different
+            </h2>
+            <p className="mt-8 text-base sm:text-lg md:text-xl text-gray-900 opacity-90 max-w-2xl font-['Montserrat']">
+              Explore our unique approach to research, strategy, and the future of data-driven organizations.
+            </p>
           </div>
           
           <div className="relative">
             <div className="grid gap-12 md:grid-cols-2">
-              {solutions.map(({ icon: Icon, title, body }) => (
-                <article key={title} className="space-y-4 group">
-                  <div className="h-16 w-16 rounded-full flex items-center justify-center" style={{ backgroundColor: `${accentColors.main}10` }}>
-                    <Icon className="h-6 w-6" strokeWidth={1.75} style={{ color: `${accentColors.main}80` }} />
-                  </div>
-                  <div className="space-y-4">
-                    <h3 className="text-xl font-bold tracking-tight text-gray-900 md:text-2xl">{title}</h3>
-                    <p className="text-gray-700 leading-relaxed">{body}</p>
-                  </div>
-                </article>
-              ))}
+              {solutions.map(({ icon, title, body }) => {
+                const IconComponent = iconComponents[icon];
+                return (
+                  <article key={title} className="space-y-6">
+                    <div className="h-20 w-20 rounded-full flex items-center justify-center" style={{ backgroundColor: `${accentColors.main}10` }}>
+                      {IconComponent && <IconComponent className="h-8 w-8" strokeWidth={1.75} style={{ color: `${accentColors.main}80` }} />}
+                    </div>
+                    <div className="space-y-4">
+                      <h3 className="text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl">{title}</h3>
+                      <p className="text-gray-900 text-lg leading-relaxed opacity-90">{body}</p>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
-            <div className="hidden md:block absolute top-0 bottom-0 left-1/2 w-px bg-gray-200 -translate-x-1/2"></div>
           </div>
         </div>
       </section>
 
       {/* insights */}
       <section className="mx-auto max-w-6xl px-6 bg-[#f4f4f4] py-16 space-y-8">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-[0.3em]" style={{ color: `${accentColors.main}80` }}>Latest insights</p>
-            <h2 className="text-3xl font-bold tracking-tight mt-2 md:text-4xl">Thinking that travels from lab to boardroom.</h2>
+        <div className="space-y-8">
+          <div className="flex flex-col gap-4">
+            <p className="text-sm font-medium uppercase tracking-[0.3em] font-['Montserrat']" style={{ color: `${accentColors.main}80` }}>Latest insights</p>
+            <h2 className="text-3xl font-bold tracking-tight mt-2 md:text-4xl font-['Montserrat_Alternates']">Thinking that travels from lab to boardroom.</h2>
           </div>
           <motion.a
             href="/blog"
-            className="group inline-flex items-center gap-2 rounded-full border border-gray-900 px-5 py-2 text-sm font-semibold transition-all duration-300 ease-in-out hover:shadow-md"
+            className="inline-flex items-center justify-start gap-2 rounded-full px-6 py-3 text-sm font-medium whitespace-nowrap w-auto md:w-auto self-start font-['Montserrat']"
             style={{
-              backgroundColor: 'transparent',
-              color: '#1a1a1a',
-              borderColor: '#1a1a1a',
-              '--tw-shadow': '0 1px 2px 0 rgb(0 0 0 / 0.05)'
-            }}
-            whileHover={{
               backgroundColor: accentColors.main,
               color: 'white',
-              borderColor: accentColors.main,
-              scale: 1.05,
-              boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
+              border: `1px solid ${accentColors.main}`,
+              minWidth: 'fit-content',
+              maxWidth: '200px',
+              display: 'inline-flex'
             }}
-            whileTap={{ scale: 0.98 }}
           >
             <span>Discover more</span>
             <span className="transition-transform duration-300 group-hover:translate-x-0.5">↗</span>
@@ -435,12 +502,8 @@ const Services = () => {
         </div>
         <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
           {insights.map((item) => (
-            <Link
-              to="/blog"
-              key={item.title}
-              className="group flex flex-col rounded-lg overflow-hidden h-full border border-gray-200 transition-all duration-300 hover:border-transparent hover:shadow-xl hover:-translate-y-1"
-            >
-              <div className="shrink-0 overflow-hidden h-48">
+            <div key={item.title} className="flex flex-col overflow-hidden h-full border border-gray-200 transition-colors duration-300 hover:border-gray-300">
+              <div className="flex-shrink-0 overflow-hidden h-40">
                 <div className="relative h-full w-full group">
                   <img
                     className="h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
@@ -451,42 +514,33 @@ const Services = () => {
                   <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
                 </div>
               </div>
-              <div className="p-5 flex-1 flex flex-col justify-between">
+              <div className="p-4 flex-1 flex flex-col justify-between">
                 <div className="flex-1">
-                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: `${accentColors.main}80` }}>
-                    {item.category}
+                  <p className="text-xs font-medium mb-1" style={{ color: `${accentColors.main}CC` }}>
+                    {item.category || 'Insight'}
                   </p>
-                  <div className="block mt-1">
-                    <p className="text-lg font-bold text-gray-900 line-clamp-2 leading-snug">{item.title}</p>
-                    <p className="mt-2 text-sm text-gray-600 leading-relaxed line-clamp-3 mb-4">{item.excerpt}</p>
+                  <div className="block">
+                    <Link to="/blog" className="transition-colors duration-200">
+                      <p className="text-lg font-semibold text-gray-900 line-clamp-2">{item.title}</p>
+                    </Link>
+                    <p className="mt-2 text-sm text-gray-500 line-clamp-2 mb-4">{item.description}</p>
                   </div>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
-                  <div className="text-sm text-gray-500 font-medium">
-                    <time>{item.date}</time>
+                  <div className="text-sm text-gray-500">
+                    <time dateTime={item.date}>{item.date || 'Jan 7, 2024'}</time>
                   </div>
                   <div className="flex items-center ml-4">
-                    <div 
-                      className="relative w-11 h-11 rounded-full flex items-center justify-center overflow-hidden shadow-lg"
-                      style={{
-                        backgroundColor: accentColors.main
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 19L19 5m0 0H9m10 0v10" />
-                      </svg>
-                    </div>
+                    <Link to="/blog" className="block" aria-label={`Read more about ${item.title}`}>
+                      <ServiceButton to="/blog">
+                        Read more
+                        <ArrowRight size={16} />
+                      </ServiceButton>
+                    </Link>
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </section>

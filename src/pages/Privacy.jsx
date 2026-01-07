@@ -30,13 +30,13 @@ const Privacy = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      <div className="w-full max-w-4xl mx-auto px-4 py-16 space-y-8">
+    <div className="min-h-screen bg-white pt-24" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+      <div className="w-full max-w-4xl mx-auto px-4 pb-12 space-y-8">
         <header>
           <p className={`text-sm tracking-wide uppercase text-[${accentColors.DEFAULT}] font-semibold`}>Privacy</p>
           <h1 className="text-4xl font-bold text-gray-900 mt-2">Privacy Policy</h1>
           <p className="text-gray-600 mt-3">
-            We are committed to protecting your personal information and being transparent about how we use it.
+            Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </p>
         </header>
 

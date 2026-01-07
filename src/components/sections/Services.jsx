@@ -41,7 +41,7 @@ const Services = () => {
   };
 
   return (
-    <section className="w-full pt-8 pb-20 overflow-hidden" style={{ backgroundColor: '#f5f5f5' }}>
+    <section className="w-full pt-8 pb-20 overflow-hidden font-['Montserrat']" style={{ backgroundColor: '#f5f5f5', fontFamily: "'Montserrat', sans-serif" }}>
       <motion.div 
         className="container mx-auto px-4"
         ref={ref}
@@ -54,7 +54,7 @@ const Services = () => {
             className="text-4xl sm:text-5xl md:text-5xl text-gray-900 font-bold leading-tight tracking-tight hero-heading"
             variants={itemVariants}
           >
-            <div className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-2">
+            <div className="flex flex-wrap items-baseline justify-start lg:justify-start gap-x-2 text-left">
               <span className="whitespace-normal sm:whitespace-nowrap word">Our Smart</span>
               <span className="text-gray-900 inline-block">
                 Solutions
@@ -62,10 +62,10 @@ const Services = () => {
             </div>
           </motion.h2>
           <motion.p 
-            className="text-lg sm:text-2xl md:text-3xl text-gray-600 font-normal max-w-2xl leading-relaxed hero-paragraph"
+            className="text-lg xs:text-lg sm:text-2xl md:text-2xl lg:text-2xl text-gray-600 font-normal w-full whitespace-normal hero-paragraph text-left leading-relaxed"
             variants={itemVariants}
           >
-            <span className="line block">Discover our comprehensive range of intelligent solutions designed to optimize your building's performance and efficiency.</span>
+            <span className="line">Discover our comprehensive range of intelligent solutions designed to optimize your building's performance and efficiency.</span>
           </motion.p>
         </div>
         <motion.div

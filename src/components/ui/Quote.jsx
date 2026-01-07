@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import ShinyText from "../ShinyText";
 import DecryptedText from "../DecryptedText";
 import { accentColors } from "../../constants/colors";
@@ -42,13 +43,14 @@ const Quote = ({
             <ShinyText 
               text="EXPERT INSIGHT" 
               speed={3}
-              className="text-lg font-semibold tracking-widest uppercase text-gray-800 px-3 py-1 rounded-md"
+              className="text-lg font-semibold tracking-widest uppercase text-gray-800 px-3 py-1 rounded-md font-['Montserrat_Alternates']"
+              style={{ fontFamily: "'Montserrat Alternates', sans-serif" }}
             />
 
             {/* Quote Text */}
-            <div className="relative">
-              <div className="w-full mt-8 md:mt-12">
-                <div className="text-xl sm:text-2xl md:text-3xl font-medium text-gray-800 leading-snug mb-6">
+            <div className="relative min-h-[180px] sm:min-h-[160px] md:min-h-[140px] mt-8 md:mt-12">
+              <div className="absolute inset-0">
+                <div className="text-xl xs:text-xl sm:text-2xl md:text-2xl lg:text-2xl font-medium text-gray-800 leading-relaxed font-['Montserrat']" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                   <DecryptedText
                     text={text}
                     speed={20}
@@ -90,13 +92,11 @@ const Quote = ({
             {/* Attribution Box */}
             <figcaption className="flex items-center justify-start gap-4">
               <div>
-                <p className="text-lg font-semibold text-gray-900">{author}</p>
+                <p className="text-xl xs:text-xl sm:text-2xl md:text-2xl lg:text-2xl font-semibold text-gray-900 font-['Montserrat']" style={{ fontFamily: "'Montserrat', sans-serif" }}>{author}</p>
                 {role && (
-                  <ShinyText 
-                    text={role}
-                    speed={4}
-                    className="text-sm font-medium"
-                  />
+                  <div className="text-sm font-medium text-gray-600 font-['Montserrat_Alternates']" style={{ fontFamily: "'Montserrat Alternates', sans-serif" }}>
+                    {role}
+                  </div>
                 )}
               </div>
             </figcaption>
@@ -114,6 +114,13 @@ const Quote = ({
       </div>
     </section>
   );
+};
+
+Quote.propTypes = {
+  text: PropTypes.string,
+  author: PropTypes.string,
+  role: PropTypes.string,
+  linkedinUrl: PropTypes.string
 };
 
 export default Quote;
