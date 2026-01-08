@@ -311,11 +311,25 @@ const Blog = () => {
           transformOrigin: 'center center',
           transition: 'all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.2)',
           willChange: 'transform, box-shadow',
-          borderRadius: '24px',
+          borderRadius: '16px',
           overflow: 'hidden',
-          margin: '40px auto',
-          boxShadow: '0 20px 60px -10px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)',
-          border: '1px solid rgba(168, 85, 247, 0.5)'
+          margin: '20px auto',
+          boxShadow: '0 10px 30px -5px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05)',
+          border: '1px solid rgba(168, 85, 247, 0.3)'
+        }}
+        onMouseEnter={(e) => {
+          if (window.innerWidth > 768) { // Only apply hover effects on desktop
+            e.currentTarget.style.transform = 'perspective(1500px) rotateX(-3deg) translateY(-10px) translateZ(20px)';
+            e.currentTarget.style.boxShadow = '0 30px 60px -10px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1)';
+            e.currentTarget.style.transformOrigin = 'bottom center';
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (window.innerWidth > 768) { // Only apply hover effects on desktop
+            e.currentTarget.style.transform = 'perspective(1500px) rotateX(0deg) translateY(0) translateZ(0)';
+            e.currentTarget.style.boxShadow = '0 10px 30px -5px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05)';
+            e.currentTarget.style.transformOrigin = 'center center';
+          }
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'perspective(1500px) rotateX(-3deg) translateY(-10px) translateZ(20px)';
@@ -329,7 +343,7 @@ const Blog = () => {
         }}
       >
         <div 
-          className="relative h-[400px] sm:h-[500px] bg-gray-900 overflow-hidden"
+          className="relative h-[300px] sm:h-[400px] md:h-[500px] bg-gray-900 overflow-hidden"
           style={{
             borderRadius: 0,
             transform: 'translateZ(0)',
@@ -392,7 +406,7 @@ const Blog = () => {
                   />
                 </div>
                 <div 
-                  className="absolute inset-0 z-20 flex items-end p-6 sm:p-12"
+                  className="absolute inset-0 z-20 flex items-end p-4 sm:p-8 md:p-12"
                   style={{
                     background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%)',
                     transform: 'translateZ(30px)',
@@ -416,10 +430,10 @@ const Blog = () => {
                     >
                       {post.category}
                     </span>
-                    <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white mb-2 sm:mb-3 leading-tight" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-2 sm:mb-3 leading-tight" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                       {post.title}
-                    </h1>
-                    <p className="text-white/90 mb-4 max-w-2xl text-sm sm:text-base leading-relaxed line-clamp-2 sm:line-clamp-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    </h2>
+                    <p className="text-white/80 text-xs sm:text-sm md:text-base max-w-2xl mb-3 sm:mb-4 line-clamp-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                       {post.excerpt}
                     </p>
                     <div className="text-sm text-white/80 font-sans">
@@ -434,11 +448,15 @@ const Blog = () => {
       </div>
 
       {/* Midak Insights Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-left">
-        <h1 className="text-4xl font-bold text-changa-one mb-4" style={{ color: accentColors.main }}>Midak Insights</h1>
-        <p className="text-xl text-gray-600">
-          Your source for the latest news, product updates, and industry insights
-        </p>
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 sm:py-3 text-left">
+        <h1 className="text-lg sm:text-2xl font-bold tracking-tight" style={{ 
+          color: accentColors.main, 
+          fontFamily: '"Montserrat Alternates", sans-serif',
+          fontWeight: 700,
+          margin: 0
+        }}>
+          Midak Insights
+        </h1>
       </div>
 
           {/* Category and Sort Section */}

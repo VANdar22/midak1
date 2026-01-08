@@ -334,7 +334,7 @@ const Services = () => {
               <p className="text-sm uppercase tracking-[0.3em] mb-4" style={{ color: `${accentColors.main}80` }}>Our Services</p>
             </AnimatedText>
             <AnimatedText delay={0.2} split>
-              <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 font-bold leading-tight tracking-tight font-['Montserrat_Alternates']">
+              <h1 className="text-3xl! xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 font-bold leading-tight tracking-tight font-['Montserrat_Alternates']">
                 Your partner for research-led strategy, design, and delivery.
               </h1>
             </AnimatedText>
@@ -448,7 +448,7 @@ const Services = () => {
         <div className="mx-auto max-w-6xl px-6 py-24 space-y-16">
           <div className="max-w-4xl">
             <p className="text-sm uppercase tracking-[0.3em] mb-4 font-['Montserrat']" style={{ color: `${accentColors.main}80` }}>Our Differentiators</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight tracking-tight text-gray-900 font-['Montserrat_Alternates']">
+            <h2 className="text-3xl! sm:text-3xl md:text-4xl font-bold leading-tight tracking-tight text-gray-900 font-['Montserrat_Alternates']">
               What Makes Midak Different
             </h2>
             <p className="mt-8 text-base sm:text-lg md:text-xl text-gray-900 opacity-90 max-w-2xl font-['Montserrat']">

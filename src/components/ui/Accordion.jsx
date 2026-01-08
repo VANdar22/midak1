@@ -171,7 +171,7 @@ const Accordion = () => {
                                             </span>
                                         </div>
                                         {/* IMPROVED TITLE STYLE */}
-                                        <h3 className="text-lg xs:text-lg sm:text-2xl md:text-2xl lg:text-2xl font-semibold text-gray-800 pl-2 md:pl-0">
+                                        <h3 className="text-xl! xs:text-2xl! sm:text-2xl! md:text-2xl! lg:text-2xl! font-semibold text-gray-800 pl-2 md:pl-0">
                                             {item.title}
                                         </h3>
                                     </div>
@@ -182,7 +182,7 @@ const Accordion = () => {
                                     id={`panel-${item.id}`}
                                     className={`
                                         transition-all duration-500 ease-[cubic-bezier(0.4, 0, 0.2, 1)] overflow-hidden
-                                        ${isExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}
+                                        ${isExpanded ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}
                                         hover:max-h-[500px] hover:opacity-100
                                     `}
                                     aria-labelledby={`button-${item.id}`}
@@ -208,7 +208,7 @@ const Accordion = () => {
                                                 {item.content
                                                     .filter(content => content.type === 'text')
                                                     .map((content, textIndex) => (
-                                                        <p key={`${item.id}-text-${textIndex}`} className="text-gray-600 leading-relaxed text-md md:text-2xl font-medium tracking-wide">
+                                                        <p key={`${item.id}-text-${textIndex}`} className="text-gray-600 leading-relaxed text-xl! md:text-xl font-medium tracking-wide">
                                                             {content.text}
                                                         </p>
                                                     ))}

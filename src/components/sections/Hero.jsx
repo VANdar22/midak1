@@ -82,7 +82,7 @@ const Hero = () => {
                     animate="show"
                   >
                     <motion.h1 
-                      className="text-[24px] xs:text-[28px] sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl text-gray-900 font-bold w-full overflow-x-visible"
+                      className="text-4xl! sm:text-3xl! md:text-4xl! lg:text-4xl! xl:text-5xl! text-gray-900 font-bold w-full overflow-x-visible"
                       style={{ 
                         fontFamily: "'Montserrat', sans-serif",
                         fontWeight: 800,
@@ -90,7 +90,14 @@ const Hero = () => {
                         lineHeight: '1.1',
                         WebkitFontSmoothing: 'antialiased',
                         MozOsxFontSmoothing: 'grayscale',
-                        textRendering: 'optimizeLegibility'
+                        textRendering: 'optimizeLegibility',
+                        fontSize: '1.875rem', // 3xl
+                        '@media (min-width: 768px)': {
+                          fontSize: '2.25rem' // 4xl for md and up
+                        },
+                        '@media (min-width: 1280px)': {
+                          fontSize: '3rem' // 5xl for xl and up
+                        }
                       }}
                     >
                       <div className="flex flex-col space-y-1 sm:space-y-2 md:space-y-3">

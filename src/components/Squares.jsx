@@ -3,9 +3,9 @@ import { useRef, useEffect } from 'react';
 const Squares = ({
   direction = 'right',
   speed = 1,
-  borderColor = '#999',
+  borderColor = 'rgba(200, 200, 255, 0.6)',
   squareSize = 40,
-  hoverFillColor = '#222'
+  hoverFillColor = 'rgba(255, 255, 255, 0.4)'
 }) => {
   const canvasRef = useRef(null);
   const requestRef = useRef(null);
@@ -17,7 +17,15 @@ const Squares = ({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    
+    // Get the context with alpha channel enabled for transparency
+    const ctx = canvas.getContext('2d', { alpha: true });
+    
+    // Ensure the canvas is fully transparent
+    canvas.style.backgroundColor = 'transparent';
+    
+    // Set global alpha to ensure transparency is preserved
+    ctx.globalAlpha = 1;
 
     const resizeCanvas = () => {
       canvas.width = canvas.offsetWidth;
@@ -32,7 +40,11 @@ const Squares = ({
     const drawGrid = () => {
       if (!ctx) return;
 
+      // Clear the entire canvas with transparent
+      ctx.save();
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.restore();
 
       const startX = Math.floor(gridOffset.current.x / squareSize) * squareSize;
       const startY = Math.floor(gridOffset.current.y / squareSize) * squareSize;
@@ -56,19 +68,7 @@ const Squares = ({
         }
       }
 
-      const gradient = ctx.createRadialGradient(
-        canvas.width / 2,
-        canvas.height / 2,
-        0,
-        canvas.width / 2,
-        canvas.height / 2,
-        Math.sqrt(canvas.width ** 2 + canvas.height ** 2) / 2
-      );
-      gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
-      gradient.addColorStop(1, '#060010');
-
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Background removed as per request
     };
 
     const updateAnimation = () => {

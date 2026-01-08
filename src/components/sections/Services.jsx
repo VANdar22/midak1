@@ -51,7 +51,7 @@ const Services = () => {
       >
         <div className="space-y-2 md:space-y-4">
           <motion.h2 
-            className="text-4xl sm:text-5xl md:text-5xl text-gray-900 font-bold leading-tight tracking-tight hero-heading"
+            className="text-4xl! xs:text-4xl! sm:text-5xl md:text-5xl text-gray-900 font-bold leading-tight tracking-tight hero-heading"
             variants={itemVariants}
           >
             <div className="flex flex-wrap items-baseline justify-start lg:justify-start gap-x-2 text-left">

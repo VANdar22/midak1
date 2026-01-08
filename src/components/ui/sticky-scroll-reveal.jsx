@@ -88,14 +88,14 @@ const StickyScrollReveal = ({ content = [], contentClassName = "" }) => {
         aria-live="polite"
         aria-label="Content carousel"
       >
-        <div className="relative w-full lg:w-auto flex-1">
-          <div className="w-full max-w-2xl mx-auto">
+        <div className={cn("relative w-full lg:w-auto flex-1", contentClassName)}>
+          <div className="w-full max-w-3xl mx-auto -pl-10">
             <AnimatePresence>
               {content.map((item, index) => (
                 <motion.div
                   key={item.title + index}
                   data-card-index={index}
-                  className="py-8 sm:py-12 lg:py-16 border-b border-gray-100 last:border-0"
+                  className="py-5 sm:py-6 lg:py-8 border-b border-gray-100 last:border-0"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{
                     opacity: isMobile 
@@ -114,7 +114,7 @@ const StickyScrollReveal = ({ content = [], contentClassName = "" }) => {
                     className="space-y-4"
                   >
                     <motion.h2 
-                      className="text-4xl font-bold text-gray-800"
+                      className="text-3xl! md:text-3xl font-bold text-gray-800 leading-tight mb-3"
                       whileInView={{ 
                         y: 0, 
                         opacity: 1,
@@ -130,7 +130,7 @@ const StickyScrollReveal = ({ content = [], contentClassName = "" }) => {
                     </motion.h2>
                     {typeof item.description === 'string' ? (
                       <motion.p 
-                        className="text-xl text-gray-600 leading-relaxed"
+                        className="text-xl! md:text-lg text-gray-800 leading-relaxed opacity-90"
                         whileInView={{ 
                           y: 0, 
                           opacity: 1,
@@ -145,7 +145,7 @@ const StickyScrollReveal = ({ content = [], contentClassName = "" }) => {
                       </motion.p>
                     ) : (
                       <motion.div 
-                        className="text-xl text-gray-600 leading-relaxed"
+                        className="text-xl! md:text-2xl text-gray-800 leading-relaxed opacity-90 space-y-4"
                         whileInView={{ 
                           y: 0, 
                           opacity: 1,
@@ -168,8 +168,8 @@ const StickyScrollReveal = ({ content = [], contentClassName = "" }) => {
         </div>
         <div
           className={cn(
-            "w-full lg:w-1/2 h-auto lg:h-112 overflow-hidden rounded-xl bg-white shadow-lg lg:sticky lg:top-10 transition-all duration-300",
-            isMobile ? "mb-8" : "group",
+            "w-full lg:w-1/2 h-auto lg:h-96 overflow-hidden rounded-xl bg-white shadow-lg lg:sticky lg:top-10 transition-all duration-300",
+            isMobile ? "mb-5" : "group",
             contentClassName
           )}
           style={{

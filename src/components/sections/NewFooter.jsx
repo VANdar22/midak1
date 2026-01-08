@@ -1,23 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Squares from '../Squares';
 
 const footerData = {
   layout: {
     maxWidth: 2000,
-    horizontalMargin: 24,
-    verticalMargin: 80,
-    borderRadius: 48,
+    horizontalMargin: 20,
+    verticalMargin: 60,
+    borderRadius: 36,
     padding: {
-      top: 64,
-      right: 72,
-      bottom: 64,
-      left: 72
+      top: 48,
+      right: 48,
+      bottom: 48,
+      left: 48
     },
     alignment: 'left',
-    stackSpacing: 48
+    stackSpacing: 32
   },
   theme: {
-    backgroundColor: '#F9FAFB',
     containerBackground: '#800020',
     textColor: '#FFFFFF',
     mutedTextColor: '#C7D6CC',
@@ -134,30 +134,42 @@ const NewFooter = ({ hideFooter = false }) => {
 
   return (
     <footer 
-      className="w-full py-12 md:py-20 px-0 sm:px-4 md:px-6"
+      className="w-full py-8 md:py-12 px-4 sm:px-6 text-white relative overflow-hidden"
       style={{
-        backgroundColor: theme.backgroundColor,
-        color: theme.textColor
+        color: theme.textColor,
+        maxWidth: `${layout.maxWidth}px`,
+        margin: '0 auto',
+        position: 'relative',
+        isolation: 'isolate',
+        marginBottom: 0,
+        paddingBottom: 0,
+        backgroundColor: `${theme.accentColor}CC`,
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.1)'
       }}
     >
-      <div 
-        className="w-full mx-auto relative px-6 py-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 backdrop-blur-lg text-white"
-        style={{
-          maxWidth: `${layout.maxWidth}px`,
-          backgroundColor: 'rgba(80, 0, 20, 0.8)',
-          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-          borderTopLeftRadius: '1.5rem',
-          borderTopRightRadius: '1.5rem',
-          borderBottomLeftRadius: '1.5rem',
-          borderBottomRightRadius: '1.5rem',
-          overflow: 'hidden',
-          border: '1px solid rgba(255, 255, 255, 0.2)'
-        }}
-      >
+      {/* Background with overlay */}
+      <div className="absolute inset-0 -z-10">
+        <Squares 
+          speed={0.5}
+          squareSize={40}
+          direction='diagonal'
+          borderColor='rgba(255, 255, 255, 0.15)'
+          hoverFillColor='rgba(255, 255, 255, 0.25)'
+        />
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 100%)',
+            mixBlendMode: 'multiply'
+          }}
+        />
+      </div>
         {/* CTA Section */}
-        <div className="text-center mb-16">
+        <div className="text-left mb-10">
           <h2 
-            className="text-3xl md:text-4xl font-bold mb-6 font-['Montserrat'] uppercase tracking-wider" 
+            className="text-xl md:text-2xl font-bold mb-2 font-['Montserrat'] uppercase tracking-wider whitespace-nowrap" 
             style={{ 
               color: 'white',
               fontFamily: "'Montserrat', sans-serif",
@@ -167,7 +179,7 @@ const NewFooter = ({ hideFooter = false }) => {
             {cta.title}
           </h2>
           <p 
-            className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-['Montserrat'] text-white leading-relaxed" 
+            className="text-base md:text-lg mb-4 max-w-3xl font-['Montserrat'] text-white leading-relaxed" 
             style={{ 
               fontFamily: "'Montserrat', sans-serif"
             }}
@@ -191,25 +203,13 @@ const NewFooter = ({ hideFooter = false }) => {
           </Link>
         </div>
 
-        {/* Divider */}
-        {divider.visible && (
-          <div 
-            className="w-full my-12"
-            style={{
-              height: '1px',
-              backgroundColor: `rgba(255, 255, 255, ${divider.opacity})`,
-              margin: `${divider.margin}px 0`
-            }}
-          />
-        )}
-
         {/* Contact and Social Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
           {/* Contact Info */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full md:w-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full md:w-auto">
             <div>
               <h3 
-                className="text-base sm:text-lg font-medium mb-3 font-['Montserrat_Alternates']" 
+                className="text-base sm:text-lg font-medium mb-2 font-['Montserrat_Alternates']" 
                 style={{ 
                   color: 'white',
                   fontFamily: "'Montserrat Alternates', sans-serif"
@@ -229,7 +229,7 @@ const NewFooter = ({ hideFooter = false }) => {
             </div>
             <div>
               <h3 
-                className="text-base sm:text-lg font-medium mb-3 font-['Montserrat_Alternates']" 
+                className="text-base sm:text-lg font-medium mb-2 font-['Montserrat_Alternates']" 
                 style={{ 
                   color: 'white',
                   fontFamily: "'Montserrat Alternates', sans-serif"
@@ -254,7 +254,7 @@ const NewFooter = ({ hideFooter = false }) => {
           </div>
 
           {/* Social Links */}
-          <div className="flex space-x-4 w-full md:w-auto justify-start md:justify-end">
+          <div className="flex space-x-3 w-full md:w-auto justify-start md:justify-end">
             {contact.social.map((social, index) => (
               <a 
                 key={index} 
@@ -271,7 +271,7 @@ const NewFooter = ({ hideFooter = false }) => {
         </div>
 
         {/* Policy Links */}
-        <div className="flex flex-wrap justify-center gap-6 mt-8 pt-8 border-t text-white border-opacity-10">
+        <div className="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t text-white border-opacity-10">
           {branding.links.map((link, index) => (
             <Link
               key={index}
@@ -283,28 +283,29 @@ const NewFooter = ({ hideFooter = false }) => {
             </Link>
           ))}
         </div>
-      </div>
       
       {/* Branding and Copyright */}
       <div 
-        className="w-full bg-white py-4 sm:py-6 px-4 sm:px-6"
+        className="w-full bg-[accentColors.main] px-4 py-1"
         style={{
-          borderBottomLeftRadius: '1.5rem',
-          borderBottomRightRadius: '1.5rem',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          marginTop: 'auto',
+          marginBottom: 0,
+          lineHeight: 1
         }}
       >
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between">
-            <div className="flex items-center mb-4 sm:mb-0">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 py-1">
+            <div className="flex items-center">
               <img 
                 src="/assets/images/logo.png" 
                 alt="Midak Research & Analytics Logo" 
-                className="h-16 w-auto mr-4"
+                className="h-16 w-auto mr-3"
+                style={{ display: 'block' }}
               />
             </div>
             <div className="text-center sm:text-right">
-              <p className="text-sm sm:text-base text-[#5D4037] opacity-90" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+              <p className="text-xs text-[#f5f5f5] opacity-90 leading-tight" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                 {branding.copyright}
               </p>
             </div>
