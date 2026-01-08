@@ -241,8 +241,27 @@ const ContactPage = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full flex items-center justify-center bg-[${accentColors.main}] border-2 border-[${accentColors.DEFAULT}] px-6 py-3 rounded-full text-white hover:bg-white hover:text-[${accentColors.DEFAULT}] hover:border-[${accentColors.DEFAULT}] transition-all duration-300 font-semibold shadow-md hover:shadow-lg ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    className={`w-full flex items-center justify-center px-6 py-3 rounded-full transition-all duration-300 font-semibold shadow-md hover:shadow-lg ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                    style={{
+                      fontFamily: 'Montserrat, sans-serif',
+                      backgroundColor: accentColors.main,
+                      border: `2px solid ${accentColors.DEFAULT}`,
+                      color: 'white'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isSubmitting) {
+                        e.target.style.backgroundColor = 'white';
+                        e.target.style.color = accentColors.DEFAULT;
+                        e.target.style.borderColor = accentColors.DEFAULT;
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isSubmitting) {
+                        e.target.style.backgroundColor = accentColors.main;
+                        e.target.style.color = 'white';
+                        e.target.style.borderColor = accentColors.DEFAULT;
+                      }
+                    }}
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
