@@ -107,14 +107,14 @@ const ContactPage = () => {
       <div className="w-full px-4 pt-32 pb-12">
         <div className="w-full max-w-7xl mx-auto">
           {/* Main Content - Side by Side */}
-          <div className="flex flex-col md:flex-row gap-12 mb-12">
+          <div className="flex flex-col lg:flex-row gap-12 mb-12">
             {/* Left Column - Contact Info */}
-            <div className="md:w-1/2">
+            <div className="lg:w-1/2">
               <h1 className="font-bold text-black mb-8 leading-tight font-['Montserrat_Alternates']" style={{ fontSize: '2rem', lineHeight: '1.75rem' }}>
                 Contact us to facilitate your journey through high-quality project development and exploratory research support
               </h1>
               
-              <div className="space-y-8">
+              <div className="space-y-8 mb-12 md:mb-16 lg:mb-20">
                 <div>
                   <h3 className={`font-semibold text-[${accentColors.DEFAULT}] text-lg mb-2 font-['Montserrat_Alternates']`}>Email Us</h3>
                   <a href="mailto:info@midakresearch.com" className={`text-gray-700 hover:text-[${accentColors.DEFAULT}] transition-colors text-xl`}>
@@ -122,14 +122,14 @@ const ContactPage = () => {
                   </a>
                 </div>
                 
-                <div>
+                <div className="mb-6 md:mb-0">
                   <h3 className={`font-semibold text-[${accentColors.DEFAULT}] text-lg mb-2 font-['Montserrat_Alternates']`}>Location</h3>
                   <p className="text-gray-700 text-xl">Accra, Ghana<br />Operating Globally</p>
                 </div>
                 
                 <div>
-                  <h3 className={`font-semibold text-[${accentColors.DEFAULT}] text-lg mb-6 font-['Montserrat_Alternates']`}>Connect</h3>
-                  <div className="flex items-center space-x-4 -ml-2">
+                  <h3 className={`font-semibold text-[${accentColors.DEFAULT}] text-lg mb-2 font-['Montserrat_Alternates']`}>Connect</h3>
+                  <div className="flex flex-wrap items-center gap-4 -ml-2">
                     <a 
                       href="https://linkedin.com/company/midak-research-consult" 
                       target="_blank" 
@@ -167,11 +167,14 @@ const ContactPage = () => {
                 </div>
               </div>
             </div>
-            
+
+            {/* Spacer for mobile */}
+            <div className="-mt-8 lg:hidden"></div>
+
             {/* Right Column - Contact Form */}
-            <div className="md:w-1/2 bg-white p-6 md:p-8 rounded-lg border border-gray-100 -mt-8">
-              <h2 className="text-xl font-bold text-gray-800 mb-6 font-['Montserrat_Alternates']" style={{ fontSize: '1.25rem', lineHeight: '1.75rem' }}>Send us a message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="lg:w-1/2 bg-white p-6 md:p-8 rounded-lg border border-gray-100 lg:-mt-8">
+              <h2 className="text-xl font-bold text-gray-800 mb-6 font-['Montserrat_Alternates']" style={{ fontSize: '2rem', lineHeight: '1.75rem' }}>Send us a message</h2>
+              <form onSubmit={handleSubmit} className="space-y-6 text-left">
                 {submitStatus.message && (
                   <div className={`p-4 rounded-lg ${submitStatus.success ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                     {submitStatus.message}
@@ -238,7 +241,7 @@ const ContactPage = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full flex items-center justify-center bg-[${accentColors.DEFAULT}] border-2 border-[${accentColors.DEFAULT}] px-6 py-3 rounded-full text-white hover:bg-white hover:text-[${accentColors.DEFAULT}] hover:border-[${accentColors.DEFAULT}] transition-all duration-300 font-semibold shadow-md hover:shadow-lg ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                    className={`w-full flex items-center justify-center bg-[${accentColors.main}] border-2 border-[${accentColors.DEFAULT}] px-6 py-3 rounded-full text-white hover:bg-white hover:text-[${accentColors.DEFAULT}] hover:border-[${accentColors.DEFAULT}] transition-all duration-300 font-semibold shadow-md hover:shadow-lg ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                     style={{ fontFamily: 'Montserrat, sans-serif' }}
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}

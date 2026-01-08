@@ -240,7 +240,7 @@ const capabilities = [
     label: 'Strategic Consulting & Advisory',
     title: 'How we guide',
     body: 'We support leadership teams with evidence-based strategy, planning, and execution support that turns direction into measurable results.',
-    image: '/assets/images/6.png',
+    image: '/assets/images/7.png',
     bullets: [
       'Organizational strategy and planning',
       'Business planning and growth strategy',
@@ -350,18 +350,36 @@ const Services = () => {
                 </AnimatedText>
               </div>
               <div className="flex flex-wrap gap-4">
-                <motion.a
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-medium"
-                  style={{
-                    backgroundColor: accentColors.main,
-                    color: 'white',
-                    border: `1px solid ${accentColors.main}`
-                  }}
-                >
-                  <span>Talk to us</span>
-                  <span>↗</span>
-                </motion.a>
+                <div className="relative inline-block">
+                  <motion.a
+                    href="/contact"
+                    className="relative z-10 inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-medium overflow-hidden"
+                    style={{
+                      color: accentColors.main,
+                      border: `1px solid ${accentColors.main}`,
+                      width: 'fit-content',
+                      minWidth: '150px',
+                      position: 'relative',
+                      transition: 'all 0.4s ease 0.1s',
+                      backgroundColor: 'white'
+                    }}
+                    whileHover={{
+                      color: 'white',
+                      transition: { duration: 0.1, delay: 0.2 }
+                    }}
+                  >
+                    <span className="relative z-10">Talk to us</span>
+                    <motion.span 
+                      className="absolute top-0 left-0 w-full h-0 z-0"
+                      style={{ backgroundColor: accentColors.main }}
+                      initial={{ height: 0 }}
+                      whileHover={{
+                        height: '100%',
+                        transition: { duration: 0.3, ease: 'easeInOut' }
+                      }}
+                    />
+                  </motion.a>
+                </div>
               </div>
             </div>
           </AnimatedText>
@@ -410,19 +428,45 @@ const Services = () => {
                     </div>
                   ))}
                 </div>
-                <Link to={`/services/${capability.id}`}>
-                  <motion.button 
-                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-lg font-medium"
-                    style={{
-                      backgroundColor: accentColors.main,
-                      color: 'white',
-                      border: `1px solid ${accentColors.main}`
-                    }}
-                  >
-                    <span>{capability.cta}</span>
-                    <span>↗</span>
-                  </motion.button>
-                </Link>
+                <div className="relative inline-block">
+                  <Link to={`/services/${capability.id}`}>
+                    <motion.button 
+                      className="relative z-10 inline-flex items-center justify-center rounded-full px-6 py-3 text-lg font-medium overflow-hidden"
+                      style={{
+                        color: accentColors.main,
+                        border: `1px solid ${accentColors.main}`,
+                        width: 'fit-content',
+                        minWidth: '200px',
+                        background: 'white',
+                        position: 'relative',
+                        transition: 'all 0.4s ease 0.1s'
+                      }}
+                      whileHover={{
+                        color: 'white',
+                        transition: { duration: 0.1, delay: 0.2 }
+                      }}
+                    >
+                      <span className="relative z-10">{capability.cta}</span>
+                      <motion.span 
+                        className="absolute top-0 left-0 w-full h-0 z-0"
+                        style={{ backgroundColor: accentColors.main }}
+                        initial={{ height: 0 }}
+                        whileHover={{
+                          height: '100%',
+                          transition: { duration: 0.3, ease: 'easeInOut' }
+                        }}
+                      />
+                    </motion.button>
+                  </Link>
+                  <style jsx>{`
+                    .relative:hover span:last-child {
+                      height: 100% !important;
+                    }
+                    .relative:hover button {
+                      color: white !important;
+                    }
+                  `}</style>
+                </div>
               </div>
               <div
                 className={`relative h-[400px] w-5/5 mx-auto lg:mx-0 lg:w-[90%] overflow-hidden ${
@@ -484,21 +528,37 @@ const Services = () => {
             <p className="text-sm font-medium uppercase tracking-[0.3em] font-['Montserrat']" style={{ color: `${accentColors.main}80` }}>Latest insights</p>
             <h2 className="text-3xl font-bold tracking-tight mt-2 md:text-4xl font-['Montserrat_Alternates']">Thinking that travels from lab to boardroom.</h2>
           </div>
-          <motion.a
-            href="/blog"
-            className="inline-flex items-center justify-start gap-2 rounded-full px-6 py-3 text-sm font-medium whitespace-nowrap w-auto md:w-auto self-start font-['Montserrat']"
-            style={{
-              backgroundColor: accentColors.main,
-              color: 'white',
-              border: `1px solid ${accentColors.main}`,
-              minWidth: 'fit-content',
-              maxWidth: '200px',
-              display: 'inline-flex'
-            }}
-          >
-            <span>Discover more</span>
-            <span className="transition-transform duration-300 group-hover:translate-x-0.5">↗</span>
-          </motion.a>
+          <div className="relative inline-block">
+            <motion.a
+              href="/blog"
+              className="relative z-10 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium overflow-hidden whitespace-nowrap w-auto md:w-auto self-start font-['Montserrat']"
+              style={{
+                color: accentColors.main,
+                border: `1px solid ${accentColors.main}`,
+                minWidth: '150px',
+                maxWidth: '200px',
+                display: 'inline-flex',
+                position: 'relative',
+                transition: 'all 0.4s ease 0.1s',
+                backgroundColor: 'white'
+              }}
+              whileHover={{
+                color: 'white',
+                transition: { duration: 0.1, delay: 0.2 }
+              }}
+            >
+              <span className="relative z-10">Discover more</span>
+              <motion.span 
+                className="absolute top-0 left-0 w-full h-0 z-0"
+                style={{ backgroundColor: accentColors.main }}
+                initial={{ height: 0 }}
+                whileHover={{
+                  height: '100%',
+                  transition: { duration: 0.3, ease: 'easeInOut' }
+                }}
+              />
+            </motion.a>
+          </div>
         </div>
         <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
           {insights.map((item) => (
@@ -531,11 +591,12 @@ const Services = () => {
                     <time dateTime={item.date}>{item.date || 'Jan 7, 2024'}</time>
                   </div>
                   <div className="flex items-center ml-4">
-                    <Link to="/blog" className="block" aria-label={`Read more about ${item.title}`}>
-                      <ServiceButton to="/blog">
-                        Read more
-                        <ArrowRight size={16} />
-                      </ServiceButton>
+                    <Link 
+                      to="/blog" 
+                      className="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors duration-200"
+                      aria-label={`Read more about ${item.title}`}
+                    >
+                      Read more
                     </Link>
                   </div>
                 </div>

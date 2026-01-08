@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Squares from '../Squares';
 
 const footerData = {
@@ -186,21 +187,45 @@ const NewFooter = ({ hideFooter = false }) => {
           >
             {cta.description}
           </p>
-          <Link
-            to={cta.button.link}
-            className="inline-flex items-center justify-center px-8 py-4 text-base bg-[#f5e6e9] font-medium rounded-full transition-colors duration-200 font-['Montserrat'] uppercase tracking-wider"
-            style={{
-              color: theme.containerBackground,
-              fontFamily: "'Montserrat', sans-serif",
-              letterSpacing: '0.1em',
-              ...cta.button.style
-            }}
-          >
-            {cta.button.label}
-            <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </Link>
+          <div className="relative inline-block">
+            <motion.div
+              className="relative group"
+              whileHover="hover"
+              initial="initial"
+            >
+              <Link
+                to={cta.button.link}
+                className="relative z-10 inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full font-['Montserrat'] uppercase tracking-wider overflow-hidden"
+                style={{
+                  color: theme.accentColor,
+                  fontFamily: "'Montserrat', sans-serif",
+                  letterSpacing: '0.1em',
+                  backgroundColor: 'white',
+                  border: `1px solid ${theme.accentColor}`,
+                  ...cta.button.style
+                }}
+              >
+                <span className="relative z-10 transition-colors duration-200 group-hover:text-white">
+                  {cta.button.label}
+                </span>
+                <motion.span 
+                  className="absolute top-0 left-0 w-full h-0 z-0"
+                  style={{ backgroundColor: theme.accentColor }}
+                  variants={{
+                    initial: { height: 0, y: '-100%' },
+                    hover: { 
+                      height: '100%',
+                      y: 0,
+                      transition: { 
+                        duration: 0.3,
+                        ease: 'easeInOut'
+                      }
+                    }
+                  }}
+                />
+              </Link>
+            </motion.div>
+          </div>
         </div>
 
         {/* Contact and Social Section */}

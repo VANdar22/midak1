@@ -22,38 +22,49 @@ const ServiceHeaderImage = styled.div`
 const ServiceContainer = styled.div`
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 5rem 1.5rem 2rem;
   font-family: 'Montserrat', sans-serif;
   line-height: 1.7;
   color: #333;
   text-align: left;
 `;
 
-const BackButton = styled.button`
+const BackButton = styled(motion.button)`
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
   margin: 0 0 2rem 0;
-  padding: 0.5rem 0;
-  color: ${accentColors.main};
-  background: none;
-  border: none;
+  padding: 0.75rem 1.5rem;
+  color: #800020;
+  background: white;
+  border: 1px solid #800020;
+  border-radius: 9999px;
   cursor: pointer;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
-  transition: all 0.2s ease;
   position: relative;
-  text-align: left;
-  width: 100%;
-  justify-content: flex-start;
-  
+  overflow: hidden;
+  z-index: 1;
   &:hover {
-    color: ${accentColors.dark};
-    transform: translateX(-4px);
-    
-    svg {
-      transform: translateX(-4px);
-    }
+    color: #800020;
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+  
+  .back-text {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease 0.1s;
+  }
+  
+  &:hover .back-text {
+    color: #800020!important;
   }
   
   svg {
@@ -424,13 +435,28 @@ const ServiceDetail = () => {
       <ServiceContainer>
         <BackButton 
           onClick={() => navigate(-1)}
-          className="back-button"
+          initial={{ x: -20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          Back to Services
+          <span className="back-text">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Services
+          </span>
+          <motion.span 
+            className="absolute bottom-0 left-0 w-full h-0 bg-[#800020]!important z-0"
+            initial={{ height: 0 }}
+            whileHover={{ 
+              height: '100%',
+              transition: { 
+                duration: 0.3, 
+                ease: 'easeInOut' 
+              }
+            }}
+          />
         </BackButton>
         
         <ServiceHeaderImage>
