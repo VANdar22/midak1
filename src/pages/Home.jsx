@@ -23,7 +23,7 @@ const Home = () => {
         <div className="flex justify-center items-center py-4 bg-[#f5f5f5]">
           <ScrollVelocity 
             texts={[
-              <span key="scroll-text-1" className="text-2xl" style={{ color: `${accentColors.main}80` }}>Market Research • Data Analysis • Impact Assessment • Feasibility Studies</span>,
+              <span key="scroll-text-1" className="text-xl font-league-spartan!" style={{ color: `${accentColors.main}80` }}>Market Research • Data Analysis • Impact Assessment • Feasibility Studies</span>,
             ]} 
             velocity={50} 
             className="custom-scroll-text"

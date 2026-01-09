@@ -43,14 +43,14 @@ const Quote = ({
             <ShinyText 
               text="EXPERT INSIGHT" 
               speed={3}
-              className="text-lg font-semibold tracking-widest uppercase text-gray-800 px-3 py-1 rounded-md font-['Montserrat_Alternates']"
-              style={{ fontFamily: "'Montserrat Alternates', sans-serif" }}
+              className="text-lg font-semibold tracking-widest uppercase text-gray-800 px-3 py-1 rounded-md font-['League_Spartan']"
+              style={{ fontFamily: "'League Spartan', sans-serif" }}
             />
 
             {/* Quote Text */}
             <div className="relative min-h-[180px] sm:min-h-[160px] md:min-h-[140px] mt-8 md:mt-12">
               <div className="absolute inset-0">
-                <div className="text-xl xs:text-xl sm:text-2xl md:text-2xl lg:text-2xl font-medium text-gray-800 leading-relaxed font-['Montserrat']" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                <div className="text-xl xs:text-xl sm:text-2xl md:text-2xl lg:text-2xl font-medium text-gray-800 leading-relaxed font-['League_Spartan']" style={{ fontFamily: "'League Spartan', sans-serif" }}>
                   <DecryptedText
                     text={text}
                     speed={20}
@@ -92,9 +92,9 @@ const Quote = ({
             {/* Attribution Box */}
             <figcaption className="flex items-center justify-start gap-4">
               <div>
-                <p className="text-xl xs:text-xl sm:text-2xl md:text-2xl lg:text-2xl font-semibold text-gray-900 font-['Montserrat']" style={{ fontFamily: "'Montserrat', sans-serif" }}>{author}</p>
+                <p className="text-xl xs:text-xl sm:text-2xl md:text-2xl lg:text-2xl font-semibold text-gray-900 font-['League_Spartan']" style={{ fontFamily: "'League Spartan', sans-serif" }}>{author}</p>
                 {role && (
-                  <div className="text-sm font-medium text-gray-600 font-['Montserrat_Alternates']" style={{ fontFamily: "'Montserrat Alternates', sans-serif" }}>
+                  <div className="text-sm font-medium text-gray-600 font-['League_Spartan']" style={{ fontFamily: "'League Spartan', sans-serif" }}>
                     {role}
                   </div>
                 )}

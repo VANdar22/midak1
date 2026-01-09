@@ -84,7 +84,7 @@ const Hero = () => {
                     <motion.h1 
                       className="text-4xl! sm:text-3xl! md:text-4xl! lg:text-4xl! xl:text-5xl! text-gray-900 font-bold w-full overflow-x-visible"
                       style={{ 
-                        fontFamily: "'Montserrat', sans-serif",
+                        fontFamily: "'League Spartan', sans-serif",
                         fontWeight: 800,
                         letterSpacing: '-0.02em',
                         lineHeight: '1.1',
@@ -156,7 +156,7 @@ const Hero = () => {
                           key={i}
                           className="text-xl xs:text-xl sm:text-2xl md:text-2xl lg:text-2xl text-black leading-relaxed"
                           style={{
-                            fontFamily: "'Montserrat Alternates', sans-serif",
+                            fontFamily: "'League Spartan', sans-serif",
                             fontWeight: 400,
                             letterSpacing: '0.01em',
                             lineHeight: '1.6'
@@ -185,7 +185,7 @@ const Hero = () => {
               <motion.span 
                 className="text-xl lg:text-2xl text-black"
                 style={{
-                  fontFamily: "'Montserrat Alternates', sans-serif",
+                  fontFamily: "'League Spartan', sans-serif",
                   fontWeight: 600,
                   letterSpacing: '0.02em'
                 }}

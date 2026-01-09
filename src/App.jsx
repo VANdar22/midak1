@@ -9,6 +9,7 @@ import Contact from './pages/Contact';
 import Policy from './pages/Policy';
 import Approach from './pages/Approach';
 import Privacy from './pages/Privacy';
+import AboutSection from './components/sections/AboutSection';
 import Terms from './pages/Terms';
 import Cookies from './pages/Cookies';
 import BlogPost from './pages/BlogPost';
@@ -16,6 +17,7 @@ import ProjectPost from './pages/ProjectPost';
 import NewFooter from './components/sections/NewFooter';
 import ModernFooter from './components/sections/ModernFooter';
 import ServiceDetail from './pages/ServiceDetail';
+import Future from './pages/Future';
 const App = () => {
   const appStyles = {
     minHeight: '100vh',
@@ -51,7 +53,7 @@ const AppContent = ({ appStyles }) => {
         <main style={appStyles}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={<AboutSection />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/:serviceId" element={<ServiceDetail />} />
             <Route path="/blog" element={<Blog />} />
@@ -63,6 +65,7 @@ const AppContent = ({ appStyles }) => {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/cookies" element={<Cookies />} />
+            <Route path="/future" element={<Future />} />
           </Routes>
         </main>
       </div>

@@ -131,24 +131,16 @@ const FeaturedPostContainer = styled(motion.div)`
 
 
 const Blog = () => {
-  // Apply Montserrat font to the entire page
-  useEffect(() => {
-    document.body.style.fontFamily = 'Montserrat, sans-serif';
-    return () => {
-      document.body.style.fontFamily = ''; // Reset on unmount if needed
-    };
-  }, []);
-  // Apply Montserrat font to the entire page
-  document.body.style.fontFamily = 'Montserrat, sans-serif';
-  
+  // State management
   const [activeCategory, setActiveCategory] = useState('View all');
-  const [sortBy, setSortBy] = useState('mostRecent');
+  const [sortBy, setSortBy] = useState('newest');
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const sortButtonRef = React.useRef(null);
   const postsPerPage = 4; // Number of posts per page
-
-  React.useEffect(() => {
+  
+  // Apply global styles and font
+  useEffect(() => {
     if (typeof document === 'undefined') {
       return undefined;
     }
@@ -159,6 +151,13 @@ const Blog = () => {
       if (styleTag.parentNode) {
         styleTag.parentNode.removeChild(styleTag);
       }
+    };
+  }, []);
+
+  React.useEffect(() => {
+    document.body.style.fontFamily = '"League Spartan", sans-serif';
+    return () => {
+      document.body.style.fontFamily = '';
     };
   }, []);
 
@@ -179,11 +178,10 @@ const Blog = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-  
+
   const sortOptions = [
-    { value: 'mostRecent', label: 'Most Recent' },
-    { value: 'mostPopular', label: 'Most Popular' },
-    { value: 'mostViewed', label: 'Most Viewed' }
+    { value: 'newest', label: 'Newest' },
+    { value: 'oldest', label: 'Oldest' },
   ];
 
   const categories = [
@@ -195,13 +193,7 @@ const Blog = () => {
   ];
 
   const featuredPost = {
-    id: 1,
-    slug: 'getting-started-with-modern-web-development',
-    title: 'Getting Started with Modern Web Development',
-    excerpt: 'A comprehensive guide to building modern web applications with the latest technologies and best practices.',
-    date: 'November 15, 2023',
-    category: 'Software Engineering',
-    image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
+    
   };
 
   const posts = [
@@ -216,50 +208,7 @@ const Blog = () => {
       popularity: 92,
       views: 4200,
     },
-    {
-      id: 3,
-      slug: 'future-of-product-management',
-      title: 'The Future of Product Management',
-      excerpt: 'Exploring how AI and machine learning are transforming product development and management.',
-      date: 'November 5, 2023',
-      category: 'Product',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
-      popularity: 88,
-      views: 3650,
-    },
-    {
-      id: 4,
-      slug: 'building-scalable-apis-with-nodejs',
-      title: 'Building Scalable APIs with Node.js',
-      excerpt: 'Best practices for designing and implementing high-performance, scalable APIs using Node.js.',
-      date: 'October 30, 2023',
-      category: 'Software Engineering',
-      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
-      popularity: 96,
-      views: 5100,
-    },
-    {
-      id: 5,
-      slug: 'customer-success-in-saas',
-      title: 'Customer Success in SaaS',
-      excerpt: 'Strategies for building a customer success program that drives retention and growth.',
-      date: 'October 25, 2023',
-      category: 'Customer Success',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
-      popularity: 85,
-      views: 2800,
-    },
-    {
-      id: 6,
-      slug: 'the-art-of-ui-animation',
-      title: 'The Art of UI Animation',
-      excerpt: 'How to use animation to enhance user experience and create delightful interfaces.',
-      date: 'October 20, 2023',
-      category: 'Design',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
-      popularity: 90,
-      views: 3300,
-    }
+   
   ];
 
   const filteredPosts = activeCategory === 'View all' 
@@ -269,11 +218,9 @@ const Blog = () => {
   const sortedPosts = (() => {
     const list = [...filteredPosts];
     switch (sortBy) {
-      case 'mostPopular':
-        return list.sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0));
-      case 'mostViewed':
-        return list.sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
-      case 'mostRecent':
+      case 'oldest':
+        return list.sort((a, b) => new Date(a.date) - new Date(b.date));
+      case 'newest':
       default:
         return list.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
@@ -302,7 +249,7 @@ const Blog = () => {
   const featuredPosts = [featuredPost, ...posts].slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+    <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'League Spartan, sans-serif' }}>
       {/* Featured Posts Carousel */}
       <div 
         className="relative mx-auto w-[calc(100%-32px)] md:w-11/12 max-w-5xl"
@@ -418,7 +365,7 @@ const Blog = () => {
                     alignItems: 'flex-end'
                   }}
                 >
-                  <div className="w-full max-w-3xl text-left">
+                  <div className="w-full max-w-3xl text-left" style={{ fontFamily: 'League Spartan, sans-serif' }}>
                     <span 
                       className="inline-block px-3 py-1 mb-3 text-xs font-semibold text-white rounded-full"
                       style={{
@@ -430,13 +377,13 @@ const Blog = () => {
                     >
                       {post.category}
                     </span>
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-2 sm:mb-3 leading-tight" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-2 sm:mb-3 leading-tight" style={{ fontFamily: 'League Spartan, sans-serif' }}>
                       {post.title}
                     </h2>
-                    <p className="text-white/80 text-xs sm:text-sm md:text-base max-w-2xl mb-3 sm:mb-4 line-clamp-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    <p className="text-white/80 text-xs sm:text-sm md:text-base max-w-2xl mb-3 sm:mb-4 line-clamp-2" style={{ fontFamily: 'League Spartan, sans-serif' }}>
                       {post.excerpt}
                     </p>
-                    <div className="text-sm text-white/80 font-sans">
+                    <div className="text-sm text-white/80 font-sans" style={{ fontFamily: 'League Spartan, sans-serif' }}>
                       <time dateTime={post.date}>{post.date}</time>
                     </div>
                   </div>
@@ -448,10 +395,10 @@ const Blog = () => {
       </div>
 
       {/* Midak Insights Header */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 sm:py-3 text-left">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 sm:py-3 text-left" style={{ fontFamily: 'League Spartan, sans-serif' }}>
         <h1 className="text-lg sm:text-2xl font-bold tracking-tight" style={{ 
           color: accentColors.main, 
-          fontFamily: '"Montserrat Alternates", sans-serif',
+          fontFamily: 'League Spartan, sans-serif',
           fontWeight: 700,
           margin: 0
         }}>
@@ -460,12 +407,12 @@ const Blog = () => {
       </div>
 
           {/* Category and Sort Section */}
-          <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 mb-6 sm:mb-8">
+          <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 mb-6 sm:mb-8" style={{ fontFamily: 'League Spartan, sans-serif' }}>
             <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row justify-between items-stretch sm:items-center w-full">
           {/* Category Tabs */}
           <div className="w-full relative pr-4 sm:pr-0">
             <div 
-              className="flex space-x-4 sm:space-x-8 overflow-x-auto pb-3 -mx-2 px-2 hide-scrollbar"
+              className="flex space-x-4 sm:space-x-8 overflow-x-auto pb-3 -mx-2 px-2 hide-scrollbar" 
               style={{
                 scrollbarWidth: 'none', /* Firefox */
                 msOverflowStyle: 'none', /* IE and Edge */
@@ -498,7 +445,7 @@ const Blog = () => {
           </div>
           
           {/* Sort Dropdown */}
-          <div className="relative w-full sm:w-auto mt-2 sm:mt-0 sm:ml-4" ref={sortButtonRef}>
+          <div className="relative w-full sm:w-auto mt-2 sm:mt-0 sm:ml-4" ref={sortButtonRef} style={{ fontFamily: 'League Spartan, sans-serif' }}>
             <div className="relative w-full">
               <button
                 type="button"
@@ -523,7 +470,7 @@ const Blog = () => {
                 aria-expanded={isSortOpen}
               >
                 <span className="whitespace-nowrap text-left">
-                  {sortOptions.find(opt => opt.value === sortBy)?.label || 'Most Recent'}
+                  {sortOptions.find(opt => opt.value === sortBy)?.label || 'Newest'}
                 </span>
                 <svg 
                   className={`h-4 w-4 text-gray-400 transform transition-transform duration-200 ${isSortOpen ? 'rotate-180' : ''}`} 
@@ -573,10 +520,10 @@ const Blog = () => {
       </div>
 
       {/* Blog Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16" style={{ fontFamily: 'League Spartan, sans-serif' }}>
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {currentPosts.map((post) => (
-            <div key={post.id} className="flex flex-col rounded-lg overflow-hidden h-full border border-gray-200 transition-colors duration-300 hover:border-gray-300">
+            <div key={post.id} className="flex flex-col rounded-lg overflow-hidden h-full border border-gray-200 transition-colors duration-300 hover:border-gray-300" style={{ fontFamily: 'League Spartan, sans-serif' }}>
               <div className="flex-shrink-0 overflow-hidden h-40">
                 <div className="relative h-full w-full group">
                   <img
@@ -589,12 +536,12 @@ const Blog = () => {
               </div>
               <div className="p-4 flex-1 flex flex-col justify-between">
                 <div className="flex-1">
-                  <p className="text-xs font-medium" style={{ color: `${accentColors.main}CC` }}>
+                  <p className="text-xs font-medium" style={{ color: `${accentColors.main}CC`, fontFamily: 'League Spartan, sans-serif' }}>
                     {post.category}
                   </p>
                   <div className="block mt-1">
                     <Link to={`/blog/${post.slug}`} className="transition-colors duration-200" style={{ '--tw-text-opacity': '1', color: `var(--tw-text-opacity, ${accentColors.main})` }}>
-                    <p className="text-lg font-semibold text-gray-900 line-clamp-2">{post.title}</p>
+                    <p className="text-lg font-semibold text-gray-900 line-clamp-2" style={{ fontFamily: 'League Spartan, sans-serif' }}>{post.title}</p>
                   </Link>
                     <p className="mt-2 text-sm text-gray-500 line-clamp-2 mb-4">{post.excerpt}</p>
 
@@ -635,15 +582,15 @@ const Blog = () => {
             <button 
               onClick={() => paginate(currentPage > 1 ? currentPage - 1 : 1)}
               disabled={currentPage === 1}
-              className="p-3 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+              className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#800020] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
               style={{
-                backgroundColor: `${accentColors.main}1A`,
-                color: accentColors.main,
-                '--tw-bg-opacity': '0.1',
+                color: currentPage === 1 ? '#9CA3AF' : accentColors.main,
+                borderColor: currentPage === 1 ? '#E5E7EB' : `${accentColors.main}80`,
                 '&:hover': {
-                  backgroundColor: `${accentColors.main}33`
+                  backgroundColor: `${accentColors.main}0D`
                 }
               }}
+              aria-label="Previous page"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -654,17 +601,9 @@ const Blog = () => {
               <button
                 key={number}
                 onClick={() => paginate(number)}
-                className={`w-5 h-5 rounded-full flex items-center justify-center font-medium text-lg ${
-                  currentPage === number 
-                    ? 'text-white shadow-lg transform scale-105' 
-                    : 'hover:bg-opacity-10'
-                } transition-all duration-300`}
-                style={{
-                  backgroundColor: currentPage === number ? accentColors.main : 'transparent',
-                  color: currentPage === number ? accentColors.text : accentColors.main,
-                  '--tw-bg-opacity': '0.1',
-                  '--tw-text-opacity': '1'
-                }}
+                className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-200 ${currentPage === number ? 'bg-[#800020] text-white' : 'text-gray-700 hover:bg-gray-100'}`}
+                aria-current={currentPage === number ? 'page' : undefined}
+                aria-label={`Page ${number}`}
               >
                 {number}
               </button>
@@ -673,15 +612,15 @@ const Blog = () => {
             <button 
               onClick={() => paginate(currentPage < totalPages ? currentPage + 1 : totalPages)}
               disabled={currentPage === totalPages}
-              className="p-3 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+              className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#800020] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
               style={{
-                backgroundColor: `${accentColors.main}1A`,
-                color: accentColors.main,
-                '--tw-bg-opacity': '0.1',
+                color: currentPage === totalPages ? '#9CA3AF' : accentColors.main,
+                borderColor: currentPage === totalPages ? '#E5E7EB' : `${accentColors.main}80`,
                 '&:hover': {
-                  backgroundColor: `${accentColors.main}33`
+                  backgroundColor: `${accentColors.main}0D`
                 }
               }}
+              aria-label="Next page"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiBarChart2, FiUsers, FiCpu, FiTarget } from 'react-icons/fi';
 
 const Approach = () => {
   const sections = [
@@ -45,6 +46,58 @@ const Approach = () => {
               <p className="text-gray-600 leading-relaxed">{section.body}</p>
             </article>
           ))}
+        </div>
+
+        {/* Our Approach Section */}
+        <div className="mt-20">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Approach</h2>
+            <p className="text-lg text-gray-600">
+              Our approach is designed to move clients from questions to answers, and from answers to action through an integrated process that combines rigorous methods, modern technology, and strategic thinking.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                <FiBarChart2 className="w-6 h-6 text-[#6f35c8]" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Rigorous Research Methodology</h3>
+              <p className="text-gray-600">
+                We apply globally recognized qualitative, quantitative, and mixed methods approaches. Surveys, interviews, focus groups, experiments, and advanced statistical models are carefully designed to ensure credibility, reliability, and validity.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                <FiUsers className="w-6 h-6 text-[#6f35c8]" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Human-Centered Insight</h3>
+              <p className="text-gray-600">
+                We look beyond numbers to understand people—their motivations, constraints, perceptions, and experiences. Our work is grounded in context, culture, and lived reality, ensuring insights are not only accurate but also empathetic and practical.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                <FiCpu className="w-6 h-6 text-[#6f35c8]" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Technology-Enabled Analytics</h3>
+              <p className="text-gray-600">
+                We use modern tools such as data visualization, predictive modeling, machine learning, and interactive dashboards to reveal patterns and trends that might otherwise remain hidden. These tools make complex insights accessible and actionable.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                <FiTarget className="w-6 h-6 text-[#6f35c8]" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Strategy & Implementation Focus</h3>
+              <p className="text-gray-600">
+                We don't stop at reporting findings. We co-create strategies, action plans, and decision frameworks that help clients use insights to improve performance, design better programs, refine products, and allocate resources more effectively.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

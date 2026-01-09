@@ -319,7 +319,7 @@ const insights = [
 const Services = () => {
   return (
     <PageTransition>
-      <div className="min-h-screen font-['Montserrat']" style={{ backgroundColor: '#f5f5f5', color: '#1a1a1a' }}>
+      <div className="min-h-screen font-['League_Spartan']" style={{ backgroundColor: '#f5f5f5', color: '#1a1a1a' }}>
       {/* hero */}
       <motion.section 
         className="mx-auto max-w-6xl px-6 py-24 overflow-hidden"
@@ -334,7 +334,7 @@ const Services = () => {
               <p className="text-sm uppercase tracking-[0.3em] mb-4" style={{ color: `${accentColors.main}80` }}>Our Services</p>
             </AnimatedText>
             <AnimatedText delay={0.2} split>
-              <h1 className="text-3xl! xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 font-bold leading-tight tracking-tight font-['Montserrat_Alternates']">
+              <h1 className="text-3xl! xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 font-bold leading-tight tracking-tight font-['League_Spartan']">
                 Your partner for research-led strategy, design, and delivery.
               </h1>
             </AnimatedText>
@@ -343,7 +343,7 @@ const Services = () => {
             <div className="flex-1 max-w-xl space-y-6">
               <div className="[&>span]:inline-block [&>span]:opacity-90 mb-8">
                 <AnimatedText split={false} delay={0.25}>
-                  <p className="text-lg xs:text-lg sm:text-xl md:text-xl lg:text-xl text-black leading-relaxed font-['Montserrat']">
+                  <p className="text-lg xs:text-lg sm:text-xl md:text-xl lg:text-xl text-black leading-relaxed font-['League_Spartan']">
                     We help leadership teams make confident decisions. Every engagement blends rigorous research with calm,
                     minimal execution so the work feels as clear as it looks.
                   </p>
@@ -390,10 +390,10 @@ const Services = () => {
       <section className="mx-auto max-w-6xl px-6 py-16 space-y-10" style={{ backgroundColor: '#f5f5f5' }}>
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.3em] mb-4" style={{ color: `${accentColors.main}80` }}>What we do</p>
-            <h2 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 font-['Montserrat_Alternates']">Simple structure, deep capability.</h2>
+            <p className="text-sm uppercase tracking-[0.3em] mb-4 font-['League_Spartan']" style={{ color: `${accentColors.main}80` }}>What we do</p>
+            <h2 className="text-3xl font-bold leading-tight tracking-tight text-gray-900 font-['League_Spartan']">Simple structure, deep capability.</h2>
           </div>
-          <p className="text-lg xs:text-lg sm:text-xl md:text-xl lg:text-xl text-black leading-relaxed opacity-90 md:max-w-2xl font-['Montserrat']">
+          <p className="text-lg xs:text-lg sm:text-xl md:text-xl lg:text-xl text-black leading-relaxed opacity-90 md:max-w-2xl font-['League_Spartan']">
             We keep the interface minimal so conversations stay about your business. Behind the scenes, multidisciplinary
             teams cover the detail.
           </p>
@@ -412,12 +412,12 @@ const Services = () => {
             >
               <div className="space-y-8">
                 <div className="space-y-6">
-                  <div className="flex items-center gap-3 text-sm font-['Montserrat']">
+                  <div className="flex items-center gap-3 text-sm font-['League_Spartan']">
                     <span className="font-medium tracking-wider" style={{ color: accentColors.main }}>{capability.label}</span>
                     <span className="w-1 h-1 rounded-full bg-transparent"></span>
                     <span className="text-gray-500">{capability.cta}</span>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 font-['Montserrat_Alternates']">{capability.title}</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 font-['League_Spartan']">{capability.title}</h3>
                 </div>
                 <p className="text-lg text-gray-900 leading-relaxed opacity-90">{capability.body}</p>
                 <div className="space-y-4">
@@ -491,11 +491,11 @@ const Services = () => {
       <section style={{ backgroundColor: '#f5f5f5' }}>
         <div className="mx-auto max-w-6xl px-6 py-24 space-y-16">
           <div className="max-w-4xl">
-            <p className="text-sm uppercase tracking-[0.3em] mb-4 font-['Montserrat']" style={{ color: `${accentColors.main}80` }}>Our Differentiators</p>
-            <h2 className="text-3xl! sm:text-3xl md:text-4xl font-bold leading-tight tracking-tight text-gray-900 font-['Montserrat_Alternates']">
+            <p className="text-sm uppercase tracking-[0.3em] mb-4 font-['League_Spartan']" style={{ color: `${accentColors.main}80` }}>Our Differentiators</p>
+            <h2 className="text-3xl! sm:text-3xl md:text-4xl font-bold leading-tight tracking-tight text-gray-900 font-['League_Spartan']">
               What Makes Midak Different
             </h2>
-            <p className="mt-8 text-base sm:text-lg md:text-xl text-gray-900 opacity-90 max-w-2xl font-['Montserrat']">
+            <p className="mt-8 text-base sm:text-lg md:text-xl text-gray-900 opacity-90 max-w-2xl font-['League_Spartan']">
               Explore our unique approach to research, strategy, and the future of data-driven organizations.
             </p>
           </div>
@@ -525,8 +525,8 @@ const Services = () => {
       <section className="mx-auto max-w-6xl px-6 bg-[#f4f4f4] py-16 space-y-8">
         <div className="space-y-8">
           <div className="flex flex-col gap-4">
-            <p className="text-sm font-medium uppercase tracking-[0.3em] font-['Montserrat']" style={{ color: `${accentColors.main}80` }}>Latest insights</p>
-            <h2 className="text-3xl font-bold tracking-tight mt-2 md:text-4xl font-['Montserrat_Alternates']">Thinking that travels from lab to boardroom.</h2>
+            <p className="text-sm font-medium uppercase tracking-[0.3em] font-['League_Spartan']" style={{ color: `${accentColors.main}80` }}>Latest insights</p>
+            <h2 className="text-3xl font-bold tracking-tight mt-2 md:text-4xl font-['League_Spartan']">Thinking that travels from lab to boardroom.</h2>
           </div>
           <div className="relative inline-block">
             <motion.a

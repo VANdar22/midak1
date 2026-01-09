@@ -48,7 +48,7 @@ const ImageWithDescription = ({
               <p 
                 className="text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-normal text-[#f4f4f4] leading-tight md:leading-normal text-left"
                 style={{ 
-                  fontFamily: "'Montserrat', sans-serif",
+                  fontFamily: "'League Spartan', sans-serif",
                   fontWeight: 400,
                   textShadow: '0 2px 4px rgba(0,0,0,0.3)',
                   WebkitFontSmoothing: 'antialiased',

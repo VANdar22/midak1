@@ -39,24 +39,7 @@ const ViewButton = styled.button`
 `;
 
 const projects = [
-  {
-    id: 1,
-    slug: 'market-analysis',
-    title: 'Market Analysis',
-    date: 'November 2023',
-    subtext: 'Comprehensive market research and trend analysis',
-    image: 'https://images.unsplash.com/photo-1551285563-dbdf1849c1d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    category: 'Research'
-  },
-  {
-    id: 2,
-    slug: 'data-visualization',
-    title: 'Data Visualization',
-    date: 'October 2023',
-    subtext: 'Interactive dashboards and data insights',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    category: 'Analytics'
-  },
+  
   {
     id: 3,
     slug: 'strategic-planning',
@@ -84,11 +67,11 @@ const ProjectCard = ({ project }) => (
           />
         </motion.div>
         <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
-        <div className="absolute top-4 right-4 bg-[#f5f5f5] px-3 py-1 rounded-full text-xs font-medium font-['Montserrat_Alternates']" 
+        <div className="absolute top-4 right-4 bg-[#f5f5f5] px-3 py-1 rounded-full text-xs font-medium font-['League_Spartan']" 
              style={{ 
                color: accentColors.main, 
                border: `1px solid ${accentColors.main}`,
-               fontFamily: "'Montserrat Alternates', sans-serif"
+               fontFamily: "'League Spartan', sans-serif"
              }}>
           {project.category}
         </div>
@@ -98,18 +81,18 @@ const ProjectCard = ({ project }) => (
     <div className="p-6 flex-1 flex flex-col">
       <div className="flex-1">
         <div className="mb-2">
-          <span className="text-xs font-semibold tracking-wider uppercase font-['Montserrat_Alternates']" 
-                style={{ color: `${accentColors.main}CC`, fontFamily: "'Montserrat Alternates', sans-serif" }}>
+          <span className="text-xs font-semibold tracking-wider uppercase font-['League_Spartan']" 
+                style={{ color: `${accentColors.main}CC`, fontFamily: "'League Spartan', sans-serif" }}>
             {project.category}
           </span>
         </div>
         <div className="block">
-          <h3 className="text-xl font-semibold text-gray-900 leading-snug mb-2 font-['Montserrat']" 
-              style={{ fontFamily: "'Montserrat', sans-serif" }}>
+          <h3 className="text-xl font-semibold text-gray-900 leading-snug mb-2 font-['League_Spartan']" 
+              style={{ fontFamily: "'League Spartan', sans-serif" }}>
             {project.title}
           </h3>
-          <p className="text-gray-600 leading-relaxed font-['Montserrat']" 
-             style={{ fontFamily: "'Montserrat', sans-serif" }}>{project.subtext}</p>
+          <p className="text-gray-600 leading-relaxed font-['League_Spartan']" 
+             style={{ fontFamily: "'League Spartan', sans-serif" }}>{project.subtext}</p>
         </div>
       </div>
       
@@ -191,7 +174,7 @@ const Projects = () => {
   };
 
   return (
-    <section className="w-full py-16 overflow-hidden font-['Montserrat']" style={{ backgroundColor: '#f5f5f5', fontFamily: "'Montserrat', sans-serif" }}>
+    <section className="w-full py-16 overflow-hidden font-['League_Spartan']" style={{ backgroundColor: '#f5f5f5', fontFamily: "'League Spartan', sans-serif" }}>
       <motion.div 
         className="container mx-auto px-4"
         ref={ref}
@@ -207,7 +190,7 @@ const Projects = () => {
             </div>
           </h2>
           <motion.p 
-            className="text-lg xs:text-lg sm:text-2xl md:text-2xl lg:text-2xl text-gray-600 font-normal w-full whitespace-normal text-left leading-relaxed"
+            className="text-base xs:text-base sm:text-xl md:text-xl lg:text-xl text-gray-600 font-normal w-full whitespace-normal text-left leading-relaxed"
             variants={itemVariants}
           >
             <span className="line">Explore our portfolio of successful projects and business solutions.</span>

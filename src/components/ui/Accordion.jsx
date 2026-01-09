@@ -171,7 +171,7 @@ const Accordion = () => {
                                             </span>
                                         </div>
                                         {/* IMPROVED TITLE STYLE */}
-                                        <h3 className="text-xl! xs:text-2xl! sm:text-2xl! md:text-2xl! lg:text-2xl! font-semibold text-gray-800 pl-2 md:pl-0">
+                                        <h3 className="text-lg! xs:text-lg! sm:text-lg! md:text-lg! lg:text-lg! font-semibold text-gray-800 pl-2 md:pl-0">
                                             {item.title}
                                         </h3>
                                     </div>

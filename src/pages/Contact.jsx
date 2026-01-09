@@ -103,38 +103,38 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: 'League Spartan, sans-serif' }}>
       <div className="w-full px-4 pt-32 pb-12">
         <div className="w-full max-w-7xl mx-auto">
           {/* Main Content - Side by Side */}
           <div className="flex flex-col lg:flex-row gap-12 mb-12">
             {/* Left Column - Contact Info */}
             <div className="lg:w-1/2">
-              <h1 className="font-bold text-black mb-8 leading-tight font-['Montserrat_Alternates']" style={{ fontSize: '2rem', lineHeight: '1.75rem' }}>
+              <h1 className="font-semibold text-black mb-8 leading-tight font-[league spartan]" style={{ fontSize: '2rem', lineHeight: '1.75rem' }}>
                 Contact us to facilitate your journey through high-quality project development and exploratory research support
               </h1>
               
               <div className="space-y-8 mb-12 md:mb-16 lg:mb-20">
                 <div>
-                  <h3 className={`font-semibold text-[${accentColors.DEFAULT}] text-lg mb-2 font-['Montserrat_Alternates']`}>Email Us</h3>
+                  <h3 className={`text-[${accentColors.DEFAULT}] text-lg font-semibold mb-2`}>Email Us</h3>
                   <a href="mailto:info@midakresearch.com" className={`text-gray-700 hover:text-[${accentColors.DEFAULT}] transition-colors text-xl`}>
                     info@midakresearch.com
                   </a>
                 </div>
                 
                 <div className="mb-6 md:mb-0">
-                  <h3 className={`font-semibold text-[${accentColors.DEFAULT}] text-lg mb-2 font-['Montserrat_Alternates']`}>Location</h3>
-                  <p className="text-gray-700 text-xl">Accra, Ghana<br />Operating Globally</p>
+                  <h3 className={`font-semibold text-[${accentColors.DEFAULT}] text-lg font-semibold -mt-2 mb-2`}>Location</h3>
+                  <p className="text-black text-lg font-semibold">Accra, Ghana<br />Operating Globally</p>
                 </div>
                 
                 <div>
-                  <h3 className={`font-semibold text-[${accentColors.DEFAULT}] text-lg mb-2 font-['Montserrat_Alternates']`}>Connect</h3>
+                  <h3 className={`text-[${accentColors.DEFAULT}] text-lg font-semibold mt-4 mb-2`}>Connect</h3>
                   <div className="flex flex-wrap items-center gap-4 -ml-2">
                     <a 
                       href="https://linkedin.com/company/midak-research-consult" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-gray-500! hover:text-[#0A66C2]! !transition-transform duration-200 hover:scale-110"
+                      className="text-black! hover:text-[#0A66C2]! !transition-transform duration-200 hover:scale-110"
                       aria-label="LinkedIn" 
                     >
                       <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -145,7 +145,7 @@ const ContactPage = () => {
                       href="https://instagram.com/midakresearch" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-gray-500! hover:text-[#E1306C]! transition-transform duration-200 hover:scale-110"
+                      className="text-black! hover:text-[#E1306C]! transition-transform duration-200 hover:scale-110"
                       aria-label="Instagram"
                     >
                       <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -156,7 +156,7 @@ const ContactPage = () => {
                       href="https://x.com/midakresearch" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-gray-500! hover:text-black! transition-transform duration-200 hover:scale-110"
+                      className="text-black! hover:text-black! transition-transform duration-200 hover:scale-110"
                       aria-label="X (Twitter)"
                     >
                       <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -173,7 +173,7 @@ const ContactPage = () => {
 
             {/* Right Column - Contact Form */}
             <div className="lg:w-1/2 bg-white p-6 md:p-8 rounded-lg border border-gray-100 lg:-mt-8">
-              <h2 className="text-xl font-bold text-gray-800 mb-6 font-['Montserrat_Alternates']" style={{ fontSize: '2rem', lineHeight: '1.75rem' }}>Send us a message</h2>
+              <h2 className="text-xl font-bold text-gray-800 mb-6" style={{ fontSize: '2rem', lineHeight: '1.75rem' }}>Send us a message</h2>
               <form onSubmit={handleSubmit} className="space-y-6 text-left">
                 {submitStatus.message && (
                   <div className={`p-4 rounded-lg ${submitStatus.success ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
@@ -182,7 +182,7 @@ const ContactPage = () => {
                 )}
                 
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1 font-['Montserrat_Alternates']">Your Name</label>
+                  <label htmlFor="name" className="block text-lg font-medium text-gray-700 mb-1">Your Name</label>
                   <input
                     type="text"
                     id="name"
@@ -196,7 +196,7 @@ const ContactPage = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1 font-['Montserrat_Alternates']">Email Address</label>
+                  <label htmlFor="email" className="block text-lg font-medium text-gray-700 mb-1">Email Address</label>
                   <input
                     type="email"
                     id="email"
@@ -210,7 +210,7 @@ const ContactPage = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1 font-['Montserrat_Alternates']">Subject</label>
+                  <label htmlFor="subject" className="block text-lg font-medium text-gray-700 mb-1 font-['League_Spartan']">Subject</label>
                   <input
                     type="text"
                     id="subject"
@@ -224,7 +224,7 @@ const ContactPage = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1 font-['Montserrat_Alternates']">Your Message</label>
+                  <label htmlFor="message" className="block text-lg font-medium text-gray-700 mb-1">Your Message</label>
                   <textarea
                     id="message"
                     name="message"
@@ -243,7 +243,7 @@ const ContactPage = () => {
                     disabled={isSubmitting}
                     className={`w-full flex items-center justify-center px-6 py-3 rounded-full transition-all duration-300 font-semibold shadow-md hover:shadow-lg ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                     style={{
-                      fontFamily: 'Montserrat, sans-serif',
+                      fontFamily: 'league spartan, sans-serif',
                       backgroundColor: accentColors.main,
                       border: `2px solid ${accentColors.DEFAULT}`,
                       color: 'white'
@@ -276,7 +276,7 @@ const ContactPage = () => {
 
             {/* FAQ Section */}
             <div className="mt-12">
-              <h2 className={`text-3xl font-bold text-center text-[${accentColors.DEFAULT}] mb-8`} style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <h2 className={`text-3xl font-bold text-center text-[${accentColors.DEFAULT}] mb-8`}>
                 Frequently Asked Questions
               </h2>
               
@@ -301,7 +301,7 @@ const ContactPage = () => {
                       </svg>
                     </button>
                     {openFaqs.includes(index) && (
-                      <div className="px-4 pt-2 pb-4 text-gray-600" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                      <div className="px-4 pt-2 pb-4 text-gray-600">
                         {item.answer}
                       </div>
                     )}

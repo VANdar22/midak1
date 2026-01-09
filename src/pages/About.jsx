@@ -8,7 +8,7 @@ import ScrollVelocity from '@/components/ScrollVelocity';
 
 const content = [
   {
-    title: <span style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}>Who We Are</span>,
+    title: <span style={{ fontFamily: 'League_Spartan, sans-serif', fontWeight: 700 }}>Who We Are</span>,
     description: <div className="text-xl md:text-2xl text-gray-800 leading-relaxed opacity-90">Midak is a knowledge-driven consultancy built on three core pillars: intelligence, insight, and integrity. We bring together a multidisciplinary team of researchers, analysts, strategists, and technologists who share a common belief that data, when used responsibly and creatively, has the power to transform organizations and communities.<br /><br />Our team operates at the intersection of academic rigor and practical strategy. We design and execute studies, analyze complex data, and translate findings into clear, usable recommendations. From market assessments and impact evaluations to customer analytics and policy research, we approach every assignment with the same commitment to quality, accuracy, and real-world relevance.</div>,
     content: (
       <div className="absolute inset-0 w-full h-full">
@@ -27,7 +27,7 @@ const content = [
     ),
   },
   {
-    title: <span style={{ fontFamily: 'Montserrat, sans-serif' }}>Our Approach</span>,
+    title: <span style={{ fontFamily: 'League_Spartan, sans-serif' }}>Our Approach</span>,
     description: (
       <div className="space-y-6 text-xl! md:text-2xl! text-gray-800 leading-relaxed opacity-90">
         <p className="text-xl! md:text-2xl!">Our approach is designed to move clients from questions to answers, and from answers to action. We do this through an integrated process that combines rigorous methods, modern technology, and strategic thinking.</p>
@@ -35,28 +35,28 @@ const content = [
         <ol className="space-y-4 list-decimal pl-5">
           <li className="pl-2">
             <div>
-              <span className="font-semibold" style={{ color: accentColors.DEFAULT, fontFamily: 'Montserrat, sans-serif' }}>Rigorous Research: </span>
+              <span className="font-semibold" style={{ color: accentColors.DEFAULT, fontFamily: 'League_Spartan, sans-serif' }}>Intense Research: </span>
               <span>We apply global qualitative, quantitative, and mixed methods through surveys, interviews, and advanced statistical analysis.</span>
             </div>
           </li>
           
           <li className="pl-2">
             <div>
-              <span className="font-semibold" style={{ color: accentColors.DEFAULT, fontFamily: 'Montserrat, sans-serif' }}>Human Insights: </span>
+              <span className="font-semibold" style={{ color: accentColors.DEFAULT, fontFamily: 'League_Spartan, sans-serif' }}>Human Insights: </span>
               <span>Understanding people's motivations and experiences through cultural and contextual analysis for practical, empathetic solutions.</span>
             </div>
           </li>
           
           <li className="pl-2">
             <div>
-              <span className="font-semibold" style={{ color: accentColors.DEFAULT, fontFamily: 'Montserrat, sans-serif' }}>Advanced Analytics: </span>
+              <span className="font-semibold" style={{ color: accentColors.DEFAULT, fontFamily: 'League_Spartan, sans-serif' }}>Advanced Analytics: </span>
               <span>Leveraging data visualization, machine learning, and interactive tools to uncover and present actionable insights.</span>
             </div>
           </li>
           
           <li className="pl-2">
             <div>
-              <span className="font-semibold" style={{ color: accentColors.DEFAULT, fontFamily: 'Montserrat, sans-serif' }}>Focused Implementation: </span>
+              <span className="font-semibold" style={{ color: accentColors.DEFAULT, fontFamily: 'League_Spartan, sans-serif' }}>Focused Implementation: </span>
               <span>Transforming insights into strategic action plans for better performance and resource allocation.</span>
             </div>
           </li>
@@ -80,8 +80,8 @@ const content = [
     ),
   },
   {
-    title: <span style={{ color: accentColors.DEFAULT, fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}>Our Story</span>,
-    description: <div className="text-xl md:text-2xl text-gray-800 leading-relaxed opacity-90">Midak was founded by Michael (Asante) Ofosu, a PhD researcher at Auburn University (USA), whose academic and professional journey spans research design, statistical modeling, monitoring and evaluation, and advisory work. Having worked across academic institutions, development projects, and private-sector initiatives, Michael observed a persistent gap: high-quality research was being produced but not always translated into decisions that changed practice or improved outcomes.<br /><br />Midak was created to close that gap. The firm was envisioned as a bridge between rigorous research and practical decision-making—a consultancy rooted in African realities, operating to global standards, and committed to helping clients move from "data" to "direction." Today, Midak continues to grow as a trusted partner for organizations seeking clarity, innovation, and measurable impact.</div>,
+    title: <span style={{ color: accentColors.DEFAULT, fontFamily: 'League_Spartan, sans-serif', fontWeight: 700 }}>Our Story</span>,
+    description: <div className="text-xl md:text-2xl text-gray-800 leading-relaxed opacity-90">Midak was founded by Michael (Asante) Ofosu, a PhD researcher at Auburn University (USA), whose academic and professional journey spans research design, statistical modeling, monitoring and evaluation, and advisory work. Having worked across academic institutions, development projects, and private-sector initiatives, Michael observed a persistent gap: high-quality research was being produced but not always translated into decisions that changed practice or improved outcomes.<br /><br />Midak was created to close that gap. The firm was envisioned as a bridge between intense research and practical decision-making a consultancy rooted in African realities, operating to global standards, and committed to helping clients move from "data" to "direction." Today, Midak continues to grow as a trusted partner for organizations seeking clarity, innovation, and measurable impact.</div>,
     content: (
       <div className="absolute inset-0 w-full h-full">
         <img 
@@ -102,7 +102,7 @@ const content = [
     title: <span style={{ fontFamily: 'Montserrat, sans-serif'}}>Our Impact</span>,
     description: (
       <div className="space-y-6 text-xl! md:text-2xl text-gray-800 leading-relaxed opacity-90">
-        <p className="text-xl! md:text-2xl!">We measure our success by the value our work creates for clients and the communities they serve. Our projects are designed not just to generate knowledge, but to support real change—whether that means entering a new market, improving service delivery, refining a social program, or informing a policy decision.</p>
+        <p className="text-xl! md:text-2xl!">We measure our success by the value our work creates for clients and the communities they serve. Our projects are designed not just to generate knowledge, but to support real change whether that means entering a new market, improving service delivery, refining a social program, or informing a policy decision.</p>
         
         <ol className="space-y-4 list-decimal pl-5">
           <li className="pl-2">
@@ -152,7 +152,7 @@ const content = [
     ),
   },
   {
-    title: <span style={{ fontFamily: 'Montserrat, sans-serif' }}>Building the Next Generation of Insight</span>,
+    title: <span style={{ fontFamily: 'League_Spartan, sans-serif' }}>Building the Next Generation of Insight</span>,
     description: (
       <div className="space-y-6 text-xl! md:text-2xl! text-gray-800 leading-relaxed opacity-90">
         <p className="text-xl! md:text-2xl!">Midak is intentionally designed as a future-facing firm. As data ecosystems expand and decision-making becomes more complex, we are investing in capabilities, partnerships, and platforms that will help our clients stay ahead of the curve.</p>

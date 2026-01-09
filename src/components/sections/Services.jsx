@@ -41,7 +41,7 @@ const Services = () => {
   };
 
   return (
-    <section className="w-full pt-8 pb-20 overflow-hidden font-['Montserrat']" style={{ backgroundColor: '#f5f5f5', fontFamily: "'Montserrat', sans-serif" }}>
+    <section className="w-full pt-8 pb-20 overflow-hidden font-['League Spartan']" style={{ backgroundColor: '#f5f5f5', fontFamily: "'League Spartan', sans-serif" }}>
       <motion.div 
         className="container mx-auto px-4"
         ref={ref}
@@ -62,7 +62,7 @@ const Services = () => {
             </div>
           </motion.h2>
           <motion.p 
-            className="text-lg xs:text-lg sm:text-2xl md:text-2xl lg:text-2xl text-gray-600 font-normal w-full whitespace-normal hero-paragraph text-left leading-relaxed"
+            className="text-base xs:text-base sm:text-xl md:text-xl lg:text-xl text-gray-500 font-semibold w-full whitespace-normal hero-paragraph font-league-spartan text-left leading-relaxed"
             variants={itemVariants}
           >
             <span className="line">Discover our comprehensive range of intelligent solutions designed to optimize your building's performance and efficiency.</span>

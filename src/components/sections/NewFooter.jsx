@@ -49,8 +49,8 @@ const footerData = {
     location: {
       label: 'Location',
       lines: [
-        '61 Cliff Street, Tesano',
-        'Accra, Ghana'
+        'Global',
+        
       ]
     },
     email: {
@@ -60,8 +60,13 @@ const footerData = {
     },
     telephone: {
       label: 'Telephone',
-      value: '+233 26 587 2188',
-      link: 'tel:+233265872188'
+      value: '+233 59 277 4934 ',
+      link: 'tel:+233592774934'
+    },
+    whatsapp: {
+      label: 'WhatsApp',
+      value: '+233 20 199 2691 ',
+      link: 'https://wa.me/233201992691'
     },
     social: [
       { 
@@ -135,7 +140,7 @@ const NewFooter = ({ hideFooter = false }) => {
 
   return (
     <footer 
-      className="w-full py-8 md:py-12 px-4 sm:px-6 text-white relative overflow-hidden"
+      className="w-full py-12 md:py-16 px-4 sm:px-8 lg:px-12 xl:px-16 text-white relative overflow-hidden"
       style={{
         color: theme.textColor,
         maxWidth: `${layout.maxWidth}px`,
@@ -144,10 +149,8 @@ const NewFooter = ({ hideFooter = false }) => {
         isolation: 'isolate',
         marginBottom: 0,
         paddingBottom: 0,
-        backgroundColor: `${theme.accentColor}CC`,
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
-        borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+        backgroundColor: `#800020`,
+        backdropFilter: 'blur(10px)'
       }}
     >
       {/* Background with overlay */}
@@ -167,172 +170,143 @@ const NewFooter = ({ hideFooter = false }) => {
           }}
         />
       </div>
-        {/* CTA Section */}
-        <div className="text-left mb-10">
-          <h2 
-            className="text-xl md:text-2xl font-bold mb-2 font-['Montserrat'] uppercase tracking-wider whitespace-nowrap" 
-            style={{ 
-              color: 'white',
-              fontFamily: "'Montserrat', sans-serif",
-              letterSpacing: '0.1em'
-            }}
-          >
-            {cta.title}
-          </h2>
-          <p 
-            className="text-base md:text-lg mb-4 max-w-3xl font-['Montserrat'] text-white leading-relaxed" 
-            style={{ 
-              fontFamily: "'Montserrat', sans-serif"
-            }}
-          >
-            {cta.description}
-          </p>
-          <div className="relative inline-block">
-            <motion.div
-              className="relative group"
-              whileHover="hover"
-              initial="initial"
-            >
-              <Link
-                to={cta.button.link}
-                className="relative z-10 inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full font-['Montserrat'] uppercase tracking-wider overflow-hidden"
-                style={{
-                  color: theme.accentColor,
-                  fontFamily: "'Montserrat', sans-serif",
-                  letterSpacing: '0.1em',
-                  backgroundColor: 'white',
-                  border: `1px solid ${theme.accentColor}`,
-                  ...cta.button.style
-                }}
-              >
-                <span className="relative z-10 transition-colors duration-200 group-hover:text-white">
-                  {cta.button.label}
-                </span>
-                <motion.span 
-                  className="absolute top-0 left-0 w-full h-0 z-0"
-                  style={{ backgroundColor: theme.accentColor }}
-                  variants={{
-                    initial: { height: 0, y: '-100%' },
-                    hover: { 
-                      height: '100%',
-                      y: 0,
-                      transition: { 
-                        duration: 0.3,
-                        ease: 'easeInOut'
-                      }
-                    }
-                  }}
-                />
-              </Link>
-            </motion.div>
-          </div>
-        </div>
+       
 
-        {/* Contact and Social Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
-          {/* Contact Info */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full md:w-auto">
-            <div>
-              <h3 
-                className="text-base sm:text-lg font-medium mb-2 font-['Montserrat_Alternates']" 
-                style={{ 
-                  color: 'white',
-                  fontFamily: "'Montserrat Alternates', sans-serif"
-                }}
-              >
-                {contact.email.label}
-              </h3>
-              <a 
-                href={contact.email.link}
-                className="text-base sm:text-lg transition-opacity duration-200 hover:opacity-80 font-['Montserrat'] text-white"
-                style={{ 
-                  fontFamily: "'Montserrat', sans-serif"
-                }}
-              >
-                {contact.email.value}
-              </a>
+        {/* Three Column Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 w-full max-w-7xl mx-auto">
+          {/* Column 1: Navigation Links */}
+          <div>
+            <h3 className="text-xl font-medium mb-6 text-white" style={{ fontFamily: "'League Spartan', sans-serif" }}>Navigation</h3>
+            <nav className="space-y-2 text-xl">
+              {[
+                { to: "/", label: "Home" },
+                { to: "/services", label: "Services" },
+                { to: "/about", label: "About" },
+                { to: "/blog", label: "Insights" },
+                { to: "/contact", label: "Contact Us" }
+              ].map((item, index) => (
+                <Link
+                  key={index}
+                  to={item.to}
+                  className="block text-white hover:opacity-80 transition-opacity duration-200"
+                  style={{ fontFamily: "'League Spartan', sans-serif" }}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+          {/* Column 2: Social Media */}
+          <div>
+            <h3 className="text-xl font-medium mb-6 text-white" style={{ fontFamily: "'League Spartan', sans-serif" }}>Follow Us</h3>
+            <div className="flex space-x-4 -ml-6">
+              {contact.social.map((social, index) => (
+                <a 
+                  key={index} 
+                  href={social.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white hover:opacity-80 transition-opacity duration-200 p-2"
+                  aria-label={social.label}
+                >
+                  {renderSocialIcon(social.icon)}
+                </a>
+              ))}
             </div>
-            <div>
-              <h3 
-                className="text-base sm:text-lg font-medium mb-2 font-['Montserrat_Alternates']" 
-                style={{ 
-                  color: 'white',
-                  fontFamily: "'Montserrat Alternates', sans-serif"
-                }}
-              >
-                {contact.telephone.label}
-              </h3>
-              <p 
-                className="text-base sm:text-lg font-['Montserrat'] text-white" 
-                style={{ 
-                  fontFamily: "'Montserrat', sans-serif"
-                }}
-              >
+          </div>
+
+          {/* Column 3: Contact Info */}
+          <div>
+            <h3 className="text-xl font-medium mb-6 text-white" style={{ fontFamily: "'League Spartan', sans-serif" }}>Contact Us</h3>
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-sm font-medium text-white/80 mb-2" style={{ fontFamily: "'League Spartan', sans-serif" }}>
+                  {contact.email.label}
+                </h4>
+                <a 
+                  href={contact.email.link}
+                  className="text-white hover:opacity-80 text-xl transition-opacity duration-200"
+                  style={{ fontFamily: "'League Spartan', sans-serif" }}
+                >
+                  {contact.email.value}
+                </a>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-white/80 mb-2" style={{ fontFamily: "'League Spartan', sans-serif" }}>
+                  {contact.telephone.label}
+                </h4>
                 <a 
                   href={contact.telephone.link}
-                  className="text-base sm:text-lg transition-opacity duration-200 hover:opacity-80 text-white"
+                  className="text-white hover:opacity-80 text-xl transition-opacity duration-200"
+                  style={{ fontFamily: "'League Spartan', sans-serif" }}
                 >
                   {contact.telephone.value}
                 </a>
-              </p>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-white/80 mb-2" style={{ fontFamily: "'League Spartan', sans-serif" }}>
+                  {contact.whatsapp.label}
+                </h4>
+                <a 
+                  href={contact.whatsapp.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:opacity-80 text-xl transition-opacity duration-200"
+                  style={{ fontFamily: "'League Spartan', sans-serif" }}
+                >
+                  {contact.whatsapp.value}
+                </a>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-white/80 mb-2" style={{ fontFamily: "'League Spartan', sans-serif" }}>
+                  Location
+                </h4>
+                <p className="text-white text-xl" style={{ fontFamily: "'League Spartan', sans-serif" }}>
+                  {contact.location.lines[0]}
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Social Links */}
-          <div className="flex space-x-3 w-full md:w-auto justify-start md:justify-end">
-            {contact.social.map((social, index) => (
-              <a 
-                key={index} 
-                href={social.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors duration-200 p-2"
-                aria-label={social.label}
-              >
-                {renderSocialIcon(social.icon)}
-              </a>
-            ))}
-          </div>
+          
         </div>
 
-        {/* Policy Links */}
-        <div className="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t text-white border-opacity-10">
-          {branding.links.map((link, index) => (
-            <Link
-              key={index}
-              to={link.href}
-              className="text-sm font-medium text-white hover:opacity-80 transition-opacity duration-200 whitespace-nowrap"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
+
       
-      {/* Branding and Copyright */}
-      <div 
-        className="w-full bg-[accentColors.main] px-4 py-1"
-        style={{
-          overflow: 'hidden',
-          marginTop: 'auto',
-          marginBottom: 0,
-          lineHeight: 1
-        }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 py-1">
-            <div className="flex items-center">
-              <img 
-                src="/assets/images/logo.png" 
-                alt="Midak Research & Analytics Logo" 
-                className="h-16 w-auto mr-3"
-                style={{ display: 'block' }}
-              />
-            </div>
-            <div className="text-center sm:text-right">
-              <p className="text-xs text-[#f5f5f5] opacity-90 leading-tight" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+      {/* Branding, Copyright and Policy Links */}
+      <div className="w-full bg-[accentColors.main] py-6 mt-8">
+        <div className="max-w-7xl mx-auto pl-2 pr-4">
+          {/* Logo at the top left */}
+          <div className="flex justify-start mb-8">
+            <img 
+              src="/assets/images/logo.png" 
+              alt="Midak Research & Analytics Logo" 
+              className="h-16 w-auto"
+              style={{ display: 'block' }}
+            />
+          </div>
+          
+          {/* Bottom row with copyright and policy links */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between pt-6 border-t border-white/10">
+            {/* Copyright on the left */}
+            <div className="mb-4 md:mb-0">
+              <p className="text-sm text-[#f5f5f5] opacity-90 leading-tight text-left" style={{ fontFamily: "'League Spartan', sans-serif" }}>
                 {branding.copyright}
               </p>
+            </div>
+            
+            {/* Policy links on the right */}
+            <div className="flex flex-wrap gap-4 justify-start md:justify-center">
+              {branding.links.map((link, index) => (
+                <Link
+                  key={index}
+                  to={link.href}
+                  className="text-sm font-medium text-white hover:opacity-80 transition-opacity duration-200 whitespace-nowrap"
+                  style={{ fontFamily: "'League Spartan', sans-serif" }}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
