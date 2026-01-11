@@ -12,6 +12,10 @@ const Navbar = () => {
   const navRef = useRef(null);
 
   const isActive = (path) => location.pathname === path;
+  
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+  };
 
   // Handle scroll to hide/show navbar with throttling
   useEffect(() => {
@@ -151,12 +155,13 @@ const Navbar = () => {
             <Link
               key={item.to}
               to={item.to}
-              className={`px-5 py-2 rounded-full text-white text-xl transition-all duration-200 font-medium
+              className={`px-5 py-2 rounded-full text-white text-xl transition-all duration-200 font-medium block
                 ${
                   isActive(item.to)
                     ? "bg-white/15"
                     : "hover:bg-white/10"
                 }`}
+              onClick={closeMobileMenu}
             >
               {item.label}
             </Link>
@@ -169,6 +174,7 @@ const Navbar = () => {
               to="/contact"
               className={`px-5 py-2 rounded-full text-white text-xl transition-all duration-200 font-medium
                 ${isActive("/contact") ? "bg-white/15" : "hover:bg-white/10"} flex items-center`}
+              onClick={closeMobileMenu}
             >
               Contact Us
             </Link>
@@ -276,9 +282,9 @@ const Navbar = () => {
               >
                 <Link
                   to={item.to}
-                  onClick={() => setMobileOpen(false)}
-                  className="block text-white text-4xl font-semibold border-b-2 border-white/20 py-5 hover:pl-6 transition-all duration-300"
+                  className="w-full text-left text-white text-4xl font-semibold border-b-2 border-white/20 py-5 hover:pl-6 transition-all duration-300 block"
                   style={{ fontFamily: 'League_Spartan, sans-serif' }}
+                  onClick={closeMobileMenu}
                 >
                   {item.label}
                 </Link>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -47,7 +48,9 @@ const AppContent = ({ appStyles }) => {
                     location.pathname.startsWith('/services/');
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <>
+      <ScrollToTop />
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <div style={{ flex: '1 0 auto', width: '100%' }}>
         <Navbar />
         <main style={appStyles}>
@@ -71,6 +74,7 @@ const AppContent = ({ appStyles }) => {
       </div>
       {!hideFooter && <NewFooter />}
     </div>
+    </>
   );
 };
 
