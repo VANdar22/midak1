@@ -184,18 +184,6 @@ const Blog = () => {
     { value: 'oldest', label: 'Oldest' },
   ];
 
-  const categories = [
-    'View all',
-    'Design',
-    'Product',
-    'Software Engineering',
-    'Customer Success'
-  ];
-
-  const featuredPost = {
-    
-  };
-
   const posts = [
     {
       id: 2,
@@ -210,6 +198,9 @@ const Blog = () => {
     },
    
   ];
+
+  // Get unique categories from posts
+  const availableCategories = ['View all', ...new Set(posts.map(post => post.category))];
 
   const filteredPosts = activeCategory === 'View all' 
     ? posts 
@@ -246,7 +237,7 @@ const Blog = () => {
   }
 
   // Get featured posts (first 3 posts)
-  const featuredPosts = [featuredPost, ...posts].slice(0, 3);
+  const featuredPosts = posts.slice(0, 3);
 
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'League Spartan, sans-serif' }}>
@@ -421,7 +412,7 @@ const Blog = () => {
                 marginBottom: '-0.5rem',
               }}
             >
-              {categories.map((category) => (
+              {availableCategories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}

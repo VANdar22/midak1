@@ -158,13 +158,14 @@ const ProjectPost = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4" style={{ fontFamily: 'League Spartan, sans-serif' }}>
         <div className="text-center max-w-md mx-auto">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Project Not Found</h1>
-          <p className="text-gray-600 mb-6">The project you're looking for doesn't exist or has been moved.</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'League Spartan, sans-serif' }}>Project Not Found</h1>
+          <p className="text-gray-600 mb-6" style={{ fontFamily: 'League Spartan, sans-serif' }}>The project you're looking for doesn't exist or has been moved.</p>
           <button
             onClick={() => navigate('/')}
             className="px-6 py-3 bg-[#6f35c8] text-white rounded-lg hover:bg-[#5d2da8] transition-colors"
+            style={{ fontFamily: 'League Spartan, sans-serif' }}
           >
             Back to Home
           </button>
@@ -174,7 +175,7 @@ const ProjectPost = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white" style={containerStyle}>
+    <div className="min-h-screen bg-white" style={{ ...containerStyle, fontFamily: 'League Spartan, sans-serif' }}>
       {/* Full-width header with background image */}
       <div 
         className="relative w-full h-96 md:h-[500px] bg-cover bg-center flex flex-col"
@@ -183,12 +184,11 @@ const ProjectPost = () => {
         <div className="container mx-auto px-4">
           <div className="absolute bottom-12 left-0 w-full px-4">
             <div className="container mx-auto">
-              <h1 className="text-4xl md:text-6xl font-bold font-sans text-white mb-6 max-w-4xl leading-tight tracking-tight">
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 max-w-4xl leading-tight tracking-tight" style={{ fontFamily: 'League Spartan, sans-serif' }}>
                 {project.title}
               </h1>
               <div className="flex items-center">
-                <div className="text-white/90 text-sm font-sans flex flex-wrap gap-4">
-                 
+                <div className="text-white/90 text-sm flex flex-wrap gap-4" style={{ fontFamily: 'League Spartan, sans-serif' }}>
                   <div className="flex items-center">
                     <span className="font-medium">Duration:&nbsp;</span>
                     <span>{project.duration}</span>
@@ -205,16 +205,16 @@ const ProjectPost = () => {
       </div>
 
       {/* Content container */}
-      <div className="w-full relative z-10 bg-white">
+      <div className="w-full relative z-10 bg-white" style={{ fontFamily: 'League Spartan, sans-serif' }}>
         <div className="max-w-7xl mx-auto">
           <div className="w-full pt-8 px-6 pb-12 md:pt-12 md:px-12 md:pb-12 project-content">
 
-            <div ref={contentRef} className="prose prose-lg max-w-none">
-              {project.content.map((paragraph) => {
-                // Create a more stable key using the first 20 characters of the paragraph
-                const key = `para-${paragraph.substring(0, 20).replaceAll(/\s+/g, '-')}`;
+            <div ref={contentRef} className="prose prose-lg max-w-none" style={{ fontFamily: 'League Spartan, sans-serif' }}>
+              {project.content.map((paragraph, index) => {
+                // Create a more stable key using the index and first 20 characters of the paragraph
+                const key = `para-${index}-${paragraph.substring(0, 20).replaceAll(/\s+/g, '-')}`;
                 return (
-                  <p key={key} className="text-gray-700 leading-relaxed mb-6">
+                  <p key={key} className="text-gray-700 leading-relaxed mb-6" style={{ fontFamily: 'League Spartan, sans-serif' }}>
                     {paragraph}
                   </p>
                 );
@@ -222,12 +222,13 @@ const ProjectPost = () => {
 
               {project.technologies && (
                 <div className="mt-12 pt-8 border-t border-gray-100">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-6">Technologies & Methods</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-6" style={{ fontFamily: 'League Spartan, sans-serif' }}>Technologies & Methods</h3>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
                       <span
                         key={`tech-${tech}`}
                         className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gray-50 text-gray-800"
+                        style={{ fontFamily: 'League Spartan, sans-serif' }}
                       >
                         {tech}
                       </span>
@@ -238,7 +239,7 @@ const ProjectPost = () => {
 
               <div className="mt-12 pt-8 border-t border-gray-200">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                  <p className="text-base text-gray-500 font-['League_Spartan']">
+                  <p className="text-base text-gray-500" style={{ fontFamily: 'League Spartan, sans-serif' }}>
                     Project by <span className="text-accent font-bold text-lg hover:text-accent/80 transition-colors">{project.client}</span>
                   </p>
                   <div className="group">

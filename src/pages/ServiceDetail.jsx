@@ -22,11 +22,13 @@ const ServiceHeaderImage = styled.div`
 const ServiceContainer = styled.div`
   max-width: 1000px;
   margin: 0 auto;
-  padding: 5rem 1.5rem 2rem;
-  font-family: 'Montserrat', sans-serif;
+  padding: 5rem 1.5rem 4rem;
+  font-family: 'league_spartan', sans-serif;
   line-height: 1.7;
-  color: #333;
+  color: #000;
   text-align: left;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 `;
 
 const BackButton = styled(motion.button)`
@@ -41,7 +43,7 @@ const BackButton = styled(motion.button)`
   border-radius: 9999px;
   cursor: pointer;
   font-weight: 600;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'league_spartan', sans-serif;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -83,74 +85,89 @@ const ServiceHeader = styled.div`
   margin-bottom: 3rem;
   text-align: left;
   max-width: 100%;
+  font-family: 'league_spartan', sans-serif;
   
   h1 {
-    font-size: 2.5rem;
-    color: #2d3748;
-    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #000;
+    margin: 0 0 1.25rem 0;
     font-weight: 700;
-    line-height: 1.2;
-    text-align: left;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    font-family: 'league_spartan', sans-serif;
   }
   
   p {
-    font-size: 1.4rem;
-    color: #4a5568;
+    font-size: 1.125rem;
+    color: #2d3748;
     margin: 0 0 1.5rem 0;
     font-weight: 500;
     max-width: 100%;
-    text-align: left;
+    line-height: 1.7;
+    font-family: 'league_spartan', sans-serif;
   }
   
   .description {
-    font-size: 1.1rem;
+    font-size: 1.125rem;
     line-height: 1.8;
-    color: #4a5568;
-    margin-top: 1.5rem;
+    color: #000;
+    margin: 2rem 0;
     padding: 0;
+    font-weight: 400;
+    font-family: 'league_spartan', sans-serif;
   }
 `;
 
 const Section = styled.div`
   margin-bottom: 3.5rem;
+  font-family: 'league_spartan', sans-serif;
   
   h2 {
-    font-size: 1.75rem;
-    color: #2d3748;
-    margin: 2.5rem 0 1.5rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    color: #000;
+    margin: 2.5rem 0 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    font-family: 'league_spartan', sans-serif;
   }
   
   p {
-    margin-bottom: 1.25rem;
+    margin: 0 0 1.5rem 0;
     line-height: 1.8;
-    color: #4a5568;
-    font-size: 1.05rem;
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 400;
+    font-family: 'league_spartan', sans-serif;
   }
   
   ul {
-    margin: 1.5rem 0 2.5rem 1rem;
-    padding-left: 1.5rem;
+    margin: 1.5rem 0 2.5rem 0;
+    padding-left: 0;
     list-style-type: none;
     
     li {
       margin-bottom: 0.8rem;
       line-height: 1.8;
-      color: #4a5568;
-      font-family: 'Montserrat', sans-serif;
-      padding-left: 1.5rem;
+      color: #000;
+      font-family: 'league_spartan', sans-serif;
+      font-size: 1.125rem;
+      padding-left: 1.8rem;
       position: relative;
+      font-weight: 400;
       
       &::before {
         content: '•';
         color: ${accentColors.main};
-        font-weight: bold;
+        font-weight: 700;
         display: inline-block;
         width: 1em;
         margin-left: -1.5rem;
-        font-size: 1.4em;
+        font-size: 1.5rem;
         line-height: 1;
         vertical-align: middle;
+        position: absolute;
+        left: 0;
       }
   }
 `;

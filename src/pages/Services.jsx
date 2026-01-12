@@ -218,7 +218,7 @@ const capabilities = [
     cta: "Learn more",
   },
   {
-    id: "policy-research-analysis",
+    id: "policy-research-strategic-analysis",
     label: "Policy Research & Strategic Analysis",
     title: "How we inform",
     body: "We evaluate policies to determine what works, what doesn't, and why. Our research combines data analysis with real-world implementation insights.",

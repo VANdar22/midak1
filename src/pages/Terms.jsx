@@ -21,24 +21,24 @@ const sections = [
 ];
 
 const Terms = () => (
-  <div className="min-h-screen bg-white pt-24" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+  <div className="min-h-screen bg-white pt-24" style={{ fontFamily: "'League Spartan', sans-serif" }}>
     <div className="w-full max-w-4xl mx-auto px-4 pb-12 space-y-8">
       <header>
-        <p className={`text-sm tracking-wide uppercase text-[${accentColors.DEFAULT}] font-semibold`}>Terms</p>
-        <h1 className="text-4xl font-bold text-gray-900 mt-2">Terms of Service</h1>
-        <p className="text-gray-600 mt-3">
+        <p className={`text-sm tracking-wide uppercase text-[${accentColors.DEFAULT}] font-semibold`} style={{ fontFamily: "'League Spartan', sans-serif" }}>Terms</p>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-6" style={{ fontFamily: "'League Spartan', sans-serif" }}>Terms of Service</h1>
+        <p className="text-lg text-gray-600 leading-relaxed" style={{ fontFamily: "'League Spartan', sans-serif" }}>
           These terms outline the rules and conditions for using our website and consulting services.
         </p>
       </header>
 
       {sections.map((section) => (
         <section key={section.title}>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">{section.title}</h2>
-          <p className="text-gray-600 leading-relaxed">{section.text}</p>
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4 mt-8" style={{ fontFamily: "'League Spartan', sans-serif" }}>{section.title}</h2>
+          <p className="text-gray-600 text-lg leading-relaxed" style={{ fontFamily: "'League Spartan', sans-serif" }}>{section.text}</p>
         </section>
       ))}
 
-      <footer className="pt-4 border-t border-gray-100 text-sm text-gray-500">
+      <footer className="pt-6 border-t border-gray-100 text-base text-gray-500 mt-12" style={{ fontFamily: "'League Spartan', sans-serif" }}>
         Last updated: November 18, 2025
       </footer>
     </div>
