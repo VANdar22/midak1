@@ -283,7 +283,7 @@ const Navbar = () => {
                 <Link
                   to={item.to}
                   className="w-full text-left text-white text-4xl font-semibold border-b-2 border-white/20 py-5 hover:pl-6 transition-all duration-300 block"
-                  style={{ fontFamily: 'League_Spartan, sans-serif' }}
+                  style={{ fontFamily: 'League Spartan, sans-serif' }}
                   onClick={closeMobileMenu}
                 >
                   {item.label}
@@ -293,7 +293,7 @@ const Navbar = () => {
           </div>
 
           {/* Drawer Footer */}
-          <div className="absolute bottom-0 w-full p-6 text-center text-white/70 text-sm" style={{ fontFamily: 'League_Spartan, sans-serif' }}>
+          <div className="absolute bottom-0 w-full p-6 text-center text-white/70 text-sm" style={{ fontFamily: 'League Spartan, sans-serif' }}>
             © {new Date().getFullYear()} Midak Research & Analytics
           </div>
         </div>
