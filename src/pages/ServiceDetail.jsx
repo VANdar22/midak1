@@ -23,7 +23,7 @@ const ServiceContainer = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   padding: 5rem 1.5rem 4rem;
-  font-family: 'league_spartan', sans-serif;
+  font-family: 'League Spartan', sans-serif;
   line-height: 1.7;
   color: #000;
   text-align: left;
@@ -43,7 +43,7 @@ const BackButton = styled(motion.button)`
   border-radius: 9999px;
   cursor: pointer;
   font-weight: 600;
-  font-family: 'league_spartan', sans-serif;
+  font-family: 'League Spartan', sans-serif;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -85,7 +85,7 @@ const ServiceHeader = styled.div`
   margin-bottom: 3rem;
   text-align: left;
   max-width: 100%;
-  font-family: 'league_spartan', sans-serif;
+  font-family: 'League Spartan', sans-serif;
   
   h1 {
     font-size: 1.5rem;
@@ -94,7 +94,7 @@ const ServiceHeader = styled.div`
     font-weight: 700;
     line-height: 1.3;
     letter-spacing: -0.02em;
-    font-family: 'league_spartan', sans-serif;
+    font-family: 'League Spartan', sans-serif;
   }
   
   p {
@@ -104,7 +104,7 @@ const ServiceHeader = styled.div`
     font-weight: 500;
     max-width: 100%;
     line-height: 1.7;
-    font-family: 'league_spartan', sans-serif;
+    font-family: 'League Spartan', sans-serif;
   }
   
   .description {
@@ -114,13 +114,13 @@ const ServiceHeader = styled.div`
     margin: 2rem 0;
     padding: 0;
     font-weight: 400;
-    font-family: 'league_spartan', sans-serif;
+    font-family: 'League Spartan', sans-serif;
   }
 `;
 
 const Section = styled.div`
   margin-bottom: 3.5rem;
-  font-family: 'league_spartan', sans-serif;
+  font-family: 'League Spartan', sans-serif;
   
   h2 {
     font-size: 1.5rem;
@@ -129,7 +129,7 @@ const Section = styled.div`
     font-weight: 700;
     line-height: 1.3;
     letter-spacing: -0.01em;
-    font-family: 'league_spartan', sans-serif;
+    font-family: 'League Spartan', sans-serif;
   }
   
   p {
@@ -138,7 +138,7 @@ const Section = styled.div`
     color: #000;
     font-size: 1.125rem;
     font-weight: 400;
-    font-family: 'league_spartan', sans-serif;
+    font-family: 'League Spartan', sans-serif;
   }
   
   ul {
@@ -150,7 +150,7 @@ const Section = styled.div`
       margin-bottom: 0.8rem;
       line-height: 1.8;
       color: #000;
-      font-family: 'league_spartan', sans-serif;
+      font-family: 'League Spartan', sans-serif;
       font-size: 1.125rem;
       padding-left: 1.8rem;
       position: relative;
